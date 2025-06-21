@@ -110,7 +110,7 @@ const Shop = () => {
                 {/* Out of Stock Badge */}
                 {isOutOfStock && (
                   <div className="absolute top-2 left-2 z-10">
-                    <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                    <span className="bg-red-800 text-white text-xs px-2 py-1 rounded-full font-medium">
                       Out of Stock
                     </span>
                   </div>
@@ -119,7 +119,7 @@ const Shop = () => {
                 {/* Low Stock Badge */}
                 {!isOutOfStock && (product.stock || 0) <= 5 && (product.stock || 0) > 0 && (
                   <div className="absolute top-2 left-2 z-10">
-                    <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
+                    <span className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
                       Only {product.stock} left
                     </span>
                   </div>
@@ -154,13 +154,13 @@ const Shop = () => {
                 {/* Stock Status */}
                 <div className="pt-1">
                   {isOutOfStock ? (
-                    <span className="text-red-500 text-xs font-medium">Out of Stock</span>
+                    <span className="text-red-800 text-xs font-medium">Out of Stock</span>
                   ) : (product.stock || 0) <= 5 ? (
-                    <span className="text-blue-600 text-xs font-medium">
+                    <span className="text-yellow-500 text-xs font-medium">
                       Low Stock ({product.stock} left)
                     </span>
                   ) : (
-                    <span className="text-green-500 text-xs font-medium">In Stock</span>
+                    <span className="text-green-800 text-xs font-medium">In Stock</span>
                   )}
                 </div>
               </div>

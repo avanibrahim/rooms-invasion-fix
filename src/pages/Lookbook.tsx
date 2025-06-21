@@ -108,7 +108,7 @@ const Lookbook = () => {
     {
       id: '9',
       title: 'Party Time',
-      category: 'party',
+      category: 'casual',
       image: '/lookbook/model9.jpg',
       description: 'Dress to impress at any party',
       products: ['17', '18'],
@@ -117,7 +117,7 @@ const Lookbook = () => {
     // Tambahkan lebih banyak items sesuai kebutuhan
   ];
 
-  const categories = ['all', 'casual', 'formal', 'street', 'party'];
+  const categories = ['all', 'casual', 'formal', 'street'];
 
   const filteredItems = selectedCategory === 'all' 
     ? lookbookItems 

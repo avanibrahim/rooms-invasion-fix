@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import Header from '../components/Header';
@@ -35,12 +34,12 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Visit Our Store',
-      details: ['Jl. Limba U Satu', 'Kota Gorontalo', 'Indonesia', '96135']
+      details: ['Jl. Limba U Satu', 'Kota Gorontalo', '96135']
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['+62 8XX-XXXX-XXXX']
+      details: ['+62 851‑6636‑9467']
     },
     {
       icon: Mail,
@@ -223,13 +222,18 @@ const Contact = () => {
                   Visit Our Store
                 </h2>
                 
-                {/* Map Placeholder */}
-                <div className="bg-gray-300 rounded-lg h-64 mb-6 flex items-center justify-center">
-                  <div className="text-center text-gray-600">
-                    <MapPin size={48} className="mx-auto mb-2" />
-                    <p>Interactive Map</p>
-                    <p className="text-sm">Jl. Sudirman No. 123, Jakarta Pusat</p>
-                  </div>
+                {/* Google Maps Embed */}
+                <div className="rounded-lg overflow-hidden h-64 mb-6 shadow-lg">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4259.766247675774!2d123.0626784!3d0.5496525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32792b35e28ef41f%3A0xa533905c22c1b117!2seksclothing!5e1!3m2!1sid!2sid!4v1750512931756!5m2!1sid!2sid"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Rooms Invasion Store Location"
+                  />
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -290,7 +294,7 @@ const Contact = () => {
                 Still have questions? We're here to help!
               </p>
               <a
-                href="mailto:info@styleshop.com"
+                href="mailto:roomsinvasion@gmail.com"
                 className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
               >
                 <Mail size={20} />

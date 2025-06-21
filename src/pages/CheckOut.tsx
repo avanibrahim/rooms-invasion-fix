@@ -33,8 +33,8 @@ const Checkout = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [step, setStep] = useState(1); // 1: Info, 2: Payment, 3: Review
 
-  const shippingCost = 15000;
-  const tax = getTotalPrice() * 0.1; // 10% tax
+  const shippingCost = 0;
+  const tax = getTotalPrice() * 0; // 10% tax
   const totalAmount = getTotalPrice() + shippingCost + tax;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -102,32 +102,32 @@ const Checkout = () => {
       'cod': 'Cash on Delivery'
     }[formData.paymentMethod];
 
-    return `🛍️ *PESANAN BARU TAKEZON*
+    return `*PESANAN BARU*
 
-📋 *Order Number:* ${orderNumber}
+ *Order Number:* ${orderNumber}
 
-👤 *Informasi Customer:*
+ *Informasi Customer:*
 Nama: ${formData.firstName} ${formData.lastName}
 Email: ${formData.email}
 Phone: ${formData.phone}
 
-📍 *Alamat Pengiriman:*
+ *Alamat Pengiriman:*
 ${formData.address}
 ${formData.city}, ${formData.province} ${formData.postalCode}
 ${formData.country}
 
-🛒 *Item Pesanan:*
+ *Item Pesanan:*
 ${itemsList}
 
-💰 *Ringkasan Pembayaran:*
+ *Ringkasan Pembayaran:*
 Subtotal: Rp ${getTotalPrice().toLocaleString('id-ID')}
 Ongkir: Rp ${shippingCost.toLocaleString('id-ID')}
 Pajak (10%): Rp ${tax.toLocaleString('id-ID')}
 *Total: Rp ${totalAmount.toLocaleString('id-ID')}*
 
-💳 *Metode Pembayaran:* ${paymentMethodText}
+ *Metode Pembayaran:* ${paymentMethodText}
 
-Mohon konfirmasi pesanan ini. Terima kasih! 🙏`;
+Mohon konfirmasi pesanan ini. Terima kasih! `;
   };
 
   const handlePlaceOrder = async () => {
@@ -175,7 +175,7 @@ Mohon konfirmasi pesanan ini. Terima kasih! 🙏`;
         
         // Show final success notification
         toast({
-          title: "Terima kasih! 🎉",
+          title: "Terima kasih!",
           description: "Pesanan Anda telah dikirim ke admin. Silakan cek WhatsApp untuk konfirmasi.",
           variant: "success",
         });
@@ -517,12 +517,12 @@ Mohon konfirmasi pesanan ini. Terima kasih! 🙏`;
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="font-medium">Mandiri:</span>
                           <strong>0987654321</strong>
-                          <span>(Takezon Store)</span>
+                          <span>(Takezon)</span>
                         </div>
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="font-medium">BNI:</span>
                           <strong>1122334455</strong>
-                          <span>(Takezon Store)</span>
+                          <span>(Takezon)</span>
                         </div>
                       </div>
                     </div>
@@ -607,7 +607,7 @@ Mohon konfirmasi pesanan ini. Terima kasih! 🙏`;
                     <h3 className="font-semibold text-gray-900 mb-3 text-sm sm:text-base">Order Confirmation</h3>
                     <div className="text-xs sm:text-sm text-gray-600">
                       <p className="mb-2">
-                        Setelah menekan tombol "Place Order", Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan dengan admin kami.
+                        Setelah menekan tombol "Place Order", Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan dengan admin kami, Sertakan bukti pembayaran.
                       </p>
                       <div className="flex items-center gap-2 text-green-600 font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="currentColor">

@@ -15,15 +15,13 @@ export interface CartItem {
 interface CartStore {
   items: CartItem[];
   isOpen: boolean;
-  addItem: (item: CartItem, navigate?: (path: string) => void) => void;
+  addItem: (item: Omit<CartItem, 'quantity'>) => void;
   removeItem: (id: string, size: string, color: string) => void;
   updateQuantity: (id: string, size: string, color: string, quantity: number) => void;
   clearCart: () => void;
+  toggleCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
-  toggleCart: () => void;
-  getOutOfStockItems: () => CartItem[];
-  hasOutOfStockItems: () => boolean;
 }
 
 export const useCartStore = create<CartStore>()(
@@ -32,98 +30,68 @@ export const useCartStore = create<CartStore>()(
       items: [],
       isOpen: false,
       
-      addItem: (newItem, navigate) => {
-        set((state) => {
-          // Check if item is out of stock
-          if (newItem.stock === 0) {
-            return state; // Don't add out of stock items
-          }
+      addItem: (newItem) => {
+        const items = get().items;
+        const existingItem = items.find(
+          item => item.id === newItem.id && item.size === newItem.size && item.color === newItem.color
+        );
 
-          const existingItem = state.items.find(
-            (item) => 
-              item.id === newItem.id && 
-              item.size === newItem.size && 
-              item.color === newItem.color
-          );
-
-          let updatedItems;
-          if (existingItem) {
-            // Update existing item quantity, but don't exceed stock
-            updatedItems = state.items.map((item) =>
-              item.id === newItem.id && 
-              item.size === newItem.size && 
-              item.color === newItem.color
-                ? { 
-                    ...item, 
-                    quantity: Math.min(item.quantity + newItem.quantity, newItem.stock),
-                    stock: newItem.stock // Update stock info
-                  }
+        if (existingItem) {
+          set({
+            items: items.map(item =>
+              item.id === newItem.id && item.size === newItem.size && item.color === newItem.color
+                ? { ...item, quantity: Math.min(item.quantity + 1, item.stock) }
                 : item
-            );
-          } else {
-            // Add new item with stock validation
-            updatedItems = [...state.items, {
-              ...newItem,
-              quantity: Math.min(newItem.quantity, newItem.stock)
-            }];
-          }
+            )
+          });
+        } else {
+          set({
+            items: [...items, { ...newItem, quantity: 1 }]
+          });
+        }
+      },
 
-          // Auto redirect to checkout only if navigate function is provided
-          if (navigate) {
-            setTimeout(() => {
-              navigate('/checkout');
-            }, 500);
-          }
-
-          return { items: updatedItems };
+      removeItem: (id, size, color) => {
+        set({
+          items: get().items.filter(
+            item => !(item.id === id && item.size === size && item.color === color)
+          )
         });
       },
-      
-      removeItem: (id, size, color) =>
-        set((state) => ({
-          items: state.items.filter(
-            (item) => !(item.id === id && item.size === size && item.color === color)
-          ),
-        })),
-      
-      updateQuantity: (id, size, color, quantity) =>
-        set((state) => ({
-          items: state.items.map((item) =>
+
+      updateQuantity: (id, size, color, quantity) => {
+        if (quantity <= 0) {
+          get().removeItem(id, size, color);
+          return;
+        }
+
+        set({
+          items: get().items.map(item =>
             item.id === id && item.size === size && item.color === color
-              ? { 
-                  ...item, 
-                  quantity: Math.min(Math.max(0, quantity), item.stock) 
-                }
+              ? { ...item, quantity: Math.min(quantity, item.stock) }
               : item
-          ).filter(item => item.quantity > 0), // Remove items with 0 quantity
-        })),
-      
-      clearCart: () => set({ items: [] }),
-      
+          )
+        });
+      },
+
+      clearCart: () => {
+        set({ items: [] });
+      },
+
+      toggleCart: () => {
+        set({ isOpen: !get().isOpen });
+      },
+
       getTotalItems: () => {
-        const { items } = get();
-        return items.reduce((total, item) => total + item.quantity, 0);
+        return get().items.reduce((total, item) => total + item.quantity, 0);
       },
-      
+
       getTotalPrice: () => {
-        const { items } = get();
-        return items.reduce((total, item) => total + (item.price * item.quantity), 0);
-      },
-      
-      toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
-
-      getOutOfStockItems: () => {
-        const { items } = get();
-        return items.filter(item => item.stock === 0);
-      },
-
-      hasOutOfStockItems: () => {
-        const { items } = get();
-        return items.some(item => item.stock === 0);
-      },
+        return get().items.reduce((total, item) => total + (item.price * item.quantity), 0);
+      }
     }),
     {
-      name: 'cart-storage',
+      name: 'cart-storage'
     }
   )
 );
