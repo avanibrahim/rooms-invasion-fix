@@ -35,17 +35,17 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Visit Our Store',
-      details: ['Jl. Sudirman No. 123', 'Kota Gorontalo', 'Indonesia']
+      details: ['Jl. Limba U Satu', 'Kota Gorontalo', 'Indonesia', '96135']
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: ['+62 812-3456-7890', '+62 21-5555-0123']
+      details: ['+62 8XX-XXXX-XXXX']
     },
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['info@styleshop.com', 'support@styleshop.com']
+      details: ['roomsinvasion@mail.com']
     },
     {
       icon: Clock,
