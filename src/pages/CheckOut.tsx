@@ -97,7 +97,7 @@ const Checkout = () => {
     ).join('\n');
 
     const paymentMethodText = {
-      'credit-card': 'Credit Card',
+      'e-wallet': 'E-Wallet',
       'bank-transfer': 'Bank Transfer', 
       'cod': 'Cash on Delivery'
     }[formData.paymentMethod];
@@ -107,27 +107,27 @@ const Checkout = () => {
  *Order Number:* ${orderNumber}
 
  *Informasi Customer:*
-Nama: ${formData.firstName} ${formData.lastName}
-Email: ${formData.email}
-Phone: ${formData.phone}
+  Nama: ${formData.firstName} ${formData.lastName}
+  Email: ${formData.email}
+  Phone: ${formData.phone}
 
  *Alamat Pengiriman:*
-${formData.address}
-${formData.city}, ${formData.province} ${formData.postalCode}
-${formData.country}
+  ${formData.address}
+  ${formData.city}, ${formData.province} ${formData.postalCode}
+  ${formData.country}
 
  *Item Pesanan:*
-${itemsList}
+  ${itemsList}
 
  *Ringkasan Pembayaran:*
-Subtotal: Rp ${getTotalPrice().toLocaleString('id-ID')}
-Ongkir: Rp ${shippingCost.toLocaleString('id-ID')}
-Pajak (10%): Rp ${tax.toLocaleString('id-ID')}
-*Total: Rp ${totalAmount.toLocaleString('id-ID')}*
+  Subtotal: Rp ${getTotalPrice().toLocaleString('id-ID')}
+  Ongkir: Rp ${shippingCost.toLocaleString('id-ID')}
+  Pajak (10%): Rp ${tax.toLocaleString('id-ID')}
+  *Total: Rp ${totalAmount.toLocaleString('id-ID')}*
 
  *Metode Pembayaran:* ${paymentMethodText}
 
-Mohon konfirmasi pesanan ini. Terima kasih! `;
+  Mohon konfirmasi pesanan ini. Terima kasih! `;
   };
 
   const handlePlaceOrder = async () => {
@@ -403,13 +403,13 @@ Mohon konfirmasi pesanan ini. Terima kasih! `;
                         <input
                           type="radio"
                           name="paymentMethod"
-                          value="credit-card"
-                          checked={formData.paymentMethod === 'credit-card'}
+                          value="e-wallet"
+                          checked={formData.paymentMethod === 'e-wallet'}
                           onChange={handleInputChange}
                           className="mr-3"
                         />
                         <CreditCard size={18} className="mr-2 flex-shrink-0" />
-                        <span className="text-sm sm:text-base">Credit Card</span>
+                        <span className="text-sm sm:text-base">E-Wallet</span>
                       </label>
                       
                       <label className="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
@@ -456,77 +456,136 @@ Mohon konfirmasi pesanan ini. Terima kasih! `;
                         />
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Expiry Date *
-                          </label>
-                          <input
-                            type="text"
-                            name="expiryDate"
-                            value={formData.expiryDate}
-                            onChange={handleInputChange}
-                            placeholder="MM/YY"
-                            className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                          />
+                    </div>
+                  )}
+
+                  {formData.paymentMethod === 'e-wallet' && (
+                    <div className="bg-gray-100 p-4 rounded-lg">
+                      <h4 className="font-semibold text-black mb-2 text-sm sm:text-base">E-Wallet Instructions</h4>
+                      <p className="text-black text-xs sm:text-sm mb-4">
+                        Select one of the payments from the e-wallet below
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {/* GoPay */}
+                        <div className="flex items-center bg-white rounded-xl shadow p-3">
+                          <div className="flex-shrink-0 bg-white rounded-full p-2">
+                            <img
+                              src="https://brandlogos.net/wp-content/uploads/2022/10/gopay-logo_brandlogos.net_gph3u.png"
+                              alt="GoPay"
+                              className="h-10 w-10 object-contain"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="font-bold text-base text-gray-900">GoPay</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
+                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                          </div>
                         </div>
-                        
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            CVV *
-                          </label>
-                          <input
-                            type="text"
-                            name="cvv"
-                            value={formData.cvv}
-                            onChange={handleInputChange}
-                            placeholder="123"
-                            className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                          />
+                        {/* ShopeePay */}
+                        <div className="flex items-center bg-white rounded-xl shadow p-3">
+                          <div className="flex-shrink-0 bg-white rounded-full p-2">
+                            <img
+                              src="https://brandlogos.net/wp-content/uploads/2022/08/shopeepay-logo_brandlogos.net_yl7nf-512x512.png"
+                              alt="ShopeePay"
+                              className="h-10 w-10 object-contain"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="font-bold text-base text-gray-900">ShopeePay</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
+                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                          </div>
                         </div>
-                      </div>
-                      
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Cardholder Name *
-                        </label>
-                        <input
-                          type="text"
-                          name="cardName"
-                          value={formData.cardName}
-                          onChange={handleInputChange}
-                          placeholder="John Doe"
-                          className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                        />
+                        {/* OVO */}
+                        <div className="flex items-center bg-white rounded-xl shadow p-3">
+                          <div className="flex-shrink-0 bg-white rounded-full p-2">
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/1200px-Logo_ovo_purple.svg.png"
+                              alt="OVO"
+                              className="h-10 w-10 object-contain"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="font-bold text-base text-gray-900">OVO</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
+                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                          </div>
+                        </div>
+                        {/* Dana */}
+                        <div className="flex items-center bg-white rounded-xl shadow p-3">
+                          <div className="flex-shrink-0 bg-white rounded-full p-2">
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/commons/5/52/Dana_logo.png"
+                              alt="Dana"
+                              className="h-10 w-10 object-contain"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="font-bold text-base text-gray-900">Dana</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
+                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}
 
                   {formData.paymentMethod === 'bank-transfer' && (
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                      <h4 className="font-semibold text-blue-900 mb-2 text-sm sm:text-base">Bank Transfer Instructions</h4>
-                      <p className="text-blue-800 text-xs sm:text-sm mb-2">
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-black mb-2 text-sm sm:text-base">Bank Transfer Instructions</h4>
+                      <p className="text-black text-xs sm:text-sm mb-4">
                         Please transfer the total amount to one of the following bank accounts:
                       </p>
-                      <div className="space-y-2 text-xs sm:text-sm text-blue-800">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-medium">BCA:</span>
-                          <strong>520735207</strong>
-                          <span>(Takezon)</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {/* BCA */}
+                        <div className="flex items-center bg-white rounded-xl shadow p-3">
+                          <div className="flex-shrink-0 bg-white rounded-full p-2">
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1280px-Bank_Central_Asia.svg.png"
+                              alt="BCA"
+                              className="h-10 w-10 object-contain"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="font-bold text-base text-gray-900">BCA</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">520735207</div>
+                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-medium">Mandiri:</span>
-                          <strong>0987654321</strong>
-                          <span>(Takezon)</span>
+                        {/* BNI */}
+                        <div className="flex items-center bg-white rounded-xl shadow p-3">
+                          <div className="flex-shrink-0 bg-white rounded-full p-2">
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/2560px-BNI_logo.svg.png"
+                              alt="BNI"
+                              className="h-10 w-10 object-contain"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="font-bold text-base text-gray-900">BNI</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">1122334455</div>
+                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-medium">BNI:</span>
-                          <strong>1122334455</strong>
-                          <span>(Takezon)</span>
+                        {/* Mandiri */}
+                        <div className="flex items-center bg-white rounded-xl shadow p-3">
+                          <div className="flex-shrink-0 bg-white rounded-full p-2">
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1280px-Bank_Mandiri_logo_2016.svg.png"
+                              alt="Mandiri"
+                              className="h-10 w-10 object-contain"
+                            />
+                          </div>
+                          <div className="ml-4">
+                            <div className="font-bold text-base text-gray-900">Mandiri</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">0987654321</div>
+                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   )}
+
 
                   {formData.paymentMethod === 'cod' && (
                     <div className="bg-green-50 p-4 rounded-lg">
@@ -610,9 +669,11 @@ Mohon konfirmasi pesanan ini. Terima kasih! `;
                         Setelah menekan tombol "Place Order", Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan dengan admin kami, Sertakan bukti pembayaran.
                       </p>
                       <div className="flex items-center gap-2 text-green-600 font-medium">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/>
-                        </svg>
+                      <img
+                          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                          alt="WhatsApp"
+                          className="h-4 w-4 sm:h-6 sm:w-6 object-contain"
+                        />
                         WhatsApp Admin: +6282291325909
                       </div>
                     </div>
@@ -642,7 +703,7 @@ Mohon konfirmasi pesanan ini. Terima kasih! `;
                   <button
                     onClick={handlePlaceOrder}
                     disabled={isProcessing || items.some(item => item.stock === 0)}
-                    className="w-full sm:w-auto sm:ml-auto px-4 sm:px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto sm:ml-auto px-4 sm:px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base flex items-center justify-center gap-2"
                   >
                     {isProcessing ? (
                       <>
@@ -651,10 +712,8 @@ Mohon konfirmasi pesanan ini. Terima kasih! `;
                       </>
                     ) : (
                       <>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/>
-                        </svg>
-                        Place Order via WhatsApp
+                        
+                        Place Order
                       </>
                     )}
                   </button>
@@ -807,9 +866,11 @@ Mohon konfirmasi pesanan ini. Terima kasih! `;
               {/* WhatsApp Contact Info */}
               <div className="mt-3 sm:mt-4 p-3 bg-yellow-50 rounded-lg">
                 <div className="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 sm:h-4 sm:w-4 text-green-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/>
-                  </svg>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                    alt="WhatsApp"
+                    className="h-4 w-4 sm:h-6 sm:w-6 object-contain"
+                  />
                   <span className="text-xs sm:text-sm text-gray-800 font-medium">
                     WhatsApp Support
                   </span>

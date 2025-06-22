@@ -43,23 +43,23 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black opacity-40 z-20" />
 
       {/* Content */}
-      <div className="relative z-30 h-full flex items-end pb-10 px-4 sm:px-12">
+      <div className="relative z-30 h-full flex items-end pb-5 px-4 sm:px-12">
         <div className="max-w-xl">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-2 leading-tight">
             Rooms Invasion
             <span className="block text-base sm:text-2xl text-gray-300 mt-1">
               Local Brand 2025
             </span>
           </h1>
 
-          <p className="text-sm sm:text-lg text-gray-200 mb-6">
+          <p className="text-sm sm:text-lg text-gray-200 mb-4">
             Discover the latest trends. From casual wear to formal attire, find your perfect style now.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <button
               onClick={handleShopNowClick}
-              className="bg-white text-gray-900 px-6 py-3 text-sm rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center group"
+              className="bg-white text-gray-900 px-6 py-3 text-sm rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 group flex items-center justify-center"
             >
               Shop Now
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" size={18} />
