@@ -16,8 +16,8 @@ export const products: Product[] = [
   {
     id: "1",
     name: "Eternal Tee - White",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
-    price: 210000,
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    price: 205000,
     images: [
       "/products/HUSTLE & FLOW/ETERNAL TEE/FRONT.png",
       "/products/HUSTLE & FLOW/ETERNAL TEE/BACK.png",
@@ -32,8 +32,8 @@ export const products: Product[] = [
   {
     id: "2",
     name: "Love Mom Tee - Black",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
-    price: 210000,
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    price: 205000,
     images: [
       "/products/HUSTLE & FLOW/LOVE MOM TEE/FRONT.png",
       "/products/HUSTLE & FLOW/LOVE MOM TEE/BACK.png",
@@ -48,8 +48,8 @@ export const products: Product[] = [
   {
     id: "3",
     name: "Mouth Tee - Black",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
-    price: 210000,
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    price: 205000,
     images: [
       "/products/HUSTLE & FLOW/MOUTH TEE/FRONT.png",
       "/products/HUSTLE & FLOW/MOUTH TEE/BACK.png",
@@ -64,7 +64,7 @@ export const products: Product[] = [
   {
     id: "4",
     name: "Still Tee - Black",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 210000,
     images: [
       "/products/HUSTLE & FLOW/STILL TEE BLACK/FRONT.png",
@@ -80,7 +80,7 @@ export const products: Product[] = [
   {
     id: "5",
     name: "Still Tee - Navy",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 150000,
     images: [
       "/products/HUSTLE & FLOW/STILL TEE NAVY/FRONT.png",
@@ -96,7 +96,7 @@ export const products: Product[] = [
   {
     id: "6",
     name: "T-Shirts - Beige",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 210000,
     images: [
       "/products/FIRST OF ALL/BEIGE/FRONT.png",
@@ -112,7 +112,7 @@ export const products: Product[] = [
   {
     id: "7",
     name: "One Josho - Black",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 210000,
     images: [
       "/products/FIRST OF ALL/BLACK 1 JOSHO/FRONT.png",
@@ -128,7 +128,7 @@ export const products: Product[] = [
   {
     id: "8",
     name: "T-Shirt - Green",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 210000,
     images: [
       "/products/FIRST OF ALL/GREEN/FRONT.png",
@@ -144,7 +144,7 @@ export const products: Product[] = [
   {
     id: "9",
     name: "Long Sleeve - Navy",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 210000,
     images: [
       "/products/FIRST OF ALL/LONG SLEEVE NAVY/FRONT.png",
@@ -175,7 +175,7 @@ export const products: Product[] = [
   {
     id: "11",
     name: "T-Shirt - Yellow",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price:210000,
     images: [
       "/products/DUB NATION/KUNING FRONT.png",
@@ -190,7 +190,7 @@ export const products: Product[] = [
   {
     id: "12",
     name: "Shirt - Black",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 250000,
     images: [
       "/products/DUB NATION/FRONT.png",
@@ -206,7 +206,7 @@ export const products: Product[] = [
   {
     id: "13",
     name: "Grows Crewneck - Black",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 250000,
     images: [
       "/products/INVASION FROM THE EAST/GROWS CREWNECK/FRONT.png",
@@ -222,7 +222,7 @@ export const products: Product[] = [
   {
     id: "14",
     name: "Inval 0435 Double Layer - Black",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 250000,
     images: [
       "/products/INVASION FROM THE EAST/INVAL 0435 DOUBLE LAYER/FRONT.png",
@@ -238,7 +238,7 @@ export const products: Product[] = [
   {
     id: "15",
     name: "Hoodie - Black",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 250000,
     images: [
       "/products/REMARKS 0.1/ASET HOODIE/FRONT.png",
@@ -254,7 +254,7 @@ export const products: Product[] = [
   {
     id: "16",
     name: "Nuovo Light - Grey",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 210000,
     images: [
       "/products/REMARKS 0.1/NUOVO LIGHT GREY/FRONT.png",
@@ -270,7 +270,7 @@ export const products: Product[] = [
   {
     id: "17",
     name: "Vyand Tee - Black",
-    description: "A comfortable and versatile white t-shirt made from 100% cotton. Perfect for casual wear or layering.",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 210000,
     images: [
       "/products/REMARKS 0.1/VYAND TEE/FRONT.png",

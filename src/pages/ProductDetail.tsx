@@ -106,17 +106,20 @@ const ProductDetail = () => {
     }, 500);
   };
 
+  const [showSizeChart, setShowSizeChart] = useState(false);
+
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
       
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-8 py-8">
         {/* Back Button */}
         <button
           onClick={() => navigate('/shop')}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors"
+          className="text-lg md:text-xl font-semibold flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors"
         >
-          <ArrowLeft size={20} />
+          <ArrowLeft size={24} />
           Back to Shop
         </button>
 
@@ -134,8 +137,8 @@ const ProductDetail = () => {
               {/* Out of Stock Overlay */}
               {isOutOfStock && (
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                  <div className="bg-white px-6 py-3 rounded-lg">
-                    <span className="text-gray-900 font-semibold">Out of Stock</span>
+                  <div className="bg-red-700 px-6 py-3 rounded-lg">
+                    <span className="text-white font-semibold">OUT OF STOCK</span>
                   </div>
                 </div>
               )}
@@ -170,70 +173,75 @@ const ProductDetail = () => {
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
                   {product.name}
                 </h1>
-                <button
-                  onClick={() => setIsWishlisted(!isWishlisted)}
-                  className={`p-2 rounded-full transition-colors ${
-                    isWishlisted ? 'text-red-500' : 'text-gray-400 hover:text-red-500'
-                  }`}
-                >
-                  <Heart size={24} fill={isWishlisted ? 'currentColor' : 'none'} />
-                </button>
               </div>
               
               <p className="text-gray-600 mb-2">{product.brand}</p>
-              
-              <div className="flex items-center gap-2 mb-4">
-                <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      className={i < Math.floor(product.rating || 0) ? 'text-yellow-400 fill-current' : 'text-gray-300'}
-                    />
-                  ))}
-                </div>
-                <span className="text-sm text-gray-600">
-                  ({product.rating || 0}) • {Math.floor(Math.random() * 100) + 10} reviews
-                </span>
-              </div>
-              
               <p className="text-3xl font-bold text-gray-900 mb-4">
                 Rp {product.price.toLocaleString('id-ID')}
               </p>
-
-              {/* Stock Status */}
-              <div className="mb-4">
-                {isOutOfStock ? (
-                  <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
-                    <AlertCircle size={20} className="text-red-500" />
-                    <span className="text-red-700 font-medium">Out of Stock</span>
-                  </div>
-                ) : isLowStock ? (
-                  <div className="flex items-center gap-2 p-3 bg-orange-50 border border-orange-200 rounded-lg">
-                    <AlertCircle size={20} className="text-orange-500" />
-                    <span className="text-orange-700 font-medium">
-                      Only {product.stock} items left in stock
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg">
-                    <span className="text-green-700 font-medium">✓ In Stock ({product.stock} available)</span>
-                  </div>
-                )}
-              </div>
             </div>
 
             {/* Description */}
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Description</h3>
-              <p className="text-gray-600 leading-relaxed">{product.description}</p>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">DESCRIPTION :</h3>
+              <ul className="list-disc list-inside text-gray-600 leading-relaxed font-list space-y-2 mb-4">
+                {product.description
+                  .split("•")
+                  .map(item => item.trim())
+                  .filter(item => item !== "")
+                  .map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+              </ul>
             </div>
+
+            {/* Size Chart Button */}
+          <button
+            onClick={() => setShowSizeChart(true)}
+            className="text-white px-4 py-2 border rounded-lg transition-colors bg-gray-900"
+          >
+            SIZE CHART
+          </button>
+
+          {showSizeChart && (
+            <div
+              onClick={() => setShowSizeChart(false)}
+              className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center px-4"
+            >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative bg-white rounded-lg overflow-hidden shadow-lg animate-slide-up w-full max-w-md sm:max-w-lg"
+            >
+              {/* Tombol Close */}
+              <button
+                onClick={() => setShowSizeChart(false)}
+                className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl font-bold z-10"
+              >
+                &times;
+              </button>
+
+              {/* Gambar Size Chart */}
+                <div className="relative">
+                  <img
+                    src="/image/sc.png"
+                    alt="Size Chart"
+                    className="w-full h-auto object-contain max-h-[90vh] sm:max-h-[80vh]"
+                  />
+
+                {/* Teks di bawah gambar */}
+                <p className="text-center text-gray-700 text-sm mt-2 mb-4">
+                  *Unit in centimeters
+                </p>
+                </div>
+            </div>
+          </div>
+        )}
+
 
             {/* Size Selection */}
             {product.sizes && (
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Size</h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 pt-4">
                   {product.sizes.map((size) => (
                     <button
                       key={size}
@@ -257,7 +265,7 @@ const ProductDetail = () => {
             {/* Color Selection */}
             {product.colors && (
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Color</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 pt-2">COLOUR :</h3>
                 <div className="flex flex-wrap gap-2">
                   {product.colors.map((color) => (
                     <button
@@ -282,7 +290,7 @@ const ProductDetail = () => {
             {/* Quantity */}
             {!isOutOfStock && (
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Quantity</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 pt-2">QUANTITY</h3>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -307,7 +315,7 @@ const ProductDetail = () => {
             )}
 
             {/* Add to Cart Button */}
-            <div className="space-y-4">
+            <div className="space-y-4 pt-2 pb-2">
               {isOutOfStock ? (
                 <div className="space-y-3">
                   <button
@@ -316,25 +324,7 @@ const ProductDetail = () => {
                   >
                     Out of Stock - Cannot Add to Cart
                   </button>
-                  <div className="grid grid-cols-2 gap-4">
-                    <button 
-                      onClick={() => {
-                        toast({
-                          title: "Added to wishlist!",
-                          description: "We'll notify you when this item is back in stock.",
-                        });
-                        setIsWishlisted(true);
-                      }}
-                      className="bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                    >
-                      Notify When Available
-                    </button>
-                    <button 
-                      onClick={() => setIsWishlisted(!isWishlisted)}
-                      className="border border-gray-300 py-3 px-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
-                    >
-                      {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
-                    </button>
+                  <div className="grid grid-cols-2 gap-4">          
                   </div>
                 </div>
               ) : (
@@ -345,21 +335,6 @@ const ProductDetail = () => {
                   >
                     Add to Cart - Rp {(product.price * quantity).toLocaleString('id-ID')}
                   </button>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <button 
-                      onClick={handleBuyNow}
-                      className="bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                    >
-                      Buy Now
-                    </button>
-                    <button 
-                      onClick={() => setIsWishlisted(!isWishlisted)}
-                      className="border border-gray-300 py-3 px-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
-                    >
-                      {isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
-                    </button>
-                  </div>
                 </>
               )}
             </div>
@@ -375,16 +350,6 @@ const ProductDetail = () => {
                 <div className="flex justify-between">
                   <span className="text-gray-600">Brand:</span>
                   <span className="font-medium">{product.brand}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Stock:</span>
-                  <span className={`font-medium ${isOutOfStock ? 'text-red-500' : isLowStock ? 'text-orange-500' : 'text-green-500'}`}>
-                    {isOutOfStock ? 'Out of Stock' : `${product.stock} items`}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">SKU:</span>
-                  <span className="font-medium">{product.id.toUpperCase()}</span>
                 </div>
               </div>
             </div>

@@ -33,45 +33,25 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Visit Our Store',
-      details: ['Jl. Limba U Satu', 'Kota Gorontalo', '96135']
+      title: 'Our Retail Partner',
+      details: ['Gorontalo, Indonesia.',]
     },
     {
       icon: Phone,
-      title: 'Call Us',
+      title: 'Customer Care',
       details: ['+62 851‑6636‑9467']
     },
     {
       icon: Mail,
       title: 'Email Us',
-      details: ['roomsinvasion@mail.com']
+      details: ['roomsinvasion7@mail.com']
     },
-    {
+    /*{
       icon: Clock,
       title: 'Store Hours',
       details: ['Mon - Sat: 9:00 AM - 8:00 PM', 'Sunday: 10:00 AM - 6:00 PM']
-    }
+    }*/
   ];
-
-  const faqs = [
-    {
-      question: 'What is your return policy?',
-      answer: 'We offer a 30-day return policy for all items in original condition with tags attached.'
-    },
-    {
-      question: 'How long does shipping take?',
-      answer: 'Standard shipping takes 3-5 business days. Express shipping is available for 1-2 business days.'
-    },
-    {
-      question: 'Do you ship internationally?',
-      answer: 'Currently, we only ship within Indonesia. International shipping will be available soon.'
-    },
-    {
-      question: 'How can I track my order?',
-      answer: 'You will receive a tracking number via email once your order ships. You can track it on our website.'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -80,19 +60,14 @@ const Contact = () => {
         {/* Hero Section */}
         <section className="bg-gray-50 py-16">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Get in Touch
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-            </p>
+          <h1 className="text-6xl md:text-4xl font-semibold text-gray-900 mb-4">CONTACT</h1>
           </div>
         </section>
 
         {/* Contact Information */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
@@ -120,106 +95,11 @@ const Contact = () => {
         {/* Contact Form & Map */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Send us a Message
-                </h2>
-                
-                {isSubmitted ? (
-                  <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
-                    <p className="font-semibold">Thank you for your message!</p>
-                    <p>We'll get back to you as soon as possible.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                          Full Name *
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                          placeholder="Your full name"
-                        />
-                      </div>
-                      
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                          Email Address *
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                          placeholder="your@email.com"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                        Subject *
-                      </label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                      >
-                        <option value="">Select a subject</option>
-                        <option value="general">General Inquiry</option>
-                        <option value="order">Order Support</option>
-                        <option value="return">Returns & Exchanges</option>
-                        <option value="partnership">Partnership</option>
-                        <option value="feedback">Feedback</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={6}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                        placeholder="Tell us how we can help you..."
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 flex items-center justify-center gap-2"
-                    >
-                      <Send size={20} />
-                      Send Message
-                    </button>
-                  </form>
-                )}
-              </div>
-
+          
               {/* Map & Additional Info */}
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Visit Our Store
+                  Visit Our Retail Partner
                 </h2>
                 
                 {/* Google Maps Embed */}
@@ -235,36 +115,11 @@ const Contact = () => {
                     title="Rooms Invasion Store Location"
                   />
                 </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                    Why Visit Our Store?
-                  </h3>
-                  <ul className="space-y-3 text-gray-600">
-                    <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Try on clothes before purchasing</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Personal styling consultation</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Exclusive in-store only items</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-gray-900 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Immediate assistance from our team</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* FAQ Section
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -302,7 +157,7 @@ const Contact = () => {
               </a>
             </div>
           </div>
-        </section>
+        </section>*/}
       </main>
 
       <Footer />

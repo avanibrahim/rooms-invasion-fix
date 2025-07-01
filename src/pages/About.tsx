@@ -5,79 +5,51 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const About = () => {
-  const stats = [
-    { number: '50K+', label: 'Happy Customers' },
-    { number: '1000+', label: 'Products' },
-    { number: '5', label: 'Years Experience' },
-    { number: '99%', label: 'Satisfaction Rate' }
-  ];
-
-  const values = [
-    {
-      icon: Heart,
-      title: 'Passion for Fashion',
-      description: 'We are passionate about bringing you the latest trends and timeless classics that make you feel confident and stylish.'
-    },
-    {
-      icon: Target,
-      title: 'Quality First',
-      description: 'Every product is carefully selected and tested to ensure the highest quality standards for our customers.'
-    },
-    {
-      icon: Users,
-      title: 'Customer Focused',
-      description: 'Our customers are at the heart of everything we do. We listen, learn, and continuously improve to serve you better.'
-    },
-    {
-      icon: Globe,
-      title: 'Sustainable Fashion',
-      description: 'We are committed to promoting sustainable and ethical fashion practices for a better future.'
-    }
-  ];
-
-  const team = [
-    {
-      name: 'Your Name',
-      role: 'Founder',
-      image: '/image/profile.png',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    },
-    {
-      name: 'Your Name',
-      role: 'Creative',
-      image: '/image/profile.png',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    },
-    {
-      name: 'Your Name',
-      role: 'Designer',
-      image: '/image/profile.png',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    }
-  ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-white">
       <Header />
-      
       <main>
         {/* Hero Section */}
-        <section className="bg-gray-50 py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                About Us
-              </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                We're more than just a fashion retailer. We're your style companion, 
-                dedicated to helping you express your unique personality through carefully 
-                curated clothing and accessories.
-              </p>
-            </div>
-          </div>
-        </section>
+        <section className="bg-gray-50 py-6">
+  <div className="container mx-auto px-6">
+    <div className="max-w-4xl mx-auto text-center">
+    <h1 className="text-6xl md:text-4xl font-semibold text-gray-900 mb-8">About Us</h1>
+      <img
+        src="/image/room.jpeg"
+        alt="StyleShop Store"
+        className="max-w-2xl mx-auto mb-8 w-full h-25 object-cover md:h-96 rounded-lg shadow-lg md:shadow-xl"
+      />
+   <div className="max-w-2xl mx-auto text-left">
+  {/* Box scrollable dengan background */}
+  <div className="max-h-64 overflow-y-auto pr-2 bg-gray-100 p-4 rounded-md shadow-inner">
+    <p className="text-xl text-gray-600 leading-relaxed">
+      Rooms Invasion is a streetwear clothing brand founded in 2024 in Gorontalo, a small city in Indonesia filled with big hopes. Born from a deep passion for simplicity and authenticity, Rooms Invasion embraces a minimalist design concept—clean, thoughtful, and timeless.
+    </p>
+    <p className="text-xl text-gray-600 leading-relaxed mt-4">
+      We believe that less is more. In a world that often feels overwhelming, we offer a space—a “room”—for calm, clarity, and self-expression. Every piece we create is designed to be simple yet bold, quiet yet confident. It’s not just clothing; it’s a statement of being present and intentional.
+    </p>
+    <p className="text-xl text-gray-600 leading-relaxed mt-4">
+      Our mission is to redefine streetwear through minimalism, offering essentials that speak louder through subtlety. Rooms Invasion stands for those who find strength in simplicity and want to express individuality without excess.
+    </p>
+    <p className="text-xl text-gray-600 leading-relaxed mt-4">
+      From the heart of Gorontalo to the streets of the world, we are here to invade your everyday style with purpose and precision.
+    </p>
+  </div>
 
-        {/* Stats Section */}
+  {/* Strong text di luar box */}
+  <p className="text-lg text-gray-800 font-semibold mt-4">
+    Rooms Invasion — Your room, your rhythm.
+  </p>
+</div>
+
+
+    </div>
+  </div>
+</section>
+
+
+        {/* Stats Section 
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -91,12 +63,12 @@ const About = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section>*/}
 
-        {/* Story Section */}
+        {/* Story Section 
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="items-center w-full md:flex md:space-x-8">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                   Our Story
@@ -122,9 +94,9 @@ const About = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section>*/}
 
-        {/* Values Section */}
+        {/* Values Section
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -155,9 +127,9 @@ const About = () => {
               })}
             </div>
           </div>
-        </section>
+        </section>*/}
 
-        {/* Team Section */}
+        {/* Team Section 
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -192,9 +164,9 @@ const About = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section>*/}
 
-        {/* Mission Section */}
+        {/* Mission Section 
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="bg-gray-900 text-white rounded-lg p-8 md:p-12 text-center">
@@ -224,7 +196,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section>*/}
       </main>
 
       <Footer />

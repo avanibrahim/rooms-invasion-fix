@@ -97,7 +97,7 @@ const Checkout = () => {
     ).join('\n');
 
     const paymentMethodText = {
-      'e-wallet': 'E-Wallet',
+      'qris': 'QRIS',
       'bank-transfer': 'Bank Transfer', 
       'cod': 'Cash on Delivery'
     }[formData.paymentMethod];
@@ -151,7 +151,7 @@ const Checkout = () => {
       const whatsappMessage = formatOrderMessage(orderNumber);
       
       // WhatsApp admin number
-      const whatsappNumber = "6282291325909";
+      const whatsappNumber = "6281355062230";
       
       // Create WhatsApp URL
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -403,13 +403,13 @@ const Checkout = () => {
                         <input
                           type="radio"
                           name="paymentMethod"
-                          value="e-wallet"
-                          checked={formData.paymentMethod === 'e-wallet'}
+                          value="qris"
+                          checked={formData.paymentMethod === 'qris'}
                           onChange={handleInputChange}
                           className="mr-3"
                         />
                         <CreditCard size={18} className="mr-2 flex-shrink-0" />
-                        <span className="text-sm sm:text-base">E-Wallet</span>
+                        <span className="text-sm sm:text-base">QRIS</span>
                       </label>
                       
                       <label className="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
@@ -424,64 +424,30 @@ const Checkout = () => {
                         <Truck size={18} className="mr-2 flex-shrink-0" />
                         <span className="text-sm sm:text-base">Bank Transfer</span>
                       </label>
-                      
-                      <label className="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
-                        <input
-                          type="radio"
-                          name="paymentMethod"
-                          value="cod"
-                          checked={formData.paymentMethod === 'cod'}
-                          onChange={handleInputChange}
-                          className="mr-3"
-                        />
-                        <Shield size={18} className="mr-2 flex-shrink-0" />
-                        <span className="text-sm sm:text-base">Cash on Delivery</span>
-                      </label>
                     </div>
                   </div>
 
-                  {formData.paymentMethod === 'credit-card' && (
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Card Number *
-                        </label>
-                        <input
-                          type="text"
-                          name="cardNumber"
-                          value={formData.cardNumber}
-                          onChange={handleInputChange}
-                          placeholder="1234 5678 9012 3456"
-                          className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                        />
-                      </div>
-                      
-                    </div>
-                  )}
-
-                  {formData.paymentMethod === 'e-wallet' && (
+                  {formData.paymentMethod === 'qris' && (
                     <div className="bg-gray-100 p-4 rounded-lg">
-                      <h4 className="font-semibold text-black mb-2 text-sm sm:text-base">E-Wallet Instructions</h4>
+                      <h4 className="font-semibold text-black mb-2 text-sm sm:text-base">Scan QRIS</h4>
                       <p className="text-black text-xs sm:text-sm mb-4">
-                        Select one of the payments from the e-wallet below
+                      Please transfer the total amount:
                       </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {/* GoPay */}
-                        <div className="flex items-center bg-white rounded-xl shadow p-3">
-                          <div className="flex-shrink-0 bg-white rounded-full p-2">
-                            <img
-                              src="https://brandlogos.net/wp-content/uploads/2022/10/gopay-logo_brandlogos.net_gph3u.png"
-                              alt="GoPay"
-                              className="h-10 w-10 object-contain"
-                            />
-                          </div>
-                          <div className="ml-4">
-                            <div className="font-bold text-base text-gray-900">GoPay</div>
-                            <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
-                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                      <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                      <div className="bg-white rounded-xl shadow p-4 flex flex-col items-center">
+                          <img
+                            src="/image/qris.JPG" // ganti path sesuai file kamu
+                            alt="QRIS"
+                            className="h-40 w-40 object-contain mb-3"
+                          />
+                          <div className="text-center">
+                            <div className="font-bold text-base text-gray-900">SCAN ME!</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">LITTLE YARD</div>
+                            <div className="text-xs text-gray-500">NMID : ID1024310154884</div>
                           </div>
                         </div>
-                        {/* ShopeePay */}
+
+                        {/* ShopeePay 
                         <div className="flex items-center bg-white rounded-xl shadow p-3">
                           <div className="flex-shrink-0 bg-white rounded-full p-2">
                             <img
@@ -495,8 +461,8 @@ const Checkout = () => {
                             <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
                             <div className="text-xs text-gray-500">a.n. Takezon</div>
                           </div>
-                        </div>
-                        {/* OVO */}
+                        </div>*/}
+                        {/* OVO 
                         <div className="flex items-center bg-white rounded-xl shadow p-3">
                           <div className="flex-shrink-0 bg-white rounded-full p-2">
                             <img
@@ -510,8 +476,8 @@ const Checkout = () => {
                             <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
                             <div className="text-xs text-gray-500">a.n. Takezon</div>
                           </div>
-                        </div>
-                        {/* Dana */}
+                        </div>*/}
+                        {/* Dana 
                         <div className="flex items-center bg-white rounded-xl shadow p-3">
                           <div className="flex-shrink-0 bg-white rounded-full p-2">
                             <img
@@ -525,7 +491,7 @@ const Checkout = () => {
                             <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
                             <div className="text-xs text-gray-500">a.n. Takezon</div>
                           </div>
-                        </div>
+                        </div>*/}
                       </div>
                     </div>
                   )}
@@ -548,8 +514,8 @@ const Checkout = () => {
                           </div>
                           <div className="ml-4">
                             <div className="font-bold text-base text-gray-900">BCA</div>
-                            <div className="text-sm font-mono tracking-wider text-gray-700">520735207</div>
-                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">7975354822</div>
+                            <div className="text-xs text-gray-500">a.n. Dwi Nanda Mulia</div>
                           </div>
                         </div>
                         {/* BNI */}
@@ -563,11 +529,11 @@ const Checkout = () => {
                           </div>
                           <div className="ml-4">
                             <div className="font-bold text-base text-gray-900">BNI</div>
-                            <div className="text-sm font-mono tracking-wider text-gray-700">1122334455</div>
-                            <div className="text-xs text-gray-500">a.n. Takezon</div>
+                            <div className="text-sm font-mono tracking-wider text-gray-700">1886334981</div>
+                            <div className="text-xs text-gray-500">a.n. Dwi Nanda Mulia</div>
                           </div>
                         </div>
-                        {/* Mandiri */}
+                        {/* Mandiri
                         <div className="flex items-center bg-white rounded-xl shadow p-3">
                           <div className="flex-shrink-0 bg-white rounded-full p-2">
                             <img
@@ -580,8 +546,7 @@ const Checkout = () => {
                             <div className="font-bold text-base text-gray-900">Mandiri</div>
                             <div className="text-sm font-mono tracking-wider text-gray-700">0987654321</div>
                             <div className="text-xs text-gray-500">a.n. Takezon</div>
-                          </div>
-                        </div>
+                          </div>*/}
                       </div>
                     </div>
                   )}
@@ -674,7 +639,7 @@ const Checkout = () => {
                           alt="WhatsApp"
                           className="h-4 w-4 sm:h-6 sm:w-6 object-contain"
                         />
-                        WhatsApp Admin: +6282291325909
+                        WhatsApp Admin: +6285166369467
                       </div>
                     </div>
                   </div>

@@ -43,27 +43,28 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black opacity-40 z-20" />
 
       {/* Content */}
-      <div className="relative z-30 h-full flex items-end pb-5 px-4 sm:px-12">
+      <div className="relative z-30 h-full flex items-end pb-10 px-4 sm:px-12">
         <div className="max-w-xl">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-2 leading-tight">
-            Rooms Invasion
+          <h1 className="text-2xl text-shadow-20 sm:text-4xl md:text-5xl font-bold mb-2 leading-tight">
+            ROOMS INVASION
             <span className="block text-base sm:text-2xl text-gray-300 mt-1">
-              Local Brand 2025
+              SS25-Never Enough
             </span>
           </h1>
 
-          <p className="text-sm sm:text-lg text-gray-200 mb-4">
+          {/*<p className="text-sm sm:text-lg text-gray-200 mb-4">
             Discover the latest trends. From casual wear to formal attire, find your perfect style now.
-          </p>
+          </p>*/}
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <button
-              onClick={handleShopNowClick}
-              className="bg-white text-gray-900 px-6 py-3 text-sm rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 group flex items-center justify-center"
-            >
-              Shop Now
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" size={18} />
-            </button>
+          <button
+  onClick={handleShopNowClick}
+  className="bg-white text-gray-900 px-3 sm:px-6 py-3 text-sm rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 group flex items-center justify-center w-[120px] sm:w-auto"
+>
+  Shop Now
+  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" size={18} />
+</button>
+
             <button
               onClick={handleViewLookbookClick}
               className="border-2 border-white text-white px-6 py-3 text-sm rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200"

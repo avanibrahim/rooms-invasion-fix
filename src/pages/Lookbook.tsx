@@ -107,7 +107,7 @@ const Lookbook = () => {
     {
       id: '9',
       title: 'T-SHIRT - GREEN',
-      category: 'casual',
+      category: '',
       image: '/lookbook/model9.jpg',
       description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       products: ['17', '18'],
@@ -116,7 +116,6 @@ const Lookbook = () => {
     // Tambahkan lebih banyak items sesuai kebutuhan
   ];
 
-  const categories = ['all', 'casual', 'formal', 'street'];
 
   const filteredItems =
     selectedCategory === 'all'
@@ -143,14 +142,11 @@ const Lookbook = () => {
 
       {/* MAIN: grows to fill remaining vertical space */}
       <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Lookbook</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Get inspired by our curated style collections. Discover how to mix and match our pieces to create the perfect look for any occasion.
-          </p>
+        <div className="mb-12 text-center">
+        <h1 className="text-6xl md:text-4xl font-semibold text-gray-900 mb-4">LOOKBOOK</h1>
         </div>
 
-        <div className="mb-8 flex justify-center">
+       {/* <div className="mb-8 flex justify-center">
           <div className="flex flex-wrap gap-2 bg-gray-100 p-2 rounded-full">
             {categories.map((category) => (
               <button
@@ -174,7 +170,7 @@ const Lookbook = () => {
           <p className="text-gray-600">
             {filteredItems.length} {filteredItems.length === 1 ? 'look' : 'looks'} found
           </p>
-        </div>
+        </div>*/}
 
         {filteredItems.length > 0 ? (
           <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
@@ -194,31 +190,11 @@ const Lookbook = () => {
 
                   <div className="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <button
-                      onClick={() => handleLike(item.id)}
-                      className={`p-1.5 rounded-full backdrop-blur-sm transition-colors ${
-                        likedItems.includes(item.id)
-                          ? 'bg-red-500 text-white'
-                          : 'bg-white/80 text-gray-700 hover:bg-white'
-                      }`}
-                    >
-                      <Heart
-                        size={16}
-                        fill={likedItems.includes(item.id) ? 'currentColor' : 'none'}
-                      />
-                    </button>
-
-                    <button
                       onClick={() => handleViewProducts(item)}
                       className="p-1.5 rounded-full bg-white/80 text-gray-700 hover:bg-white backdrop-blur-sm transition-colors"
                     >
                       <Eye size={16} />
                     </button>
-                  </div>
-
-                  <div className="absolute top-2 left-2">
-                    <span className="bg-white/90 text-gray-900 text-[10px] px-2 py-0.5 rounded-full font-medium backdrop-blur-sm">
-                      {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
-                    </span>
                   </div>
                 </div>
               </div>

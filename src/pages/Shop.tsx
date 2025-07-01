@@ -34,11 +34,7 @@ const Shop = () => {
   <main className="container mx-auto px-4 py-8">
     {/* Page Header */}
     <div className="mb-8 text-center">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Shop</h1>
-      <p className="text-gray-600 max-w-2xl mx-auto">
-        Discover our complete collection of fashionable clothing and accessories.
-        Find the perfect style that matches your personality.
-      </p>
+    <h1 className="text-6xl md:text-4xl font-semibold text-gray-900 mb-4">SHOP</h1>  
     </div>
 
     {/* Search and Category Filter */}
@@ -111,7 +107,7 @@ const Shop = () => {
                 {isOutOfStock && (
                   <div className="absolute top-2 left-2 z-10">
                     <span className="bg-red-800 text-white text-xs px-2 py-1 rounded-full font-medium">
-                      Out of Stock
+                      OUT OF STOCK
                     </span>
                   </div>
                 )}
@@ -120,7 +116,7 @@ const Shop = () => {
                 {!isOutOfStock && (product.stock || 0) <= 5 && (product.stock || 0) > 0 && (
                   <div className="absolute top-2 left-2 z-10">
                     <span className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
-                      Only {product.stock} left
+                      LOW STOCK
                     </span>
                   </div>
                 )}
@@ -157,7 +153,7 @@ const Shop = () => {
                     <span className="text-red-800 text-xs font-medium">Out of Stock</span>
                   ) : (product.stock || 0) <= 5 ? (
                     <span className="text-yellow-500 text-xs font-medium">
-                      Low Stock ({product.stock} left)
+                      Low Stock
                     </span>
                   ) : (
                     <span className="text-green-800 text-xs font-medium">In Stock</span>
