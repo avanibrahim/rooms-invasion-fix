@@ -34,7 +34,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Our Retail Partner',
-      details: ['Gorontalo, Indonesia.',]
+      details: ['EksClothing ,Gorontalo, Indonesia.',]
     },
     {
       icon: Phone,
