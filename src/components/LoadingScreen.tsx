@@ -14,7 +14,7 @@ interface LoadingScreenProps {
       <img
         src="/loading.png"
         alt="Loading..."
-        className="w-14 h-14 animate-pulse"
+        className="w-28 h-28 animate-pulse"
       />
     </div>
   );

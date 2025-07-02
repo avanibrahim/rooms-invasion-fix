@@ -262,7 +262,7 @@ const ProductDetail = () => {
               </div>
             )}
 
-            {/* Color Selection */}
+            {/* Color Selection 
             {product.colors && (
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 pt-2">COLOUR :</h3>
@@ -285,9 +285,9 @@ const ProductDetail = () => {
                   ))}
                 </div>
               </div>
-            )}
+            )}*/}
 
-            {/* Quantity */}
+            {/* Quantity 
             {!isOutOfStock && (
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-4 pt-2">QUANTITY</h3>
@@ -312,7 +312,7 @@ const ProductDetail = () => {
                   </p>
                 )}
               </div>
-            )}
+            )}*/}
 
             {/* Add to Cart Button */}
             <div className="space-y-4 pt-2 pb-2">
@@ -348,7 +348,7 @@ const ProductDetail = () => {
                   <span className="font-medium capitalize">{product.category}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Brand:</span>
+                  <span className="text-gray-600">Issue:</span>
                   <span className="font-medium">{product.brand}</span>
                 </div>
               </div>
