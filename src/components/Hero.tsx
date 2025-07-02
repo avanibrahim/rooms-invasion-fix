@@ -48,7 +48,7 @@ const Hero = () => {
           <h1 className="text-2xl text-shadow-20 sm:text-4xl md:text-5xl font-bold mb-2 leading-tight">
             ROOMS INVASION
             <span className="block text-base sm:text-2xl text-gray-300 mt-1">
-              SS25-Never Enough
+              SS25 - Never Enough
             </span>
           </h1>
 

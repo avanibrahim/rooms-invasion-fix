@@ -45,6 +45,8 @@ const Shop = () => {
     setLoadedImages(prev => prev + 1);
   };
 
+  
+
   return (
     <>
       {loading && <LoadingScreen transparent />}
@@ -132,21 +134,20 @@ const Shop = () => {
                       <h3 className="font-semibold text-sm md:text-base line-clamp-2 transition-colors text-gray-900 group-hover:text-gray-700">
                         {product.name}
                       </h3>
-                      <p className="font-bold text-sm md:text-base text-gray-900">
-                        Rp {product.price.toLocaleString('id-ID')}
-                      </p>
+                      <div className="flex items-center gap-2">
+  <p className="font-bold text-sm md:text-base text-gray-900">
+    Rp {product.price.toLocaleString('id-ID')}
+  </p>
+  {product.originalPrice && product.originalPrice > product.price && (
+    <p className="text-sm line-through text-gray-500">
+      Rp {product.originalPrice.toLocaleString('id-ID')}
+    </p>
+  )}
+</div>
+
                       <p className="text-gray-500 text-xs md:text-sm">
                         {product.brand}
                       </p>
-                      <div className="pt-1">
-                        {isOutOfStock ? (
-                          <span className="text-red-800 text-xs font-medium">Out of Stock</span>
-                        ) : (product.stock || 0) <= 5 ? (
-                          <span className="text-yellow-500 text-xs font-medium">Low Stock</span>
-                        ) : (
-                          <span className="text-green-800 text-xs font-medium">In Stock</span>
-                        )}
-                      </div>
                     </div>
                   </div>
                 );

@@ -20,6 +20,15 @@ const ProductDetail = () => {
 
   const product = products.find(p => p.id === id);
 
+  const uniqueImages = product ? product.images.filter(
+    (img, index, self) => self.indexOf(img) === index
+  ) : [];
+  
+  // Normalisasi ukuran agar mendukung struktur lama dan baru
+const normalizedSizes = Array.isArray(product.sizes) && typeof product.sizes[0] === 'string'
+? product.sizes.map(size => ({ size, stock: product.stock || 0 }))
+: product.sizes;
+
   if (!product) {
     return (
       <div className="min-h-screen bg-white">
@@ -63,22 +72,13 @@ const ProductDetail = () => {
       return;
     }
 
-    if (product.colors && !selectedColor) {
-      toast({
-        title: "Please select a color",
-        description: "Color selection is required for this product.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     const cartItem = {
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.images[0],
       size: selectedSize || 'One Size',
-      color: selectedColor || 'Default',
+      color: selectedColor || 'Colour-Wise',
       quantity: quantity,
       stock: product.stock || 0,
     };
@@ -124,15 +124,18 @@ const ProductDetail = () => {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          
           {/* Product Images */}
           <div className="space-y-4">
+
             {/* Main Image */}
             <div className="relative w-full h-100 bg-white rounded-lg overflow-hidden">
-              <img
-                src={product.images[selectedImageIndex]}
+            <img
+                src={uniqueImages[selectedImageIndex]}
                 alt={product.name}
                 className={`w-full h-100 object-cover ${isOutOfStock ? 'grayscale' : ''}`}
               />
+
               
               {/* Out of Stock Overlay */}
               {isOutOfStock && (
@@ -145,9 +148,9 @@ const ProductDetail = () => {
             </div>
             
             {/* Thumbnail Images */}
-            {product.images.length > 1 && (
-              <div className="flex gap-2 overflow-x-auto">
-                {product.images.map((image, index) => (
+              {uniqueImages.length > 1 && (
+                <div className="flex gap-2 overflow-x-auto">
+                 {uniqueImages.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
@@ -176,9 +179,17 @@ const ProductDetail = () => {
               </div>
               
               <p className="text-gray-600 mb-2">{product.brand}</p>
-              <p className="text-3xl font-bold text-gray-900 mb-4">
-                Rp {product.price.toLocaleString('id-ID')}
-              </p>
+              <div className="flex items-center gap-2">
+  <p className="text-lg font-bold text-gray-900">
+    Rp {product.price.toLocaleString('id-ID')}
+  </p>
+  {product.originalPrice && product.originalPrice > product.price && (
+    <p className="text-sm line-through text-gray-500">
+      Rp {product.originalPrice.toLocaleString('id-ID')}
+    </p>
+  )}
+</div>
+
             </div>
 
             {/* Description */}
@@ -196,12 +207,15 @@ const ProductDetail = () => {
             </div>
 
             {/* Size Chart Button */}
-          <button
-            onClick={() => setShowSizeChart(true)}
-            className="text-white px-4 py-2 border rounded-lg transition-colors bg-gray-900"
-          >
-            SIZE CHART
-          </button>
+              {product.category !== "accessories" && (
+                <button
+                  onClick={() => setShowSizeChart(true)}
+                  className="text-white px-4 py-2 border rounded-lg transition-colors bg-gray-900"
+                >
+                  SIZE CHART
+                </button>
+              )}
+
 
           {showSizeChart && (
             <div
@@ -238,29 +252,38 @@ const ProductDetail = () => {
         )}
 
 
-            {/* Size Selection */}
+          {/* Size Selection */}
             {product.sizes && (
               <div>
                 <div className="flex flex-wrap gap-2 pt-4">
-                  {product.sizes.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => !isOutOfStock && setSelectedSize(size)}
-                      disabled={isOutOfStock}
-                      className={`px-4 py-2 border rounded-lg transition-colors ${
-                        isOutOfStock
-                          ? 'border-gray-200 text-gray-400 cursor-not-allowed'
-                          : selectedSize === size
-                          ? 'border-gray-900 bg-gray-900 text-white'
-                          : 'border-gray-300 hover:border-gray-400'
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
+                  {(
+                    typeof product.sizes[0] === 'string'
+                      ? (product.sizes as string[]).map((s) => ({ size: s, stock: product.stock }))
+                      : (product.sizes as { size: string; stock: number }[])
+                  ).map(({ size, stock }) => {
+                    const isAvailable = stock > 0;
+
+                    return (
+                      <button
+                        key={size}
+                        onClick={() => isAvailable && setSelectedSize(size)}
+                        disabled={!isAvailable}
+                        className={`px-4 py-2 border rounded-lg transition-colors ${
+                          !isAvailable
+                            ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+                            : selectedSize === size
+                            ? 'border-gray-900 bg-gray-900 text-white'
+                            : 'border-gray-300 hover:border-gray-400'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
+
 
             {/* Color Selection 
             {product.colors && (

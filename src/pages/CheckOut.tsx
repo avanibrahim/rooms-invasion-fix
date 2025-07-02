@@ -30,12 +30,17 @@ const Checkout = () => {
     cardName: '',
   });
 
+  const [shippingOption, setShippingOption] = useState<'pickup' | 'flat'>('pickup');
+  const shippingCost = shippingOption === 'flat' ? 20000 : 0;
+
+  const tax = 0; // kalau kamu belum pakai tax, biarkan nol
+  const totalAmount = getTotalPrice() + shippingCost + tax;
+
+
   const [isProcessing, setIsProcessing] = useState(false);
   const [step, setStep] = useState(1); // 1: Info, 2: Payment, 3: Review
 
-  const shippingCost = 0;
-  const tax = getTotalPrice() * 0; // 10% tax
-  const totalAmount = getTotalPrice() + shippingCost + tax;
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -102,32 +107,37 @@ const Checkout = () => {
       'cod': 'Cash on Delivery'
     }[formData.paymentMethod];
 
+    const shippingMethodText = shippingOption === 'pickup' ? 'Pick Up in Store (Gratis)' : 'Flat Rate (Rp20.000)';
+    
+
     return `*PESANAN BARU*
 
- *Order Number:* ${orderNumber}
-
- *Informasi Customer:*
-  Nama: ${formData.firstName} ${formData.lastName}
-  Email: ${formData.email}
-  Phone: ${formData.phone}
-
- *Alamat Pengiriman:*
-  ${formData.address}
-  ${formData.city}, ${formData.province} ${formData.postalCode}
-  ${formData.country}
-
- *Item Pesanan:*
-  ${itemsList}
-
- *Ringkasan Pembayaran:*
-  Subtotal: Rp ${getTotalPrice().toLocaleString('id-ID')}
-  Ongkir: Rp ${shippingCost.toLocaleString('id-ID')}
-  Pajak (10%): Rp ${tax.toLocaleString('id-ID')}
-  *Total: Rp ${totalAmount.toLocaleString('id-ID')}*
-
- *Metode Pembayaran:* ${paymentMethodText}
-
-  Mohon konfirmasi pesanan ini. Terima kasih! `;
+    *Order Number:* ${orderNumber}
+    
+    *Informasi Customer:*
+    Nama: ${formData.firstName} ${formData.lastName}
+    Email: ${formData.email}
+    Phone: ${formData.phone}
+    
+    *Alamat Pengiriman:*
+    ${formData.address}
+    ${formData.city}, ${formData.province} ${formData.postalCode}
+    ${formData.country}
+    
+    *Item Pesanan:*
+    ${itemsList}
+    
+    *Ringkasan Pembayaran:*
+    Metode Pengiriman: ${shippingMethodText}
+    Subtotal: Rp ${getTotalPrice().toLocaleString('id-ID')}
+    Ongkir: Rp ${shippingCost.toLocaleString('id-ID')}
+    Pajak (10%): Rp ${tax.toLocaleString('id-ID')}
+    *Total: Rp ${totalAmount.toLocaleString('id-ID')}*
+    
+    *Metode Pembayaran:* ${paymentMethodText}
+    
+    Mohon konfirmasi pesanan ini. Terima kasih!`;
+    
   };
 
   const handlePlaceOrder = async () => {
@@ -424,6 +434,8 @@ const Checkout = () => {
                         <Truck size={18} className="mr-2 flex-shrink-0" />
                         <span className="text-sm sm:text-base">Bank Transfer</span>
                       </label>
+
+                      
                     </div>
                   </div>
 
@@ -775,32 +787,64 @@ const Checkout = () => {
                 </div>
               )}
 
-              {/* Price Breakdown */}
-              <div className="border-t pt-4 space-y-2">
-                <div className="flex justify-between text-xs sm:text-sm">
-                  <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium">Rp {getTotalPrice().toLocaleString('id-ID')}</span>
-                </div>
-                
-                <div className="flex justify-between text-xs sm:text-sm">
-                  <span className="text-gray-600">Shipping</span>
-                  <span className="font-medium">Rp {shippingCost.toLocaleString('id-ID')}</span>
-                </div>
-                
-                <div className="flex justify-between text-xs sm:text-sm">
-                  <span className="text-gray-600">Tax (10%)</span>
-                  <span className="font-medium">Rp {tax.toLocaleString('id-ID')}</span>
-                </div>
-                
-                <div className="border-t pt-2">
-                  <div className="flex justify-between">
-                    <span className="font-semibold text-gray-900 text-sm sm:text-base">Total</span>
-                    <span className="font-bold text-base sm:text-lg text-gray-900">
-                      Rp {totalAmount.toLocaleString('id-ID')}
-                    </span>
+              {/* Shipping Method Selection */}
+                <div className="mb-4">
+                  <p className="text-sm font-medium text-gray-700 mb-2">Select shipping method:</p>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setShippingOption('pickup')}
+                      className={`px-3 py-1 rounded-full border text-xs sm:text-sm transition ${
+                        shippingOption === 'pickup'
+                          ? 'bg-gray-900 text-white border-gray-900'
+                          : 'border-gray-300 text-gray-700 hover:border-gray-400'
+                      }`}
+                    >
+                      Pick Up in Store
+                    </button>
+                    <button
+                      onClick={() => setShippingOption('flat')}
+                      className={`px-3 py-1 rounded-full border text-xs sm:text-sm transition ${
+                        shippingOption === 'flat'
+                          ? 'bg-gray-900 text-white border-gray-900'
+                          : 'border-gray-300 text-gray-700 hover:border-gray-400'
+                      }`}
+                    >
+                      Flat Rate Rp20.000
+                    </button>
                   </div>
                 </div>
-              </div>
+
+                {/* Price Breakdown */}
+                <div className="border-t pt-4 space-y-2">
+                  <div className="flex justify-between text-xs sm:text-sm">
+                    <span className="text-gray-600">Subtotal</span>
+                    <span className="font-medium">Rp {getTotalPrice().toLocaleString('id-ID')}</span>
+                  </div>
+
+                  <div className="flex justify-between text-xs sm:text-sm">
+                    <span className="text-gray-600">Shipping</span>
+                    <span className="font-medium">
+                      {shippingOption === 'pickup'
+                        ? 'Rp 0'
+                        : `Rp ${shippingCost.toLocaleString('id-ID')}`}
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between text-xs sm:text-sm">
+                    <span className="text-gray-600">Tax (10%)</span>
+                    <span className="font-medium">Rp {tax.toLocaleString('id-ID')}</span>
+                  </div>
+
+                  <div className="border-t pt-2">
+                    <div className="flex justify-between">
+                      <span className="font-semibold text-gray-900 text-sm sm:text-base">Total</span>
+                      <span className="font-bold text-base sm:text-lg text-gray-900">
+                        Rp {totalAmount.toLocaleString('id-ID')}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
 
               {/* Security Badge */}
               <div className="mt-4 sm:mt-6 p-3 bg-green-50 rounded-lg">

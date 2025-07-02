@@ -4,37 +4,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simulate form submission
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
-  };
 
   const contactInfo = [
     {
       icon: MapPin,
       title: 'Our Retail Partner',
-      details: ['EksClothing ,Gorontalo, Indonesia.',]
+      details: ['EksClothing', 'Gorontalo, Indonesia.',]
     },
     {
       icon: Phone,

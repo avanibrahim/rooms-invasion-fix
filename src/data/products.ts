@@ -1,16 +1,18 @@
-export interface Product {
+export type Product = {
   id: string;
   name: string;
   description: string;
   price: number;
+  originalPrice?: number;
   images: string[];
   category: string;
   brand: string;
-  rating?: number;
-  sizes?: string[];
+  rating: number;
+  stock: number;
+  sizes?: string[] | { size: string; stock: number }[];
   colors?: string[];
-  stock?: number;
-}
+};
+
 
 export const products: Product[] = [
   {
@@ -70,7 +72,12 @@ export const products: Product[] = [
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
     rating: 4.6,
-    sizes: ["S", "M", "L", "XL"],
+    sizes: [
+      { size: "S", stock: 0 },
+      { size: "M", stock: 1 },
+      { size: "L", stock: 1 },
+      { size: "XL", stock: 0 } //CONTOH: Example of sizes with stock
+    ],    
     stock: 2
   },
   {
@@ -153,6 +160,7 @@ export const products: Product[] = [
     name: "Grens Workshirt - Black",
     description: "•⁠ ⁠100% Drill cotton ⁠ • ⁠⁠Boxy Fit • Embroidered Logo on Front and Back⁠ • ⁠⁠Rooms Woven & Rubber Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 299000,
+    originalPrice: 350000,
     images: [
       "/products/DUB NATION/FRONT.png",
       "/products/DUB NATION/FRONT ZOOM.png",
