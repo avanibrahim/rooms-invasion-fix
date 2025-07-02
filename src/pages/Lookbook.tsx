@@ -143,7 +143,7 @@ const Lookbook = () => {
   
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="mb-12 text-center">
-          <h1 className="text-6xl md:text-4xl font-semibold text-gray-900 mb-4">LOOKBOOK</h1>
+          <h1 className="text-4xl md:text-4xl font-semibold text-gray-900 mb-4">LOOKBOOK</h1>
         </div>
   
         {filteredItems.length > 0 ? (

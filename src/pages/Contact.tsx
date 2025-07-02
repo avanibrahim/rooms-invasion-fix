@@ -60,7 +60,7 @@ const Contact = () => {
         {/* Hero Section */}
         <section className="bg-gray-50 py-16">
           <div className="container mx-auto px-4 text-center">
-          <h1 className="text-6xl md:text-4xl font-semibold text-gray-900 mb-4">CONTACT</h1>
+          <h1 className="text-4xl md:text-4xl font-semibold text-gray-900 mb-4">CONTACT</h1>
           </div>
         </section>
 

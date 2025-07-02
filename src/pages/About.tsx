@@ -14,7 +14,7 @@ const About = () => {
         <section className="bg-gray-50 py-6">
   <div className="container mx-auto px-6">
     <div className="max-w-4xl mx-auto text-center">
-    <h1 className="text-6xl md:text-4xl font-semibold text-gray-900 mb-8">About Us</h1>
+    <h1 className="text-4xl md:text-4xl font-semibold text-gray-900 mb-8">About Us</h1>
       <img
         src="/image/room.jpeg"
         alt="StyleShop Store"
