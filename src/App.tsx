@@ -10,6 +10,7 @@ import CheckOut from './pages/CheckOut';
 import CartSidebar from './components/CartSidebar';
 import { useCartStore } from './store/cartStore';
 import { Toaster } from './components/ui/toaster';
+import ScrollToTop from './components/ScrollToTop'; 
 
 function App() {
   const { isOpen, toggleCart } = useCartStore();
@@ -17,6 +18,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <ScrollToTop /> 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
@@ -26,7 +28,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/checkout" element={<CheckOut />} />
         </Routes>
-        
+
         <CartSidebar isOpen={isOpen} onClose={toggleCart} />
         <Toaster />
       </div>

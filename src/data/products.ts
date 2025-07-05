@@ -21,8 +21,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
-      "/products/NEVER ENOUGH/F ELEVAR TEE.png",
-      "/products/NEVER ENOUGH/B ELEVAR TEE.png",
+      "/products_optimized/NEVER ENOUGH/F ELEVAR TEE.webp",
+      "/products_optimized/NEVER ENOUGH/B ELEVAR TEE.webp",
     ],
     category: "t-shirts",
     brand: "NEVER ENOUGH",
@@ -36,8 +36,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
-      "/products/NEVER ENOUGH/F NEVER ENOUGH.png",
-      "/products/NEVER ENOUGH/B NEVER ENOUGH.png",
+      "/products_optimized/NEVER ENOUGH/F NEVER ENOUGH.webp",
+      "/products_optimized/NEVER ENOUGH/B NEVER ENOUGH.webp",
     ],
     category: "t-shirts",
     brand: "NEVER ENOUGH",
@@ -51,8 +51,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
-      "/products/NEVER ENOUGH/ASTERIA.png",
-      "/products/NEVER ENOUGH/ASTERIA.png",
+      "/products_optimized/NEVER ENOUGH/ASTERIA.webp",
+      "/products_optimized/NEVER ENOUGH/ASTERIA.webp",
     ],
     category: "t-shirts",
     brand: "NEVER ENOUGH",
@@ -66,19 +66,19 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
-      "/products/HUSTLE & FLOW/STILL TEE BLACK/FRONT.png",
-      "/products/HUSTLE & FLOW/STILL TEE BLACK/BACK.png",
+      "/products_optimized/HUSTLE & FLOW/STILL TEE BLACK/FRONT.webp",
+      "/products_optimized/HUSTLE & FLOW/STILL TEE BLACK/BACK.webp",
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
     rating: 4.6,
     sizes: [
       { size: "S", stock: 0 },
-      { size: "M", stock: 1 },
+      { size: "M", stock: 0 },
       { size: "L", stock: 1 },
       { size: "XL", stock: 0 } //CONTOH: Example of sizes with stock
     ],    
-    stock: 2
+    stock: 1
   },
   {
     id: "5",
@@ -86,14 +86,19 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
-      "/products/HUSTLE & FLOW/STILL TEE NAVY/FRONT.png",
-      "/products/HUSTLE & FLOW/STILL TEE NAVY/BACK.png",
+      "/products_optimized/HUSTLE & FLOW/STILL TEE NAVY/FRONT.webp",
+      "/products_optimized/HUSTLE & FLOW/STILL TEE NAVY/BACK.webp",
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
     rating: 4.9,
-    sizes: ["S", "M", "L", "XL"],
-    stock: 5 // Out of stock
+    sizes: [
+      { size: "S", stock: 0 },
+      { size: "M", stock: 0 },
+      { size: "L", stock: 1 },
+      { size: "XL", stock: 2 }
+    ],
+    stock: 3 // Out of stock
   },
   {
     id: "6",
@@ -101,8 +106,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
-      "/products/HUSTLE & FLOW/ETERNAL TEE/FRONT.png",
-      "/products/HUSTLE & FLOW/ETERNAL TEE/BACK.png",
+      "/products_optimized/HUSTLE & FLOW/ETERNAL TEE/FRONT.webp",
+      "/products_optimized/HUSTLE & FLOW/ETERNAL TEE/BACK.webp",
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
@@ -116,14 +121,19 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
-      "/products/HUSTLE & FLOW/LOVE MOM TEE/FRONT.png",
-      "/products/HUSTLE & FLOW/LOVE MOM TEE/BACK.png",
+      "/products_optimized/HUSTLE & FLOW/LOVE MOM TEE/FRONT.webp",
+      "/products_optimized/HUSTLE & FLOW/LOVE MOM TEE/BACK.webp",
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
     rating: 4.4,
-    sizes: ["S", "M", "L", "XL"],
-    stock: 2
+    sizes: [
+      { size: "S", stock: 1 },
+      { size: "M", stock: 0 },
+      { size: "L", stock: 0 },
+      { size: "XL", stock: 2 }
+    ],
+    stock: 3
   },
   {
     id: "8",
@@ -131,14 +141,19 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
-      "/products/HUSTLE & FLOW/MOUTH TEE/FRONT.png",
-      "/products/HUSTLE & FLOW/MOUTH TEE/BACK.png",
+      "/products_optimized/HUSTLE & FLOW/MOUTH TEE/FRONT.webp",
+      "/products_optimized/HUSTLE & FLOW/MOUTH TEE/BACK.webp",
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
     rating: 4.4,
-    sizes: ["S", "M", "L", "XL"],
-    stock: 5
+    sizes: [
+      { size: "S", stock: 1 },
+      { size: "M", stock: 0 },
+      { size: "L", stock: 0 },
+      { size: "XL", stock: 1 }
+    ],
+    stock: 2
   },
   {
     id: "9",
@@ -146,8 +161,8 @@ export const products: Product[] = [
     description: "•⁠ ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/DUB NATION/F BLUE.PNG",
-      "/products/DUB NATION/B BLUE.PNG",
+      "/products_optimized/DUB NATION/F BLUE.PNG.webp",
+      "/products_optimized/DUB NATION/B BLUE.PNG.webp",
     ],
     category: "t-shirts",
     brand: "DUB NATION",
@@ -162,8 +177,8 @@ export const products: Product[] = [
     price: 299000,
     originalPrice: 350000,
     images: [
-      "/products/DUB NATION/FRONT.png",
-      "/products/DUB NATION/FRONT ZOOM.png",
+      "/products_optimized/DUB NATION/FRONT.webp",
+      "/products_optimized/DUB NATION/FRONT ZOOM.webp",
     ],
     category: "shirts",
     brand: "DUB NATION",
@@ -177,8 +192,8 @@ export const products: Product[] = [
     description: "•⁠ ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/DUB NATION/F PEACE.PNG",
-      "/products/DUB NATION/B PEACE.PNG",
+      "/products_optimized/DUB NATION/F PEACE.PNG.webp",
+      "/products_optimized/DUB NATION/B PEACE.PNG.webp",
     ],
     category: "t-shirts",
     brand: "DUB NATION",
@@ -192,8 +207,8 @@ export const products: Product[] = [
     description: "•⁠ ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/DUB NATION/KUNING FRONT.png",
-      "/products/DUB NATION/KUNING BACK.png",
+      "/products_optimized/DUB NATION/KUNING FRONT.webp",
+      "/products_optimized/DUB NATION/KUNING BACK.webp",
     ],
     category: "t-shirts",
     brand: "DUB NATION",
@@ -207,8 +222,8 @@ export const products: Product[] = [
     description: "•⁠ ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/DUB NATION/F AFRIKA.PNG",
-      "/products/DUB NATION/B AFRIKA.PNG",
+      "/products_optimized/DUB NATION/F AFRIKA.PNG.webp",
+      "/products_optimized/DUB NATION/B AFRIKA.PNG.webp",
     ],
     category: "t-shirts",
     brand: "DUB NATION",
@@ -222,8 +237,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton Fleece • 280 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven & Rubber Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 299000,
     images: [
-      "/products/INVASION FROM THE EAST/GROWS CREWNECK/FRONT.png",
-      "/products/INVASION FROM THE EAST/GROWS CREWNECK/FRONT.png",
+      "/products_optimized/INVASION FROM THE EAST/GROWS CREWNECK/FRONT.webp",
+      "/products_optimized/INVASION FROM THE EAST/GROWS CREWNECK/FRONT.webp",
     ],
     category: "outerwear",
     brand: "INVASION FROM THE EAST",
@@ -237,8 +252,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 215000,
     images: [
-      "/products/INVASION FROM THE EAST/INVAL 0435 DOUBLE LAYER/FRONT.png",
-      "/products/INVASION FROM THE EAST/INVAL 0435 DOUBLE LAYER/BACK.png",
+      "/products_optimized/INVASION FROM THE EAST/INVAL 0435 DOUBLE LAYER/FRONT.webp",
+      "/products_optimized/INVASION FROM THE EAST/INVAL 0435 DOUBLE LAYER/BACK.webp",
     ],
     category: "t-shirts",
     brand: "INVASION FROM THE EAST",
@@ -252,8 +267,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/INVASION FROM THE EAST/F BAD ALIES.PNG",
-      "/products/INVASION FROM THE EAST/B BAD ALIES.PNG",
+      "/products_optimized/INVASION FROM THE EAST/F BAD ALIES.PNG.webp",
+      "/products_optimized/INVASION FROM THE EAST/B BAD ALIES.PNG.webp",
     ],
     category: "t-shirts",
     brand: "INVASION FROM THE EAST",
@@ -267,8 +282,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/INVASION FROM THE EAST/F GREY.PNG",
-      "/products/INVASION FROM THE EAST/B GREY.PNG",
+      "/products_optimized/INVASION FROM THE EAST/F GREY.PNG.webp",
+      "/products_optimized/INVASION FROM THE EAST/B GREY.PNG.webp",
     ],
     category: "t-shirts",
     brand: "INVASION FROM THE EAST",
@@ -282,8 +297,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/INVASION FROM THE EAST/F MEDIA FILE.PNG",
-      "/products/INVASION FROM THE EAST/B MEDIA FILE.PNG",
+      "/products_optimized/INVASION FROM THE EAST/F MEDIA FILE.PNG.webp",
+      "/products_optimized/INVASION FROM THE EAST/B MEDIA FILE.PNG.webp",
     ],
     category: "t-shirts",
     brand: "INVASION FROM THE EAST",
@@ -296,9 +311,10 @@ export const products: Product[] = [
     name: "Rush Hat - Black",
     description: "Snapback Classic •⁠  ⁠100% Cotton Twill • Embroidered Graphics Logo • ⁠Adjustable Back Strap • Visor 6cm⁠ • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 125000,
+    originalPrice: 165000,
     images: [
-      "/products/INVASION FROM THE EAST/RUSH HAT.png",
-      "/products/INVASION FROM THE EAST/RUSH HAT ZOOM.png",
+      "/products_optimized/INVASION FROM THE EAST/RUSH HAT.webp",
+      "/products_optimized/INVASION FROM THE EAST/RUSH HAT ZOOM.webp",
     ],
     category: "accessories",
     brand: "INVASION FROM THE EAST",
@@ -311,8 +327,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/REMARKS 0.2/F GREEN.png",
-      "/products/REMARKS 0.2/B GREEN.PNG",
+      "/products_optimized/REMARKS 0.2/F GREEN.webp",
+      "/products_optimized/REMARKS 0.2/B GREEN.PNG.webp",
     ],
     category: "t-shirts",
     brand: "REMARKS 0.2",
@@ -326,8 +342,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/REMARKS 0.2/F RED SHIRT.png",
-      "/products/REMARKS 0.2/B RED SHIRT.png",
+      "/products_optimized/REMARKS 0.2/F RED SHIRT.webp",
+      "/products_optimized/REMARKS 0.2/B RED SHIRT.webp",
     ],
     category: "t-shirts",
     brand: "REMARKS 0.2",
@@ -341,8 +357,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/REMARKS 0.2/F NUOVO.png",
-      "/products/REMARKS 0.2/F NUOVO.png",
+      "/products_optimized/REMARKS 0.2/F NUOVO.webp",
+      "/products_optimized/REMARKS 0.2/F NUOVO.webp",
     ],
     category: "t-shirts",
     brand: "REMARKS 0.2",
@@ -356,8 +372,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/REMARKS 0.2/B BLACK.PNG",
-      "/products/REMARKS 0.2/F BLACK.PNG",
+      "/products_optimized/REMARKS 0.2/B BLACK.PNG.webp",
+      "/products_optimized/REMARKS 0.2/F BLACK.PNG.webp",
     ],
     category: "t-shirts",
     brand: "REMARKS 0.2",
@@ -371,8 +387,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/REMARKS 1/F NUOVO.png",
-      "/products/REMARKS 1/B NUOVO.png",
+      "/products_optimized/REMARKS 1/F NUOVO.webp",
+      "/products_optimized/REMARKS 1/B NUOVO.webp",
     ],
     category: "t-shirts",
     brand: "REMARKS 0.1",
@@ -386,8 +402,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/REMARKS 0.1/NUOVO LIGHT GREY/FRONT.png",
-      "/products/REMARKS 0.1/NUOVO LIGHT GREY/BACK.png",
+      "/products_optimized/REMARKS 0.1/NUOVO LIGHT GREY/FRONT.webp",
+      "/products_optimized/REMARKS 0.1/NUOVO LIGHT GREY/BACK.webp",
     ],
     category: "t-shirts",
     brand: "REMARKS 0.1",
@@ -401,8 +417,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/REMARKS 0.1/VYAND TEE/FRONT.png",
-      "/products/REMARKS 0.1/VYAND TEE/BACK.png",
+      "/products_optimized/REMARKS 0.1/VYAND TEE/FRONT.webp",
+      "/products_optimized/REMARKS 0.1/VYAND TEE/BACK.webp",
     ],
     category: "t-shirts",
     brand: "REMARKS 0.1",
@@ -417,8 +433,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton Fleece • 330 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 350000,
     images: [
-      "/products/REMARKS 0.1/ASET HOODIE/FRONT.png",
-      "/products/REMARKS 0.1/ASET HOODIE/BACK.png",
+      "/products_optimized/REMARKS 0.1/ASET HOODIE/FRONT.webp",
+      "/products_optimized/REMARKS 0.1/ASET HOODIE/BACK.webp",
     ],
     category: "outerwear",
     brand: "REMARKS 0.1",
@@ -433,8 +449,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
-      "/products/REMARKS 1/F RAAM.png",
-      "/products/REMARKS 1/B RAAM.png",
+      "/products_optimized/REMARKS 1/F RAAM.webp",
+      "/products_optimized/REMARKS 1/B RAAM.webp",
     ],
     category: "t-shirts",
     brand: "REMARKS 0.1",
@@ -448,8 +464,8 @@ export const products: Product[] = [
     description: " •⁠Teslan • Oil Based (HDC) Screen Print Decoration⁠ • ⁠⁠Rooms Rubber Patch • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 179000,
     images: [
-      "/products/REMARKS 1/F SHORT PANTS.png",
-      "/products/REMARKS 1/B SHORT PANTS.png",
+      "/products_optimized/REMARKS 1/F SHORT PANTS.webp",
+      "/products_optimized/REMARKS 1/B SHORT PANTS.webp",
     ],
     category: "shorts",
     brand: "REMARKS 0.1",
@@ -464,8 +480,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
-      "/products/FIRST OF ALL 2/F FUF TEE.png",
-      "/products/FIRST OF ALL 2/B FUF TEE.png",
+      "/products_optimized/FIRST OF ALL 2/F FUF TEE.webp",
+      "/products_optimized/FIRST OF ALL 2/B FUF TEE.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
@@ -480,8 +496,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
-      "/products/FIRST OF ALL/BEIGE/FRONT.png",
-      "/products/FIRST OF ALL/BEIGE/BACK.png",
+      "/products_optimized/FIRST OF ALL/BEIGE/FRONT.webp",
+      "/products_optimized/FIRST OF ALL/BEIGE/BACK.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
@@ -496,8 +512,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
-      "/products/FIRST OF ALL/GREEN/FRONT.png",
-      "/products/FIRST OF ALL/GREEN/BACK.png",
+      "/products_optimized/FIRST OF ALL/GREEN/FRONT.webp",
+      "/products_optimized/FIRST OF ALL/GREEN/BACK.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
@@ -512,8 +528,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
-      "/products/FIRST OF ALL 2/F SHINE TEE.png",
-      "/products/FIRST OF ALL 2/B SHINE TEE.png",
+      "/products_optimized/FIRST OF ALL 2/F SHINE TEE.webp",
+      "/products_optimized/FIRST OF ALL 2/B SHINE TEE.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
@@ -528,8 +544,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
-      "/products/FIRST OF ALL 2/F NATIVE TEE.png",
-      "/products/FIRST OF ALL 2/B NATIVE TEE.png",
+      "/products_optimized/FIRST OF ALL 2/F NATIVE TEE.webp",
+      "/products_optimized/FIRST OF ALL 2/B NATIVE TEE.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
@@ -544,8 +560,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 189000,
     images: [
-      "/products/FIRST OF ALL/LONG SLEEVE NAVY/FRONT.png",
-      "/products/FIRST OF ALL/LONG SLEEVE NAVY/BACK.png",
+      "/products_optimized/FIRST OF ALL/LONG SLEEVE NAVY/FRONT.webp",
+      "/products_optimized/FIRST OF ALL/LONG SLEEVE NAVY/BACK.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
@@ -560,8 +576,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 189000,
     images: [
-      "/products/FIRST OF ALL 2/F ZUERST LS.png",
-      "/products/FIRST OF ALL 2/B ZUERST LS.png",
+      "/products_optimized/FIRST OF ALL 2/F ZUERST LS.webp",
+      "/products_optimized/FIRST OF ALL 2/B ZUERST LS.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
@@ -576,8 +592,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 155000,
     images: [
-      "/products/FIRST OF ALL/BLACK 1 JOSHO/FRONT.png",
-      "/products/FIRST OF ALL/BLACK 1 JOSHO/BACK.png",
+      "/products_optimized/FIRST OF ALL/BLACK 1 JOSHO/FRONT.webp",
+      "/products_optimized/FIRST OF ALL/BLACK 1 JOSHO/BACK.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
@@ -592,8 +608,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 155000,
     images: [
-      "/products/FIRST OF ALL 2/F ZUERST SS.png",
-      "/products/FIRST OF ALL 2/B ZUERST SS.png",
+      "/products_optimized/FIRST OF ALL 2/F ZUERST SS.webp",
+      "/products_optimized/FIRST OF ALL 2/B ZUERST SS.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
@@ -608,8 +624,8 @@ export const products: Product[] = [
     description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 155000,
     images: [
-      "/products/FIRST OF ALL 2/F SEVA TEE.png",
-      "/products/FIRST OF ALL 2/B SEVA TEE.png",
+      "/products_optimized/FIRST OF ALL 2/F SEVA TEE.webp",
+      "/products_optimized/FIRST OF ALL 2/B SEVA TEE.webp",
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",

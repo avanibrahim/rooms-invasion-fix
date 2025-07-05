@@ -170,8 +170,8 @@ const normalizedSizes = Array.isArray(product.sizes) && typeof product.sizes[0] 
           </div>
 
             {/* Product Info */}
-         <div className="space-y-2">
-            <div>
+             <div className="space-y-2">
+             <div>
               <div className="flex items-start justify-between mb-2">
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
                   {product.name}
@@ -180,16 +180,15 @@ const normalizedSizes = Array.isArray(product.sizes) && typeof product.sizes[0] 
               
               <p className="text-gray-600 mb-2">{product.brand}</p>
               <div className="flex items-center gap-2">
-  <p className="text-lg font-bold text-gray-900">
-    Rp {product.price.toLocaleString('id-ID')}
-  </p>
-  {product.originalPrice && product.originalPrice > product.price && (
-    <p className="text-sm line-through text-gray-500">
-      Rp {product.originalPrice.toLocaleString('id-ID')}
-    </p>
-  )}
-</div>
-
+                <p className="text-lg font-bold text-gray-900">
+                  Rp {product.price.toLocaleString('id-ID')}
+                </p>
+                {product.originalPrice && product.originalPrice > product.price && (
+                  <p className="text-sm line-through text-gray-500">
+                    Rp {product.originalPrice.toLocaleString('id-ID')}
+                  </p>
+                )}
+              </div>
             </div>
 
             {/* Description */}
@@ -237,7 +236,7 @@ const normalizedSizes = Array.isArray(product.sizes) && typeof product.sizes[0] 
               {/* Gambar Size Chart */}
                 <div className="relative">
                   <img
-                    src="/image/sc.png"
+                    src="/sizechart/sc.png"
                     alt="Size Chart"
                     className="w-full h-auto object-contain max-h-[90vh] sm:max-h-[80vh]"
                   />

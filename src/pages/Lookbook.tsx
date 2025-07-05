@@ -1,134 +1,92 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Eye } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LazyImage from '../components/LazyImage';
 import LoadingScreen from '../components/LoadingScreen';
 
 const Lookbook = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [likedItems, setLikedItems] = useState<string[]>([]);
   const [selectedItem, setSelectedItem] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadedImages, setLoadedImages] = useState(0);
 
   const lookbookItems = [
     {
-        title: 'ETERNAL TEE - WHITE',
-        category: 'casual',
-        image: '/lookbook/new1.png',
-        description: 'Perfect casual look for summer days',
-        likes: 48,
+      title: 'NEVER ENOUGH',
+      image: '/lookbook/never1.jpg',
+      description: 'Spring/Summer 2025 Never Enough Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-        title: 'STILL TEE - BLACK',
-        category: 'casual',
-        image: '/lookbook/new2.png',
-        description: 'Perfect casual look for summer days',
-        likes: 52,
+      title: 'NEVER ENOUGH',
+      image: '/lookbook/never2.jpg',
+      description: 'Spring/Summer 2025 Never Enough Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-        title: 'LOVE MOM TEE - BLACK',
-        category: 'casual',
-        image: '/lookbook/new3.png',
-        description: 'Perfect casual look for summer days',
-        likes: 50,
+      title: 'NEVER ENOUGH',
+      image: '/lookbook/never3.jpg',
+      description: 'Spring/Summer 2025 Never Enough Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-      id: '1',
-      title: 'PRODUCT NAME',
-      category: 'casual',
+      title: 'HUSTLE & FLOW',
+      image: '/lookbook/new1.png',
+      description: 'Spring/Summer 2025 Hustle & Flow Lookbook, Gorontalo, Indonesia 2025.',
+    },
+    {
+      title: 'HUSTLE & FLOW',
+      image: '/lookbook/new2.png',
+      description: 'Spring/Summer 2025 Hustle & Flow Lookbook, Gorontalo, Indonesia 2025.',
+    },
+    {
+      title: 'HUSTLE & FLOW',
+      image: '/lookbook/new3.png',
+      description: 'Spring/Summer 2025 Hustle & Flow Lookbook, Gorontalo, Indonesia 2025.',
+    },
+    {
+      title: 'REMARKS 0.2',
       image: '/lookbook/model1.jpg',
-      description: 'Perfect casual look for summer days',
-       // Product IDs yang digunakan
-      likes: 45,
+      description: 'Spring/Summer 2025 REMARKS 0.2 Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-      id: '2',
-      title: 'PRODUCT NAME',
-      category: 'casual',
+      title: 'REMARKS 0.2',
       image: '/lookbook/model2.jpg',
-      description: 'Professional look for the workplace',
-      products: ['3', '4'],
-      likes: 32,
+      description: 'Spring/Summer 2025 REMARKS 0.2 Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-      id: '3',
-      title: 'PRODUCT NAME',
-      category: 'street',
+      title: 'REMARKS 0.2',
       image: '/lookbook/model3.jpg',
-      description: 'Urban street style inspiration',
-      products: ['5', '6'],
-      likes: 67,
+      description: 'Spring/Summer 2025 REMARKS 0.2 Lookbook, Gorontalo, Indonesia 2025.',
     },
-    
     {
-      id: '4',
-      title: 'PRODUCT NAME',
-      category: 'casual',
+      title: 'INVASION FROM THE EAST',
       image: '/lookbook/model4.jpg',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      products: ['7', '8'],
-      likes: 23,
+      description: 'Spring/Summer 2025 Invasion From The East Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-      id: '5',
-      title: 'PRODUCT NAME',
-      category: 'street',
+      title: 'INVASION FROM THE EAST',
       image: '/lookbook/model5.jpg',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      products: ['9', '10'],
-      likes: 23,
+      description: 'Spring/Summer 2025 Invasion From The East Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-      id: '6',
-      title: 'GROWS CREWNECK - BLACK',
-      category: 'street',
+      title: 'INVASION FROM THE EAST',
       image: '/lookbook/model6.jpg',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      products: ['11', '12'],
-      likes: 23,
+      description: 'Spring/Summer 2025 Invasion From The East Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-      id: '7',
-      title: 'PRODUCT NAME',
-      category: 'street',
+      title: 'FIRST OF ALL',
       image: '/lookbook/model7.jpg',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      products: ['13', '14'],
-      likes: 23,
+      description: 'Spring/Summer 2025 FIRST OF ALL Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-      id: '8',
-      title: 'PRODUCT NAME',
-      category: 'street',
+      title: 'FIRST OF ALL',
       image: '/lookbook/model8.jpg',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      products: ['15', '16'],
-      likes: 23,
+      description: 'Spring/Summer 2025 FIRST OF ALL Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
-      id: '9',
-      title: 'T-SHIRT - GREEN',
-      category: '',
+      title: 'FIRST OF ALL',
       image: '/lookbook/model9.jpg',
-      description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      products: ['17', '18'],
-      likes: 23,
+      description: 'Spring/Summer 2025 FIRST OF ALL Lookbook, Gorontalo, Indonesia 2025.',
     },
-    // Tambahkan lebih banyak items sesuai kebutuhan
   ];
-
-  const filteredItems =
-    selectedCategory === 'all'
-      ? lookbookItems
-      : lookbookItems.filter((item) => item.category.includes(selectedCategory));
-
-  const handleLike = (itemId: string) => {
-    setLikedItems((prev) =>
-      prev.includes(itemId) ? prev.filter((id) => id !== itemId) : [...prev, itemId]
-    );
-  };
 
   const handleViewProducts = (item: any) => {
     setSelectedItem(item);
@@ -143,12 +101,11 @@ const Lookbook = () => {
   };
 
   useEffect(() => {
-    const totalImages = filteredItems.length;
-    if (totalImages > 0 && loadedImages >= totalImages) {
+    if (loadedImages >= lookbookItems.length) {
       const timeout = setTimeout(() => setLoading(false), 500);
       return () => clearTimeout(timeout);
     }
-  }, [loadedImages, filteredItems]);
+  }, [loadedImages, lookbookItems.length]);
 
   useEffect(() => {
     const maxTimeout = setTimeout(() => setLoading(false), 7000);
@@ -166,47 +123,36 @@ const Lookbook = () => {
             <h1 className="text-4xl md:text-4xl font-semibold text-gray-900 mb-4">LOOKBOOK</h1>
           </div>
 
-          {filteredItems.length > 0 ? (
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
-              {filteredItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <LazyImage
-                      src={item.image}
-                      alt={item.title}
-                      onLoad={handleImageLoad}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
-                    <div className="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button
-                        onClick={() => handleViewProducts(item)}
-                        className="p-1.5 rounded-full bg-white/80 text-gray-700 hover:bg-white backdrop-blur-sm transition-colors"
-                      >
-                        <Eye size={16} />
-                      </button>
-                    </div>
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+            {lookbookItems.map((item, index) => (
+              <div
+                key={index}
+                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <LazyImage
+                    src={item.image}
+                    alt={item.title}
+                    onLoad={handleImageLoad}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
+                  <div className="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button
+                      onClick={() => handleViewProducts(item)}
+                      className="p-1.5 rounded-full bg-white/80 text-gray-700 hover:bg-white backdrop-blur-sm transition-colors"
+                    >
+                      <Eye size={16} />
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-16">
-              <div className="text-gray-400 mb-4">
-                <Eye size={64} className="mx-auto" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No looks found</h3>
-              <p className="text-gray-600">Try selecting a different category</p>
-            </div>
-          )}
+            ))}
+          </div>
         </main>
 
         <Footer />
 
-        {/* MODAL */}
         {selectedItem && (
           <div
             className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 px-4"
@@ -225,7 +171,7 @@ const Lookbook = () => {
               <p className="text-gray-300 mb-6 text-sm px-4 md:px-6">{selectedItem.description}</p>
               <button
                 onClick={closeModal}
-                className="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                className="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors"
               >
                 Close
               </button>
