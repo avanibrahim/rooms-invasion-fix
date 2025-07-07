@@ -135,16 +135,15 @@ const Shop = () => {
                         {product.name}
                       </h3>
                       <div className="flex items-center gap-2">
-  <p className="font-bold text-sm md:text-base text-gray-900">
-    Rp {product.price.toLocaleString('id-ID')}
-  </p>
-  {product.originalPrice && product.originalPrice > product.price && (
-    <p className="text-sm line-through text-gray-500">
-      Rp {product.originalPrice.toLocaleString('id-ID')}
-    </p>
-  )}
-</div>
-
+                        <p className="font-bold text-sm md:text-base text-gray-900">
+                          Rp {product.price.toLocaleString('id-ID')}
+                        </p>
+                        {product.originalPrice && product.originalPrice > product.price && (
+                          <p className="text-sm line-through text-gray-500">
+                            Rp {product.originalPrice.toLocaleString('id-ID')}
+                          </p>
+                        )}
+                      </div>
                       <p className="text-gray-500 text-xs md:text-sm">
                         {product.brand}
                       </p>

@@ -29,7 +29,7 @@ const normalizedSizes = Array.isArray(product.sizes) && typeof product.sizes[0] 
 ? product.sizes.map(size => ({ size, stock: product.stock || 0 }))
 : product.sizes;
 
-  if (!product) {
+  if (!product) { 
     return (
       <div className="min-h-screen bg-white">
         <Header />
@@ -107,6 +107,35 @@ const normalizedSizes = Array.isArray(product.sizes) && typeof product.sizes[0] 
   };
 
   const [showSizeChart, setShowSizeChart] = useState(false);
+
+
+  const getSizeChartImage = (product) => {
+    const category = product.category?.toLowerCase() || '';
+    const name = product.name?.toLowerCase() || '';
+  
+    if (category.includes('t-shirt') || category.includes('t-shirt')) {
+      return '/sizechart/t-shirt.png';
+    }
+    if (category.includes('shirts') || category.includes('shirt')) {
+      return '/sizechart/shirt.png';
+    }
+  
+    if (category.includes('outerwear')) {
+      if (name.includes('hoodie')) return '/sizechart/hoodie.png';
+      if (name.includes('crewneck')) return '/sizechart/crewneck.png';
+      // fallback kalau outerwear tapi bukan hoodie/crewneck
+      return '/sizechart/default.png';
+    }
+  
+    if (category.includes('pants') || category.includes('shorts')) {
+      return '/sizechart/pants.png';
+    }
+  
+    return '/sizechart/default.png';
+  };
+  
+
+const sizeChartImage = getSizeChartImage(product);
 
 
   return (
@@ -214,8 +243,7 @@ const normalizedSizes = Array.isArray(product.sizes) && typeof product.sizes[0] 
                   SIZE CHART
                 </button>
               )}
-
-
+              
           {showSizeChart && (
             <div
               onClick={() => setShowSizeChart(false)}
@@ -235,11 +263,12 @@ const normalizedSizes = Array.isArray(product.sizes) && typeof product.sizes[0] 
 
               {/* Gambar Size Chart */}
                 <div className="relative">
-                  <img
-                    src="/sizechart/sc.png"
-                    alt="Size Chart"
-                    className="w-full h-auto object-contain max-h-[90vh] sm:max-h-[80vh]"
-                  />
+                <img
+  src={sizeChartImage}
+  alt="Size Chart"
+  className="w-full h-auto object-contain max-h-[90vh] sm:max-h-[80vh]"
+/>
+
 
                 {/* Teks di bawah gambar */}
                 <p className="text-center text-gray-700 text-sm mt-2 mb-4">
