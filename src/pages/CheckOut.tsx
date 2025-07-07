@@ -162,7 +162,7 @@ const Checkout = () => {
       const whatsappMessage = formatOrderMessage(orderNumber);
       
       // WhatsApp admin number
-      const whatsappNumber = "6281355062230";
+      const whatsappNumber = "6285166369467";
       
       // Create WhatsApp URL
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
