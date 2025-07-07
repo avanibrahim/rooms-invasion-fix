@@ -115,7 +115,7 @@ const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
               <div className="space-y-3">
                 <button
                   onClick={handleCheckout}
-                  className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 flex items-center justify-center"
+                  className="w-full bg-gray-600 text-white py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors duration-200 flex items-center justify-center"
                 >
                   <ShoppingCart size={20} className="mr-2" />
                   Checkout

@@ -1,8 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import LoadingScreen from '../components/LoadingScreen';
 
 const Hero = () => {
+  const [loading, setLoading] = useState(true);
+      const [loadedImages, setLoadedImages] = useState(0);
+  
+      const handleImageLoad = () => {
+          setLoadedImages((prev) => prev + 1);
+        };
+      
+        useEffect(() => {
+          if (loadedImages >= 1) {
+            const timeout = setTimeout(() => setLoading(false), 500);
+            return () => clearTimeout(timeout);
+          }
+        }, [loadedImages]);
+      
+        useEffect(() => {
+          const maxTimeout = setTimeout(() => setLoading(false), 5000);
+          return () => clearTimeout(maxTimeout);
+        }, []);
   const navigate = useNavigate();
   const [current, setCurrent] = useState(0);
 
@@ -24,6 +43,8 @@ const Hero = () => {
   const handleViewLookbookClick = () => navigate('/Lookbook');
 
   return (
+    <>
+    {loading && <LoadingScreen transparent />}
     <section className="relative h-[80vh] sm:h-[85vh] md:h-[91vh] overflow-hidden text-white">
       {/* Images with fade transition */}
       {heroImages.map((img, i) => (
@@ -92,6 +113,7 @@ const Hero = () => {
         <ChevronRight size={24} />
       </button>
     </section>
+    </>
   );
 };
 

@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import LoadingScreen from '../components/LoadingScreen';
 
 const Contact = () => {
+   const [loading, setLoading] = useState(true);
+    const [loadedImages, setLoadedImages] = useState(0);
+
+    const handleImageLoad = () => {
+        setLoadedImages((prev) => prev + 1);
+      };
+    
+      useEffect(() => {
+        if (loadedImages >= 1) {
+          const timeout = setTimeout(() => setLoading(false), 500);
+          return () => clearTimeout(timeout);
+        }
+      }, [loadedImages]);
+    
+      useEffect(() => {
+        const maxTimeout = setTimeout(() => setLoading(false), 5000);
+        return () => clearTimeout(maxTimeout);
+      }, []);
 
   const contactInfo = [
     {
@@ -28,6 +47,8 @@ const Contact = () => {
     }*/
   ];
   return (
+    <>
+    {loading && <LoadingScreen transparent />}
     <div className="min-h-screen bg-white">
       <Header />
       
@@ -137,6 +158,7 @@ const Contact = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 

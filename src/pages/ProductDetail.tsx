@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Heart, Star, Plus, Minus, AlertCircle } from 'lucide-react';
 import { products } from '../data/products';
@@ -6,8 +6,28 @@ import { useCartStore } from '../store/cartStore';
 import { toast } from '../hooks/use-toast';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import LoadingScreen from '../components/LoadingScreen';
 
 const ProductDetail = () => {
+  const [loading, setLoading] = useState(true);
+    const [loadedImages, setLoadedImages] = useState(0);
+  
+    const handleImageLoad = () => {
+      setLoadedImages((prev) => prev + 1);
+    };
+  
+    useEffect(() => {
+      if (loadedImages >= 1) {
+        const timeout = setTimeout(() => setLoading(false), 500);
+        return () => clearTimeout(timeout);
+      }
+    }, [loadedImages]);
+  
+    useEffect(() => {
+      const maxTimeout = setTimeout(() => setLoading(false), 5000);
+      return () => clearTimeout(maxTimeout);
+    }, []);
+
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const addItem = useCartStore((state) => state.addItem);
@@ -139,6 +159,8 @@ const sizeChartImage = getSizeChartImage(product);
 
 
   return (
+    <>
+    {loading && <LoadingScreen transparent />}
     <div className="min-h-screen bg-white">
       <Header />
       
@@ -410,6 +432,7 @@ const sizeChartImage = getSizeChartImage(product);
 
       <Footer />
     </div>
+    </>
   );
 };
 

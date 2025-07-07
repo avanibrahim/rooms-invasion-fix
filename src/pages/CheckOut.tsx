@@ -5,6 +5,7 @@ import { useCartStore } from '../store/cartStore';
 import { toast } from '../hooks/use-toast';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useEffect } from "react";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -202,6 +203,11 @@ const Checkout = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
+
+
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-white">
@@ -276,128 +282,129 @@ const Checkout = () => {
               
               {/* Step 1: Shipping Information */}
               {step === 1 && (
-                <div>
-                  <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Shipping Information</h2>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 sm:mb-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        First Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Last Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                        required
-                      />
-                    </div>
-                  </div>
+              <div>
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Shipping Information</h2>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 sm:mb-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone Number *
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="mb-4 sm:mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 sm:mb-6">
+                  <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Address *
+                      First Name *
                     </label>
                     <input
                       type="text"
-                      name="address"
-                      value={formData.address}
+                      name="firstName"
+                      value={formData.firstName}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+                      className="w-full px-3 py-2 text-base sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
                       required
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 sm:mb-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        City *
-                      </label>
-                      <input
-                        type="text"
-                        name="city"
-                        value={formData.city}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Province *
-                      </label>
-                      <input
-                        type="text"
-                        name="province"
-                        value={formData.province}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Postal Code *
-                      </label>
-                      <input
-                        type="text"
-                        name="postalCode"
-                        value={formData.postalCode}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
-                        required
-                      />
-                    </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Last Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 text-base sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+                      required
+                    />
                   </div>
                 </div>
-              )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 sm:mb-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 text-base sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 text-base sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-4 sm:mb-6">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Address *
+                  </label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 text-base sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+                    required
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 sm:mb-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      City *
+                    </label>
+                    <input
+                      type="text"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 text-base sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Province *
+                    </label>
+                    <input
+                      type="text"
+                      name="province"
+                      value={formData.province}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 text-base sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Postal Code *
+                    </label>
+                    <input
+                      type="text"
+                      name="postalCode"
+                      value={formData.postalCode}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 text-base sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
 
               {/* Step 2: Payment Information */}
               {step === 2 && (
@@ -458,52 +465,6 @@ const Checkout = () => {
                             <div className="text-xs text-gray-500">NMID : ID1024310154884</div>
                           </div>
                         </div>
-
-                        {/* ShopeePay 
-                        <div className="flex items-center bg-white rounded-xl shadow p-3">
-                          <div className="flex-shrink-0 bg-white rounded-full p-2">
-                            <img
-                              src="https://brandlogos.net/wp-content/uploads/2022/08/shopeepay-logo_brandlogos.net_yl7nf-512x512.png"
-                              alt="ShopeePay"
-                              className="h-10 w-10 object-contain"
-                            />
-                          </div>
-                          <div className="ml-4">
-                            <div className="font-bold text-base text-gray-900">ShopeePay</div>
-                            <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
-                            <div className="text-xs text-gray-500">a.n. Takezon</div>
-                          </div>
-                        </div>*/}
-                        {/* OVO 
-                        <div className="flex items-center bg-white rounded-xl shadow p-3">
-                          <div className="flex-shrink-0 bg-white rounded-full p-2">
-                            <img
-                              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/1200px-Logo_ovo_purple.svg.png"
-                              alt="OVO"
-                              className="h-10 w-10 object-contain"
-                            />
-                          </div>
-                          <div className="ml-4">
-                            <div className="font-bold text-base text-gray-900">OVO</div>
-                            <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
-                            <div className="text-xs text-gray-500">a.n. Takezon</div>
-                          </div>
-                        </div>*/}
-                        {/* Dana 
-                        <div className="flex items-center bg-white rounded-xl shadow p-3">
-                          <div className="flex-shrink-0 bg-white rounded-full p-2">
-                            <img
-                              src="https://upload.wikimedia.org/wikipedia/commons/5/52/Dana_logo.png"
-                              alt="Dana"
-                              className="h-10 w-10 object-contain"
-                            />
-                          </div>
-                          <div className="ml-4">
-                            <div className="font-bold text-base text-gray-900">Dana</div>
-                            <div className="text-sm font-mono tracking-wider text-gray-700">08123456789</div>
-                            <div className="text-xs text-gray-500">a.n. Takezon</div>
-                          </div>
-                        </div>*/}
                       </div>
                     </div>
                   )}
@@ -545,20 +506,6 @@ const Checkout = () => {
                             <div className="text-xs text-gray-500">a.n. Dwi Nanda Mulia</div>
                           </div>
                         </div>
-                        {/* Mandiri
-                        <div className="flex items-center bg-white rounded-xl shadow p-3">
-                          <div className="flex-shrink-0 bg-white rounded-full p-2">
-                            <img
-                              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1280px-Bank_Mandiri_logo_2016.svg.png"
-                              alt="Mandiri"
-                              className="h-10 w-10 object-contain"
-                            />
-                          </div>
-                          <div className="ml-4">
-                            <div className="font-bold text-base text-gray-900">Mandiri</div>
-                            <div className="text-sm font-mono tracking-wider text-gray-700">0987654321</div>
-                            <div className="text-xs text-gray-500">a.n. Takezon</div>
-                          </div>*/}
                       </div>
                     </div>
                   )}
@@ -639,15 +586,15 @@ const Checkout = () => {
                   </div>
 
                   {/* WhatsApp Confirmation Notice */}
-                  <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-50 rounded-lg border border-green-200">
+                  <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-50 rounded-lg border border-gray-200">
                     <h3 className="font-semibold text-gray-900 mb-3 text-sm sm:text-base">Order Confirmation</h3>
                     <div className="text-xs sm:text-sm text-gray-600">
                       <p className="mb-2">
                         Setelah menekan tombol "Place Order", Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan dengan admin kami, Sertakan bukti pembayaran.
                       </p>
-                      <div className="flex items-center gap-2 text-green-600 font-medium">
+                      <div className="flex items-center gap-2 text-gray-600 font-medium">
                       <img
-                          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                          src="https://cdn4.iconfinder.com/data/icons/picons-social/57/23-whatsapp-2-512.png"
                           alt="WhatsApp"
                           className="h-4 w-4 sm:h-6 sm:w-6 object-contain"
                         />
@@ -847,36 +794,36 @@ const Checkout = () => {
 
 
               {/* Security Badge */}
-              <div className="mt-4 sm:mt-6 p-3 bg-green-50 rounded-lg">
+              <div className="mt-4 sm:mt-6 p-3 bg-gray-100 rounded-lg">
                 <div className="flex items-center gap-2">
-                  <Shield size={14} className="sm:w-4 sm:h-4 text-green-600 flex-shrink-0" />
-                  <span className="text-xs sm:text-sm text-green-800 font-medium">
+                  <Shield size={14} className="sm:w-4 sm:h-4 text-black flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-gray-800 font-medium">
                     Secure Checkout
                   </span>
                 </div>
-                <p className="text-xs text-green-700 mt-1">
+                <p className="text-xs text-gray-700 mt-1">
                   Your payment information is encrypted and secure
                 </p>
               </div>
 
               {/* Shipping Info */}
-              <div className="mt-3 sm:mt-4 p-3 bg-blue-50 rounded-lg">
+              <div className="mt-3 sm:mt-4 p-3 bg-gray-100 rounded-lg">
                 <div className="flex items-center gap-2">
-                  <Truck size={14} className="sm:w-4 sm:h-4 text-blue-600 flex-shrink-0" />
-                  <span className="text-xs sm:text-sm text-blue-800 font-medium">
+                  <Truck size={14} className="sm:w-4 sm:h-4 text-black flex-shrink-0" />
+                  <span className="text-xs sm:text-sm text-gray-800 font-medium">
                     Free Returns
                   </span>
                 </div>
-                <p className="text-xs text-blue-700 mt-1">
+                <p className="text-xs text-gray-700 mt-1">
                   30-day return policy on all items
                 </p>
               </div>
 
               {/* WhatsApp Contact Info */}
-              <div className="mt-3 sm:mt-4 p-3 bg-yellow-50 rounded-lg">
+              <div className="mt-3 sm:mt-4 p-3 bg-gray-100 rounded-lg">
                 <div className="flex items-center gap-2">
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                    src="https://cdn4.iconfinder.com/data/icons/picons-social/57/23-whatsapp-2-512.png"
                     alt="WhatsApp"
                     className="h-4 w-4 sm:h-6 sm:w-6 object-contain"
                   />
