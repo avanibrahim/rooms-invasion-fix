@@ -18,7 +18,7 @@ export const products: Product[] = [
   {
     id: "1",
     name: "Elevar Tee - Coffee",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
       "/products_optimized/NEVER ENOUGH/F ELEVAR TEE.webp",
@@ -33,7 +33,7 @@ export const products: Product[] = [
   {
     id: "2",
     name: "Never Enough Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
       "/products_optimized/NEVER ENOUGH/F NEVER ENOUGH.webp",
@@ -48,7 +48,7 @@ export const products: Product[] = [
   {
     id: "3",
     name: "Asteria Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
       "/products_optimized/NEVER ENOUGH/ASTERIA.webp",
@@ -63,7 +63,7 @@ export const products: Product[] = [
   {
     id: "4",
     name: "Still Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
       "/products_optimized/HUSTLE & FLOW/STILL TEE BLACK/FRONT.webp",
@@ -83,7 +83,7 @@ export const products: Product[] = [
   {
     id: "5",
     name: "Still Tee - Navy",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
       "/products_optimized/HUSTLE & FLOW/STILL TEE NAVY/FRONT.webp",
@@ -103,7 +103,7 @@ export const products: Product[] = [
   {
     id: "6",
     name: "Eternal Tee - White",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
       "/products_optimized/HUSTLE & FLOW/ETERNAL TEE/FRONT.webp",
@@ -118,7 +118,7 @@ export const products: Product[] = [
   {
     id: "7",
     name: "Love Mom Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
       "/products_optimized/HUSTLE & FLOW/LOVE MOM TEE/FRONT.webp",
@@ -138,7 +138,7 @@ export const products: Product[] = [
   {
     id: "8",
     name: "Mouth Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 205000,
     images: [
       "/products_optimized/HUSTLE & FLOW/MOUTH TEE/FRONT.webp",
@@ -158,7 +158,7 @@ export const products: Product[] = [
   {
     id: "9",
     name: "Rythem Tee - Benhur",
-    description: "•⁠ ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/DUB NATION/F BLUE.PNG.webp",
@@ -173,7 +173,7 @@ export const products: Product[] = [
   {
     id: "10",
     name: "Grens Workshirt - Black",
-    description: "•⁠ ⁠100% Drill cotton ⁠ • ⁠⁠Boxy Fit • Embroidered Logo on Front and Back⁠ • ⁠⁠Rooms Woven & Rubber Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Drill cotton ⁠ • ⁠⁠Boxy Fit • Embroidered Logo on Front and Back⁠ • ⁠⁠Rooms Woven & Rubber Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 299000,
     originalPrice: 350000,
     images: [
@@ -189,7 +189,7 @@ export const products: Product[] = [
   {
     id: "11",
     name: "Vrede Tee - Black",
-    description: "•⁠ ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/DUB NATION/F PEACE.PNG.webp",
@@ -204,7 +204,7 @@ export const products: Product[] = [
   {
     id: "12",
     name: "Kersie Tee - Rotten Yellow",
-    description: "•⁠ ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/DUB NATION/KUNING FRONT.webp",
@@ -219,7 +219,7 @@ export const products: Product[] = [
   {
     id: "13",
     name: "Streek Tee - White",
-    description: "•⁠ ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/DUB NATION/F AFRIKA.PNG.webp",
@@ -234,7 +234,7 @@ export const products: Product[] = [
   {
     id: "14",
     name: "Grows Crewnecks - Black",
-    description: "•⁠  ⁠100% Cotton Fleece • 280 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven & Rubber Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Cotton Fleece • 280 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven & Rubber Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 299000,
     images: [
       "/products_optimized/INVASION FROM THE EAST/GROWS CREWNECK/FRONT.webp",
@@ -249,7 +249,7 @@ export const products: Product[] = [
   {
     id: "15",
     name: "Inval 0435 Double Layer - Black/White",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 215000,
     images: [
       "/products_optimized/INVASION FROM THE EAST/INVAL 0435 DOUBLE LAYER/FRONT.webp",
@@ -264,7 +264,7 @@ export const products: Product[] = [
   {
     id: "16",
     name: "Bad Alies Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/INVASION FROM THE EAST/F BAD ALIES.PNG.webp",
@@ -279,7 +279,7 @@ export const products: Product[] = [
   {
     id: "17",
     name: "From East Tee - Dark Grey",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/INVASION FROM THE EAST/F GREY.PNG.webp",
@@ -294,7 +294,7 @@ export const products: Product[] = [
   {
     id: "18",
     name: "Circles Tee - Medieval Blue",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/INVASION FROM THE EAST/F MEDIA FILE.PNG.webp",
@@ -309,7 +309,7 @@ export const products: Product[] = [
   {
     id: "19",
     name: "Eastodoor Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/INVASION FROM THE EAST/F EAST DOOR.PNG.webp",
@@ -324,7 +324,7 @@ export const products: Product[] = [
   {
     id: "20",
     name: "Rush Hat - Black",
-    description: "Snapback Classic •⁠  ⁠100% Cotton Twill • Embroidered Graphics Logo • ⁠Adjustable Back Strap • Visor 6cm⁠ • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "Snapback Classic •⁠⁠100% Cotton Twill • Embroidered Graphics Logo • ⁠Adjustable Back Strap • Visor 6cm⁠ • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 125000,
     originalPrice: 165000,
     images: [
@@ -339,7 +339,7 @@ export const products: Product[] = [
   {
     id: "21",
     name: "Pester Tee - Gucci Green",
-    description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/REMARKS 0.2/F GREEN.webp",
@@ -354,7 +354,7 @@ export const products: Product[] = [
   {
     id: "22",
     name: "Mondai Tee - Red",
-    description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/REMARKS 0.2/F RED SHIRT.webp",
@@ -369,7 +369,7 @@ export const products: Product[] = [
   {
     id: "23",
     name: "Nuovo Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/REMARKS 0.2/F NUOVO.webp",
@@ -384,7 +384,7 @@ export const products: Product[] = [
   {
     id: "24",
     name: "Dicta Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/REMARKS 0.2/B BLACK.PNG.webp",
@@ -399,7 +399,7 @@ export const products: Product[] = [
   {
     id: "25",
     name: "Nuovo Tee - Purple",
-    description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description:"•⁠⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/REMARKS 1/F NUOVO.webp",
@@ -414,7 +414,7 @@ export const products: Product[] = [
   {
     id: "26",
     name: "Nuovo Tee - Light Grey",
-    description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description:"•⁠⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/REMARKS 0.1/NUOVO LIGHT GREY/FRONT.webp",
@@ -429,7 +429,7 @@ export const products: Product[] = [
   {
     id: "27",
     name: "Vyand Tee - Black",
-    description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description:"•⁠⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/REMARKS 0.1/VYAND TEE/FRONT.webp",
@@ -445,7 +445,7 @@ export const products: Product[] = [
   {
     id: "28",
     name: "Aset Pullover Hoodie - Black",
-    description: "•⁠  ⁠100% Cotton Fleece • 330 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Cotton Fleece • 330 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 350000,
     images: [
       "/products_optimized/REMARKS 0.1/ASET HOODIE/FRONT.webp",
@@ -461,7 +461,7 @@ export const products: Product[] = [
   {
     id: "29",
     name: "Raam Tee - Turquiese",
-    description: "•⁠  ⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description:"•⁠⁠100% Australian cotton • 235 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 199000,
     images: [
       "/products_optimized/REMARKS 1/F RAAM.webp",
@@ -476,7 +476,7 @@ export const products: Product[] = [
   {
     id: "30",
     name: "Zuerst Shorts - Black",
-    description: " •⁠Teslan • Oil Based (HDC) Screen Print Decoration⁠ • ⁠⁠Rooms Rubber Patch • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠Teslan • Oil Based (HDC) Screen Print Decoration⁠ • ⁠⁠Rooms Rubber Patch • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 179000,
     images: [
       "/products_optimized/REMARKS 1/F SHORT PANTS.webp",
@@ -484,15 +484,13 @@ export const products: Product[] = [
     ],
     category: "shorts",
     brand: "REMARKS 0.1",
-    rating: 4.4,
-    sizes: ["S", "M", "L", "XL"],
-    
+    rating: 4.4,  
     stock: 0
   },
   {
     id: "31",
     name: "Fuf Tee - White",
-    description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
       "/products_optimized/FIRST OF ALL 2/F FUF TEE.webp",
@@ -508,7 +506,7 @@ export const products: Product[] = [
   {
     id: "32",
     name: "Denken Tee - Beige",
-    description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
       "/products_optimized/FIRST OF ALL/BEIGE/FRONT.webp",
@@ -524,7 +522,7 @@ export const products: Product[] = [
   {
     id: "33",
     name: "Klube Tee - Sage",
-    description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
       "/products_optimized/FIRST OF ALL/GREEN/FRONT.webp",
@@ -540,7 +538,7 @@ export const products: Product[] = [
   {
     id: "34",
     name: "Shine Tee - Dark Grey",
-    description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
       "/products_optimized/FIRST OF ALL 2/F SHINE TEE.webp",
@@ -556,7 +554,7 @@ export const products: Product[] = [
   {
     id: "35",
     name: "Native Tee - White",
-    description: "•⁠  ⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠⁠100% Cotton 20s • 190 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 185000,
     images: [
       "/products_optimized/FIRST OF ALL 2/F NATIVE TEE.webp",
@@ -572,7 +570,7 @@ export const products: Product[] = [
   {
     id: "36",
     name: "Bad Luck L/S - Navy",
-    description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 189000,
     images: [
       "/products_optimized/FIRST OF ALL/LONG SLEEVE NAVY/FRONT.webp",
@@ -588,7 +586,7 @@ export const products: Product[] = [
   {
     id: "37",
     name: "Zuerts L/S - Black",
-    description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 189000,
     images: [
       "/products_optimized/FIRST OF ALL 2/F ZUERST LS.webp",
@@ -604,7 +602,7 @@ export const products: Product[] = [
   {
     id: "38",
     name: "Josho Tee - Black",
-    description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 155000,
     images: [
       "/products_optimized/FIRST OF ALL/BLACK 1 JOSHO/FRONT.webp",
@@ -620,7 +618,7 @@ export const products: Product[] = [
   {
     id: "39",
     name: "Zuerst Tee - Benhur",
-    description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 155000,
     images: [
       "/products_optimized/FIRST OF ALL 2/F ZUERST SS.webp",
@@ -636,7 +634,7 @@ export const products: Product[] = [
   {
     id: "40",
     name: "Seva Tee - Black",
-    description: "•⁠  ⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    description: "•⁠100% Cotton 24s • 170 GSM⁠ • ⁠⁠Reguler Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 155000,
     images: [
       "/products_optimized/FIRST OF ALL 2/F SEVA TEE.webp",

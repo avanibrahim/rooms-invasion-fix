@@ -74,17 +74,17 @@ const Lookbook = () => {
     {
       title: 'FIRST OF ALL',
       image: '/lookbook/model7.jpg',
-      description: 'Spring/Summer 2025 FIRST OF ALL Lookbook, Gorontalo, Indonesia 2025.',
+      description: 'Autumn/Winter 2024 FIRST OF ALL Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
       title: 'FIRST OF ALL',
       image: '/lookbook/model8.jpg',
-      description: 'Spring/Summer 2025 FIRST OF ALL Lookbook, Gorontalo, Indonesia 2025.',
+      description: 'Autumn/Winter 2024 FIRST OF ALL Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
       title: 'FIRST OF ALL',
       image: '/lookbook/model9.jpg',
-      description: 'Spring/Summer 2025 FIRST OF ALL Lookbook, Gorontalo, Indonesia 2025.',
+      description: 'Autumn/Winter 2024 FIRST OF ALL Lookbook, Gorontalo, Indonesia 2025.',
     },
   ];
 
