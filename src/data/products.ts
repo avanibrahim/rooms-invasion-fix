@@ -308,6 +308,21 @@ export const products: Product[] = [
   },
   {
     id: "19",
+    name: "Eastodoor Tee - Black",
+    description: "•⁠  ⁠100% Australian cotton • 250 GSM⁠ • ⁠⁠Boxy Fit • Oil Based Screen Print Decoration⁠ • ⁠⁠Rooms Woven Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
+    price: 199000,
+    images: [
+      "/products_optimized/INVASION FROM THE EAST/F EAST DOOR.PNG.webp",
+      "/products_optimized/INVASION FROM THE EAST/F EAST DOOR.PNG.webp",
+    ],
+    category: "t-shirts",
+    brand: "INVASION FROM THE EAST",
+    sizes: ["S", "M", "L", "XL"],
+    rating: 4.4,
+    stock: 0
+  },
+  {
+    id: "20",
     name: "Rush Hat - Black",
     description: "Snapback Classic •⁠  ⁠100% Cotton Twill • Embroidered Graphics Logo • ⁠Adjustable Back Strap • Visor 6cm⁠ • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 125000,
@@ -320,22 +335,6 @@ export const products: Product[] = [
     brand: "INVASION FROM THE EAST",
     rating: 4.4,
     stock: 10
-  },
-  {
-    id: "20",
-    name: "Eastodoor Tee - Black",
-    description: "Snapback Classic •⁠  ⁠100% Cotton Twill • Embroidered Graphics Logo • ⁠Adjustable Back Strap • Visor 6cm⁠ • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
-    price: 125000,
-    originalPrice: 165000,
-    images: [
-      "/products_optimized/INVASION FROM THE EAST/F EAST DOOR.PNG.webp",
-      "/products_optimized/INVASION FROM THE EAST/F EAST DOOR.PNG.webp",
-    ],
-    category: "t-shirts",
-    brand: "INVASION FROM THE EAST",
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.4,
-    stock: 0
   },
   {
     id: "21",
