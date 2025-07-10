@@ -286,10 +286,10 @@ const sizeChartImage = getSizeChartImage(product);
               {/* Gambar Size Chart */}
                 <div className="relative">
                 <img
-  src={sizeChartImage}
-  alt="Size Chart"
-  className="w-full h-auto object-contain max-h-[90vh] sm:max-h-[80vh]"
-/>
+                  src={sizeChartImage}
+                  alt="Size Chart"
+                  className="w-full h-auto object-contain max-h-[90vh] sm:max-h-[80vh]"
+                />
 
 
                 {/* Teks di bawah gambar */}
