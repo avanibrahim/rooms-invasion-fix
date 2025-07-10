@@ -113,7 +113,7 @@ export const products: Product[] = [
     brand: "HUSTLE & FLOW",
     rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
-    stock: 5
+    stock: 0
   },
   {
     id: "7",
@@ -234,7 +234,7 @@ export const products: Product[] = [
   {
     id: "14",
     name: "Ranu - Bottle Water",
-    description: "•⁠⁠Black Transparant • Tumbler With White Printing • ⁠⁠1000ml • BPAfree ",
+    description: "Black transparant tumbler with white printing. Tumbler capacity 1000ml. BPAfree⁠ ",
     price: 50000,
     images: [
       "/products_optimized/DUB NATION/F BOTTLE.png.webp",
