@@ -44,7 +44,7 @@ const About = () => {
                 <div className="max-w-2xl mx-auto text-left">
                   <div className="max-h-64 overflow-y-auto pr-2 bg-gray-100 p-4 rounded-md shadow-inner">
                     <p className="text-xl text-gray-600 leading-relaxed">
-                      Rooms Invasion is a streetwear clothing brand founded in 2024 in Gorontalo, a small city in Indonesia filled with big hopes. Born from a deep passion for simplicity and authenticity, Rooms Invasion embraces a minimalist design concept—clean, thoughtful, and timeless.
+                      Rooms Invasion is a streetwear clothing brand founded in 2024 in Gorontalo, a small city in Indonesia filled with big hopes. Born from a deep passion for simplicity and authenticity, Rooms Invasion embraces a minimalist design concept clean, thoughtful, and timeless.
                     </p>
                     <p className="text-xl text-gray-600 leading-relaxed mt-4">
                       We believe that less is more. In a world that often feels overwhelming, we offer a space a room for calm, clarity, and self-expression. Every piece we create is designed to be simple yet bold, quiet yet confident. It’s not just clothing; it’s a statement of being present and intentional.
