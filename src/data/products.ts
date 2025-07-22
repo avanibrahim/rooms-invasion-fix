@@ -175,7 +175,6 @@ export const products: Product[] = [
     name: "Grens Workshirt - Black",
     description: "•⁠⁠100% Drill cotton ⁠ • ⁠⁠Boxy Fit • Embroidered Logo on Front and Back⁠ • ⁠⁠Rooms Woven & Rubber Label • ⁠⁠Finest Quality • ⁠⁠Made in Indonesia",
     price: 299000,
-    originalPrice: 350000,
     images: [
       "/products_optimized/DUB NATION/FRONT.webp",
       "/products_optimized/DUB NATION/FRONT ZOOM.webp",
@@ -235,7 +234,7 @@ export const products: Product[] = [
     id: "14",
     name: "Ranu - Bottle Water",
     description: "Black transparant tumbler with white printing. Tumbler capacity 1000ml. BPAfree⁠ ",
-    price: 50000,
+    price: 135000,
     images: [
       "/products_optimized/DUB NATION/F BOTTLE.png.webp",
       "/products_optimized/DUB NATION/B BOTTLE.png.webp",
