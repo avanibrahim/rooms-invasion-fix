@@ -43,7 +43,7 @@ export const products: Product[] = [
     brand: "NEVER ENOUGH",
     rating: 4.8,
     sizes: ["S", "M", "L", "XL"],
-    stock: 25 // Out of stock
+    stock: 0 // Out of stock
   },
   {
     id: "3",
@@ -153,7 +153,7 @@ export const products: Product[] = [
       { size: "L", stock: 0 },
       { size: "XL", stock: 1 }
     ],
-    stock: 2
+    stock: 0
   },
   {
     id: "9",
