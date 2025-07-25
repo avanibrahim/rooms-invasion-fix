@@ -27,7 +27,12 @@ export const products: Product[] = [
     category: "t-shirts",
     brand: "NEVER ENOUGH",
     rating: 4.5,
-    sizes: ["S", "M", "L", "XL"],
+    sizes: [
+      { size: "S", stock: 1 },
+      { size: "M", stock: 1 },
+      { size: "L", stock: 0 },
+      { size: "XL", stock: 1 } //CONTOH: Example of sizes with stock
+    ],
     stock: 25,
   },
   {
@@ -75,10 +80,10 @@ export const products: Product[] = [
     sizes: [
       { size: "S", stock: 0 },
       { size: "M", stock: 0 },
-      { size: "L", stock: 1 },
+      { size: "L", stock: 0 },
       { size: "XL", stock: 0 } //CONTOH: Example of sizes with stock
     ],    
-    stock: 1
+    stock: 0
   },
   {
     id: "5",
@@ -95,7 +100,7 @@ export const products: Product[] = [
     sizes: [
       { size: "S", stock: 0 },
       { size: "M", stock: 0 },
-      { size: "L", stock: 1 },
+      { size: "L", stock: 0 },
       { size: "XL", stock: 2 }
     ],
     stock: 3 // Out of stock
