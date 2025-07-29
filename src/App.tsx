@@ -11,6 +11,11 @@ import CartSidebar from './components/CartSidebar';
 import { useCartStore } from './store/cartStore';
 import { Toaster } from './components/ui/toaster';
 import ScrollToTop from './components/ScrollToTop'; 
+import AdminDashboard from '@/pages/admin/Dashboard';
+import Login from '@/pages/admin/Login';
+import NotFound from './pages/NotFound';
+
+// DIHAPUS: import { seedProducts } ... dan useEffect ...
 
 function App() {
   const { isOpen, toggleCart } = useCartStore();
@@ -21,12 +26,15 @@ function App() {
         <ScrollToTop /> 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/takezon" element={<AdminDashboard />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/lookbook" element={<Lookbook />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/checkout" element={<CheckOut />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <CartSidebar isOpen={isOpen} onClose={toggleCart} />

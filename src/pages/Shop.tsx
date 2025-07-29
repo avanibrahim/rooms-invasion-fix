@@ -1,51 +1,84 @@
+// src/pages/Shop.tsx
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { products } from '../data/products';
+import { products as staticProducts, Product } from '../data/products';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoadingScreen from '../components/LoadingScreen';
 
-const Shop = () => {
+// Firestore
+import { db } from '@/lib/firebase';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+
+const Shop: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>(staticProducts);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [loadedImages, setLoadedImages] = useState(0);
   const navigate = useNavigate();
 
+  // Subscribe real‑time and sort: new products first, then static order
+useEffect(() => {
+  const unsub = onSnapshot(
+    collection(db, 'products'),
+    snapshot => {
+      const live = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...(doc.data() as Omit<Product, 'id'>)
+      })) as Product[];
+
+      // Partition: items not in staticProducts (new ones), and static ones
+      const staticMap = new Map<string, number>(
+        staticProducts.map((p, idx) => [p.id, idx])
+      );
+      const newItems = live.filter(p => !staticMap.has(p.id));
+      const staticItems = live
+        .filter(p => staticMap.has(p.id))
+        .sort((a, b) => (staticMap.get(a.id)! - staticMap.get(b.id)!));
+
+      // New items at top, then static in original order
+      setProducts([...newItems, ...staticItems]);
+    },
+    err => console.error('Firestore snapshot error:', err)
+  );
+  return () => unsub();
+}, []);
+
+  // derive categories
   const categories = ['all', ...new Set(products.map(p => p.category))];
 
+  // filter logic
   const filteredProducts = useMemo(() => {
     return products.filter(product => {
-      const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           product.description.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+      const tq = searchQuery.toLowerCase();
+      const matchesSearch =
+        product.name.toLowerCase().includes(tq) ||
+        product.description.toLowerCase().includes(tq);
+      const matchesCategory =
+        selectedCategory === 'all' || product.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, products]);
 
-  const handleProductClick = (productId: string, stock: number) => {
-    navigate(`/product/${productId}`);
-  };
+  const handleProductClick = (id: string) => navigate(`/product/${id}`);
 
+  // loading
   useEffect(() => {
-    const totalImages = filteredProducts.length * 2; // each product has 2 images
+    const totalImages = filteredProducts.length * 2;
     if (totalImages > 0 && loadedImages >= totalImages) {
-      const timeout = setTimeout(() => setLoading(false), 500);
-      return () => clearTimeout(timeout);
+      const t = setTimeout(() => setLoading(false), 500);
+      return () => clearTimeout(t);
     }
   }, [loadedImages, filteredProducts]);
 
   useEffect(() => {
-    const maxTimeout = setTimeout(() => setLoading(false), 7000); // max wait time
-    return () => clearTimeout(maxTimeout);
+    const t = setTimeout(() => setLoading(false), 7000);
+    return () => clearTimeout(t);
   }, []);
 
-  const handleImageLoad = () => {
-    setLoadedImages(prev => prev + 1);
-  };
-
-  
+  const handleImageLoad = () => setLoadedImages(i => i + 1);
 
   return (
     <>
@@ -53,99 +86,103 @@ const Shop = () => {
       <div className="min-h-screen bg-white">
         <Header />
         <main className="container mx-auto px-4 py-8">
-          <div className="mb-8 text-center">
-            <h1 className="text-4xl md:text-4xl font-semibold text-gray-900 mb-4">SHOP</h1>
-          </div>
-
+          {/* Search & Filter */}
           <div className="mb-8 max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
               <div className="relative w-full md:w-96">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <Search
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  size={20}
+                />
                 <input
                   type="text"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={e => setSearchQuery(e.target.value)}
                   placeholder="Search products..."
                   className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                 />
               </div>
               <select
                 value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
+                onChange={e => setSelectedCategory(e.target.value)}
                 className="w-full md:w-auto px-6 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent bg-white"
               >
-                {categories.map(category => (
-                  <option key={category} value={category}>
-                    {category === 'all' ? 'All Categories' : category.charAt(0).toUpperCase() + category.slice(1)}
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>
+                    {cat === 'all'
+                      ? 'All Categories'
+                      : cat.charAt(0).toUpperCase() + cat.slice(1)}
                   </option>
                 ))}
               </select>
             </div>
           </div>
 
+          {/* Results count */}
           <div className="text-center mb-8">
             <p className="text-gray-600">
-              {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'} found
+              {filteredProducts.length}{' '}
+              {filteredProducts.length === 1 ? 'product' : 'products'} found
             </p>
           </div>
 
+          {/* Grid */}
           {filteredProducts.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-              {filteredProducts.map((product) => {
-                const isOutOfStock = (product.stock || 0) === 0;
+              {filteredProducts.map(prod => {
+                const isOOS = (prod.stock || 0) === 0;
                 return (
                   <div
-                    key={product.id}
-                    onClick={() => handleProductClick(product.id, product.stock || 0)}
-                    className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:transform hover:-translate-y-1"
+                    key={prod.id}
+                    onClick={() => handleProductClick(prod.id)}
+                    className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer hover:-translate-y-1"
                   >
                     <div className="relative w-full aspect-square bg-gray-100 overflow-hidden">
                       <img
-                        src={product.images[0]}
-                        alt={product.name}
+                        src={prod.images[0]}
+                        alt={prod.name}
                         onLoad={handleImageLoad}
                         className="w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"
                       />
-                      {product.images[1] && (
+                      {prod.images[1] && (
                         <img
-                          src={product.images[1]}
-                          alt={`${product.name} - back view`}
+                          src={prod.images[1]}
+                          alt={`${prod.name} - back`}
                           onLoad={handleImageLoad}
                           className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                         />
                       )}
-                      {isOutOfStock && (
+                      {isOOS ? (
                         <div className="absolute top-2 left-2 z-10">
-                          <span className="bg-red-800 text-white text-xs px-2 py-1 rounded-full font-medium">
+                          <span className="bg-red-800 text-white text-xs px-2 py-1 rounded-full">
                             OUT OF STOCK
                           </span>
                         </div>
-                      )}
-                      {!isOutOfStock && (product.stock || 0) <= 5 && (
+                      ) : prod.stock! <= 5 ? (
                         <div className="absolute top-2 left-2 z-10">
                           <span className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
                             LOW STOCK
                           </span>
                         </div>
-                      )}
+                      ) : null}
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300" />
                     </div>
                     <div className="p-3 space-y-2">
                       <h3 className="font-semibold text-sm md:text-base line-clamp-2 transition-colors text-gray-900 group-hover:text-gray-700">
-                        {product.name}
+                        {prod.name}
                       </h3>
                       <div className="flex items-center gap-2">
                         <p className="font-bold text-sm md:text-base text-gray-900">
-                          Rp {product.price.toLocaleString('id-ID')}
+                          Rp {prod.price.toLocaleString('id-ID')}
                         </p>
-                        {product.originalPrice && product.originalPrice > product.price && (
+                        {prod.originalPrice && prod.originalPrice > prod.price && (
                           <p className="text-sm line-through text-gray-500">
-                            Rp {product.originalPrice.toLocaleString('id-ID')}
+                            Rp {prod.originalPrice.toLocaleString('id-ID')}
                           </p>
                         )}
                       </div>
                       <p className="text-gray-500 text-xs md:text-sm">
-                        {product.brand}
+                        {prod.brand}
                       </p>
                     </div>
                   </div>
@@ -154,11 +191,13 @@ const Shop = () => {
             </div>
           ) : (
             <div className="text-center py-16">
-              <div className="text-gray-400 mb-4">
-                <Search size={64} className="mx-auto" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-              <p className="text-gray-600">Try adjusting your search or category filter</p>
+              <Search size={64} className="mx-auto text-gray-400 mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                No products found
+              </h3>
+              <p className="text-gray-600">
+                Try adjusting your search or category filter
+              </p>
             </div>
           )}
         </main>

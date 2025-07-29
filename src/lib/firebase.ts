@@ -1,30 +1,19 @@
+// lib/firebase.ts
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import { getAnalytics } from 'firebase/analytics';
-
+import { getAuth } from 'firebase/auth';
+ 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyBhpRvm16zpVnNIwuBV7axtu8tjOGb2DIw",
+  authDomain: "roomsinvasion-86239.firebaseapp.com",
+  projectId: "roomsinvasion-86239",
+  storageBucket: "roomsinvasion-86239.firebasestorage.app",
+  messagingSenderId: "852229992862",
+  appId: "1:852229992862:web:d5ed960aa28d85f82b268f",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Initialize Firebase services
 export const db = getFirestore(app);
-export const auth = getAuth(app);
 export const storage = getStorage(app);
-export const analytics = getAnalytics(app);
-
-// Collections
-export const wishlistCollection = collection(db, 'wishlists');
-export const ordersCollection = collection(db, 'orders');
-export const productsCollection = collection(db, 'products');
-export const usersCollection = collection(db, 'users');
+export const auth = getAuth(app);

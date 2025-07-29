@@ -7,10 +7,8 @@ export type Product = {
   images: string[];
   category: string;
   brand: string;
-  rating: number;
   stock: number;
   sizes?: string[] | { size: string; stock: number }[];
-  colors?: string[];
 };
 
 
@@ -26,7 +24,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "NEVER ENOUGH",
-    rating: 4.5,
     sizes: [
       { size: "S", stock: 1 },
       { size: "M", stock: 1 },
@@ -46,7 +43,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "NEVER ENOUGH",
-    rating: 4.8,
     sizes: ["S", "M", "L", "XL"],
     stock: 0 // Out of stock
   },
@@ -61,7 +57,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "NEVER ENOUGH",
-    rating: 4.5,
     sizes: ["S", "M", "L", "XL"],
     stock: 10 // Low stock
   },
@@ -76,7 +71,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
-    rating: 4.6,
     sizes: [
       { size: "S", stock: 0 },
       { size: "M", stock: 0 },
@@ -96,7 +90,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
-    rating: 4.9,
     sizes: [
       { size: "S", stock: 0 },
       { size: "M", stock: 0 },
@@ -116,7 +109,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -131,7 +123,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
-    rating: 4.4,
     sizes: [
       { size: "S", stock: 1 },
       { size: "M", stock: 0 },
@@ -151,7 +142,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "HUSTLE & FLOW",
-    rating: 4.4,
     sizes: [
       { size: "S", stock: 1 },
       { size: "M", stock: 0 },
@@ -171,7 +161,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "DUB NATION",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -186,7 +175,6 @@ export const products: Product[] = [
     ],
     category: "shirts",
     brand: "DUB NATION",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -201,7 +189,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "DUB NATION",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -216,7 +203,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "DUB NATION",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -231,7 +217,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "DUB NATION",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -246,7 +231,6 @@ export const products: Product[] = [
     ],
     category: "accessories",
     brand: "DUB NATION",
-    rating: 4.4,
     stock: 0
   },
   {
@@ -260,7 +244,6 @@ export const products: Product[] = [
     ],
     category: "outerwear",
     brand: "INVASION FROM THE EAST",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -275,7 +258,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "INVASION FROM THE EAST",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -290,7 +272,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "INVASION FROM THE EAST",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -305,7 +286,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "INVASION FROM THE EAST",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -320,7 +300,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "INVASION FROM THE EAST",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -336,7 +315,6 @@ export const products: Product[] = [
     category: "t-shirts",
     brand: "INVASION FROM THE EAST",
     sizes: ["S", "M", "L", "XL"],
-    rating: 4.4,
     stock: 0
   },
   {
@@ -351,7 +329,6 @@ export const products: Product[] = [
     ],
     category: "accessories",
     brand: "INVASION FROM THE EAST",
-    rating: 4.4,
     stock: 10
   },
   {
@@ -365,7 +342,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "REMARKS 0.2",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -380,7 +356,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "REMARKS 0.2",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -395,7 +370,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "REMARKS 0.2",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -410,7 +384,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "REMARKS 0.2",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -425,7 +398,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "REMARKS 0.1",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -440,7 +412,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "REMARKS 0.1",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -455,7 +426,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "REMARKS 0.1",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
  
     stock: 0
@@ -471,7 +441,6 @@ export const products: Product[] = [
     ],
     category: "outerwear",
     brand: "REMARKS 0.1",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
   
     stock: 2
@@ -487,7 +456,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "REMARKS 0.1",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
     stock: 0
   },
@@ -502,7 +470,6 @@ export const products: Product[] = [
     ],
     category: "shorts",
     brand: "REMARKS 0.1",
-    rating: 4.4,  
     stock: 0
   },
   {
@@ -516,7 +483,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
   
     stock: 0
@@ -532,7 +498,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
    
     stock: 0
@@ -548,7 +513,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
  
     stock: 0
@@ -564,7 +528,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
    
     stock: 0
@@ -580,7 +543,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
   
     stock: 0
@@ -596,7 +558,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
 
     stock: 0
@@ -612,7 +573,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
  
     stock: 0
@@ -628,7 +588,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
   
     stock: 0
@@ -644,7 +603,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
 
     stock: 0
@@ -660,7 +618,6 @@ export const products: Product[] = [
     ],
     category: "t-shirts",
     brand: "FIRST OF ALL",
-    rating: 4.4,
     sizes: ["S", "M", "L", "XL"],
 
     stock: 0
