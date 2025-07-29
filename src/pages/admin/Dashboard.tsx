@@ -11,7 +11,7 @@ import {
   doc,
   serverTimestamp
 } from 'firebase/firestore';
-import { Product } from '@/data/products'; // Atau definisikan ulang tipe Product
+import { Product } from '@/data/products';
 
 const initialForm: Partial<Product> = {
   name: '',
@@ -38,6 +38,7 @@ const ProductsDashboard: React.FC = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const perPage = 8;
+  const [notif, setNotif] = useState(" ");
 
   // Cek login
   useEffect(() => {
@@ -72,13 +73,13 @@ const ProductsDashboard: React.FC = () => {
 
   const addProduct = async () => {
     if (!form.name || !form.category || !form.brand) {
-      alert('Name, Category, and Brand are required.');
+      alert('Lengkapi Form Terlebih Dahulu');
       return;
     }
     try {
       const ref = await addDoc(collection(db, 'products'), {
         ...form,
-        createdAt: serverTimestamp() // field timestamp!
+        createdAt: serverTimestamp() 
       });
       await updateDoc(doc(db, 'products', ref.id), { id: ref.id });
       setForm(initialForm);
@@ -131,24 +132,27 @@ const ProductsDashboard: React.FC = () => {
   return (
     <div className="p-6 max-w-[90rem] mx-auto bg-gradient-to-r from-gray-500 to-gray-900 text-gray-600">
       <div className="flex flex-col md:flex-row md:justify-between items-center mb-4 gap-4">
-  <img
-    src="/image/logo.png"
-    alt="Admin Logo"
-    className="h-22 w-auto max-h-24 object-contain shrink-0"
-  />
-  <button
-    onClick={async () => {
-      const confirm = window.confirm("Apakah Anda yakin ingin logout?");
-      if (confirm) {
-        await signOut(auth);
-        navigate('/login');
-      }
-    }}
-    className="w-full md:w-auto py-2 px-4 bg-gray-200 text-black rounded-lg font-semibold shadow hover:from-black hover:to-gray-700 transition"
-  >
-    Logout
-  </button>
-</div>
+      <div className="relative flex items-center" style={{ height: 80 }}> {/* 80px = h-20 */}
+          <img
+            src="/image/logo.png"
+            alt="Admin Logo"
+            className="h-32 w-auto object-contain"
+            style={{ marginTop: -24, marginBottom: -24 }}
+          />
+        </div>
+      <button
+        onClick={async () => {
+          const confirm = window.confirm("Apakah Anda yakin ingin logout?");
+          if (confirm) {
+            await signOut(auth);
+            navigate('/login');
+          }
+        }}
+        className="w-full md:w-auto py-2 px-4 bg-gray-200 text-black rounded-lg font-semibold shadow hover:from-black hover:to-gray-700 transition"
+      >
+        Logout
+      </button>
+    </div>
 
       {/* Search */}
       <div className="flex flex-col sm:flex-row gap-2 mb-6">

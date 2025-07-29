@@ -12,7 +12,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, user => {
-      if (user) navigate('/admin');
+      if (user) navigate('/takezon');
     });
     return unsub;
   }, [navigate]);
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
     setError('');
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/admin');
+      navigate('/takezon');
     } catch {
       setError('Upsss you wrong!.');
     }
