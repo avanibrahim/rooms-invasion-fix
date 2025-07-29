@@ -43,7 +43,7 @@ const ProductsDashboard: React.FC = () => {
   // Cek login
   useEffect(() => {
     const unsubAuth = onAuthStateChanged(auth, user => {
-      if (!user) navigate('/login');
+      if (!user) navigate('/in');
     });
     return unsubAuth;
   }, [navigate]);
@@ -145,7 +145,7 @@ const ProductsDashboard: React.FC = () => {
           const confirm = window.confirm("Apakah Anda yakin ingin logout?");
           if (confirm) {
             await signOut(auth);
-            navigate('/login');
+            navigate('/in');
           }
         }}
         className="w-full md:w-auto py-2 px-4 bg-gray-200 text-black rounded-lg font-semibold shadow hover:from-black hover:to-gray-700 transition"
@@ -286,7 +286,7 @@ const ProductsDashboard: React.FC = () => {
       />
       <div className="flex flex-wrap gap-2 mt-2">
         {(form.images || []).filter(Boolean).slice(0,3).map((url, idx) => (
-          <img key={idx} src={url} alt="" className="w-16 h-16 rounded object-cover border" />
+          <img key={idx} src={url} alt="" className="w-32 h-32 rounded object-cover border" />
         ))}
       </div>
     </div>
