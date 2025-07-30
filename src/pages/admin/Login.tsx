@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '@/lib/firebase';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { Loader2 } from "lucide-react";
+
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -69,6 +71,21 @@ const Login: React.FC = () => {
       setError('Upsss you wrong!.');
     }
   };
+
+  const [loading, setLoading] = React.useState(false);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      // await login logic here
+    } catch (err) {
+      // error handling
+    } finally {
+      setLoading(false);
+    }
+  };
+  
 
   return (
     <div
@@ -182,10 +199,18 @@ const Login: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-black-500 via-blue-600 to-black-700 text-white font-bold rounded-xl shadow-lg hover:from-black-600 hover:to-blue-800 hover:scale-[1.01] transition-all duration-150 text-base tracking-wide"
-          >
-            LOGIN
-          </button>
+            className="w-full py-3 bg-gradient-to-r from-black-500 via-gray-600 to-gray-700 text-white font-bold rounded-xl shadow-lg hover:from-black hover:to-gray-400 hover:scale-[1.01] transition-all duration-150 text-base tracking-wide flex items-center justify-center gap-2"
+            disabled={loading}
+            >
+            {loading ? (
+                <>
+                <Loader2 className="animate-spin w-5 h-5" />
+                Loading...
+                </>
+            ) : (
+                "LOGIN"
+            )}
+            </button>
         </form>
         <div className="mt-8 text-center text-xs text-gray-100">
           &copy; {new Date().getFullYear()} <span className="font-semibold text-black-300">ROOMS INVASION</span> — All Rights Reserved

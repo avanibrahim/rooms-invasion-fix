@@ -15,10 +15,69 @@ import AdminDashboard from '@/pages/admin/Dashboard';
 import Login from '@/pages/admin/Login';
 import NotFound from './pages/NotFound';
 
+import { useEffect } from 'react';
+import { auth, db } from '@/lib/firebase';
+import { doc, updateDoc, serverTimestamp, setDoc, getDoc } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+
+
 // DIHAPUS: import { seedProducts } ... dan useEffect ...
 
 function App() {
   const { isOpen, toggleCart } = useCartStore();
+
+  useEffect(() => {
+    let currentUid = null;
+  
+    // AUTO CREATE USER DATA IF NOT EXISTS
+    const createUserIfNotExists = async (user) => {
+      const ref = doc(db, "users", user.uid);
+      const snap = await getDoc(ref);
+      if (!snap.exists()) {
+        await setDoc(ref, {
+          name: user.displayName || "",
+          email: user.email,
+          role: "user",
+          isOnline: true,
+          lastLoginAt: serverTimestamp(),
+        });
+      }
+    };
+  
+    const unsub = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        currentUid = user.uid;
+        await createUserIfNotExists(user); // <-- ini WAJIB
+        try {
+          await updateDoc(doc(db, 'users', user.uid), {
+            isOnline: true,
+            lastLoginAt: serverTimestamp(),
+          });
+        } catch (e) {
+          // error log kalau perlu
+        }
+      }
+    });
+  
+    // Set offline ketika tab/browser ditutup
+    const setOffline = async () => {
+      if (currentUid) {
+        try {
+          await updateDoc(doc(db, 'users', currentUid), { isOnline: false });
+        } catch (e) {}
+      }
+    };
+    window.addEventListener('beforeunload', setOffline);
+  
+    return () => {
+      unsub();
+      window.removeEventListener('beforeunload', setOffline);
+    };
+  }, []);
+  
+
+  // ...sisanya tetap!
+
 
   return (
     <Router>

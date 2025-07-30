@@ -11,7 +11,13 @@ import {
   doc,
   serverTimestamp
 } from 'firebase/firestore';
-import { Product } from '@/data/products';
+import { Product, products as staticProducts } from '@/data/products';
+import { Boxes, FilePlus, Users, LogOut } from 'lucide-react';
+
+import UserAdmin from './UserAdmin';
+import AddProduct from './AddProduct';
+import AllProducts from './AllProduct';
+import Footer from '@/components/Footer';
 
 const initialForm: Partial<Product> = {
   name: '',
@@ -38,7 +44,8 @@ const ProductsDashboard: React.FC = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const perPage = 8;
-  const [notif, setNotif] = useState(" ");
+  const [tab, setTab] = useState<'add' | 'all' | 'users'>('all');
+
 
   // Cek login
   useEffect(() => {
@@ -48,65 +55,108 @@ const ProductsDashboard: React.FC = () => {
     return unsubAuth;
   }, [navigate]);
 
-  // Fetch & sort data terbaru di atas
+  // Sync produk real-time: new (belum ada di static), lalu urutan static
   useEffect(() => {
-    const unsub = onSnapshot(collection(db, 'products'), snap => {
-      const items = snap.docs.map(d => {
-        const data = d.data() as any;
-        return {
-          id: d.id,
-          ...data,
-          createdAt: data.createdAt?.seconds || 0
-        };
-      });
-      items.sort((a, b) => b.createdAt - a.createdAt); // Terbaru di atas
-      setProducts(items);
-    });
-    return unsub;
+    const unsub = onSnapshot(
+      collection(db, 'products'),
+      snap => {
+        const live = snap.docs.map(doc => ({
+          id: doc.id,
+          ...(doc.data() as any)
+        }));
+        const staticMap = new Map(staticProducts.map((p, idx) => [p.id, idx]));
+        const newItems = live.filter(p => !staticMap.has(p.id));
+        const staticItems = live
+          .filter(p => staticMap.has(p.id))
+          .sort((a, b) => staticMap.get(a.id)! - staticMap.get(b.id)!);
+        setProducts([...newItems, ...staticItems]);
+      }
+    );
+    return () => unsub();
   }, []);
 
-  // Kategori diambil dari produk yang ada di database (bukan dari static)
+  // Kategori dinamis
   const categories = Array.from(new Set(products.map(p => p.category)));
 
-  const handleChange = (key: keyof Product, value: any) =>
-    setForm(prev => ({ ...prev, [key]: value }));
+  // Handle perubahan form
+  const handleChange = (key: keyof Product, value: any) => {
+    setForm(prev => {
+      // Otomatis hilangkan sizes jika accessories/shorts
+      if (
+        key === "category" &&
+        ["accessories", "accesories", "shorts"].includes(value.toLowerCase())
+      ) {
+        return { ...prev, [key]: value, sizes: [] };
+      }
+      return { ...prev, [key]: value };
+    });
+  };
 
   const addProduct = async () => {
     if (!form.name || !form.category || !form.brand) {
       alert('Lengkapi Form Terlebih Dahulu');
       return;
     }
+    // Clean field undefined/null/empty
+    let data: any = { ...form, createdAt: serverTimestamp() };
+  
+    // Bersihkan field undefined/null sebelum upload
+    Object.keys(data).forEach((key) => {
+      if (data[key] === undefined || data[key] === null || data[key] === "") {
+        delete data[key];
+      }
+    });
+  
+    if (
+      !data.sizes ||
+      data.sizes.length === 0 ||
+      ["accessories", "accesories", "shorts"].includes((data.category || "").toLowerCase())
+    ) {
+      delete data.sizes;
+    }
     try {
-      const ref = await addDoc(collection(db, 'products'), {
-        ...form,
-        createdAt: serverTimestamp() 
-      });
+      const ref = await addDoc(collection(db, 'products'), data);
       await updateDoc(doc(db, 'products', ref.id), { id: ref.id });
       setForm(initialForm);
-    } catch {
-      alert('Failed to add product.');
+      setTab('all');
+    } catch (err: any) {
+      alert('Failed to add product.\n' + (err?.message || ""));
     }
   };
+  
 
   const saveProduct = async () => {
     if (!editing) return;
-    await updateDoc(doc(db, 'products', editing.id), form as any);
+    let data: any = { ...form };
+    if (
+      !data.sizes ||
+      data.sizes.length === 0 ||
+      ["accessories", "accesories", "shorts"].includes((data.category || "").toLowerCase())
+    ) {
+      delete data.sizes;
+    }
+    await updateDoc(doc(db, 'products', editing.id), data);
     setEditing(null);
     setForm(initialForm);
+    setTab('all');
   };
 
   const removeProduct = async (id: string) => {
-    await deleteDoc(doc(db, 'products', id));
+    if (window.confirm("Yakin ingin hapus produk ini?")) {
+      await deleteDoc(doc(db, 'products', id));
+    }
   };
 
   const startEdit = (p: Product) => {
     setEditing(p);
     setForm(p);
+    setTab('add');
   };
 
   const cancelEdit = () => {
     setEditing(null);
     setForm(initialForm);
+    setTab('all');
   };
 
   const updateSize = (i: number, field: 'size' | 'stock', val: any) => {
@@ -114,6 +164,7 @@ const ProductsDashboard: React.FC = () => {
     arr[i] = { ...arr[i], [field]: field === 'stock' ? +val : val };
     handleChange('sizes', arr);
   };
+
   const addSizeRow = () => {
     handleChange('sizes', [...(form.sizes || []), { size: '', stock: undefined }]);
   };
@@ -130,353 +181,112 @@ const ProductsDashboard: React.FC = () => {
   }, [search, filteredProducts.length]);
 
   return (
-    <div className="p-6 max-w-[90rem] mx-auto bg-gradient-to-r from-gray-500 to-gray-900 text-gray-600">
-      <div className="flex flex-col md:flex-row md:justify-between items-center mb-4 gap-4">
-      <div className="relative flex items-center" style={{ height: 80 }}> {/* 80px = h-20 */}
-          <img
-            src="/image/logo.png"
-            alt="Admin Logo"
-            className="h-32 w-auto object-contain"
-            style={{ marginTop: -24, marginBottom: -24 }}
-          />
-        </div>
-      <button
-        onClick={async () => {
-          const confirm = window.confirm("Apakah Anda yakin ingin logout?");
-          if (confirm) {
-            await signOut(auth);
-            navigate('/in');
-          }
-        }}
-        className="w-full md:w-auto py-2 px-4 bg-gray-200 text-black rounded-lg font-semibold shadow hover:from-black hover:to-gray-700 transition"
-      >
-        Logout
-      </button>
-    </div>
+    <div className="p-6 max-w-[90rem] mx-auto bg-gradient-to-r from-gray-400 to-gray-400 text-gray-500 min-h-screen">
 
-      {/* Search */}
-      <div className="flex flex-col sm:flex-row gap-2 mb-6">
-        <input
-          type="text"
-          className="w-full sm:w-full p-2 border rounded focus:ring focus:ring-gray-200 focus:border-black transition"
-          placeholder="Search by name, category, or brand..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
-        {search && (
-          <button
-            className="px-3 py-2 bg-gray-300 rounded text-xs font-medium hover:bg-gray-400 transition"
-            onClick={() => setSearch('')}
-          >Clear</button>
-        )}
-      </div>
-
-      {/* Form Add / Edit */}
-  <div className="mb-8 space-y-6 border p-6 rounded-2xl bg-white/70 shadow-md">
-    <h2 className="font-bold text-lg text-gray-700 dark:text-white mb-2 flex items-center gap-2">
-      {editing ? (
-        <span>
-          <svg className="inline w-5 h-5 text-gray-500 mr-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-1.5A2.5 2.5 0 0121 9.5V19a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2h7.5a2.5 2.5 0 012.036 1.268z" /></svg>
-          Edit Product
-        </span>
-      ) : (
-        <span>
-          <svg className="inline w-5 h-5 text-black mr-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
-          Add New Product
-        </span>
-      )}
-    </h2>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label className="block text-xs font-semibold mb-1 text-gray-600">Name</label>
-        <input
-          className="w-full p-2 border rounded focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-          value={form.name || ""}
-          onChange={e => handleChange("name", e.target.value)}
-          placeholder="Name"
-        />
-      </div>
-      <div>
-        <label className="block text-xs font-semibold mb-1 text-gray-600">Category</label>
-        <select
-          className="w-full p-2 border rounded bg-white focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-          value={form.category || ""}
-          onChange={e => handleChange("category", e.target.value)}
-        >
-          <option value="" disabled>
-            Select category
-          </option>
-          {categories.map(cat => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label className="block text-xs font-semibold mb-1 text-gray-600">Brand</label>
-        <input
-          className="w-full p-2 border rounded focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-          value={form.brand || ""}
-          onChange={e => handleChange("brand", e.target.value)}
-          placeholder="Brand"
-        />
-      </div>
-      <div>
-        <label className="block text-xs font-semibold mb-1 text-gray-600">Price</label>
-        <input
-          type="number"
-          className="w-full p-2 border rounded focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-          value={form.price !== undefined && form.price !== null ? form.price : ""}
-          onChange={e => handleChange("price", e.target.value === "" ? undefined : +e.target.value)}
-          placeholder="Price"
-        />
-      </div>
-      <div>
-        <label className="block text-xs font-semibold mb-1 text-gray-600">Original Price</label>
-        <input
-  type="number"
-  className="w-full p-2 border rounded focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-  value={form.originalPrice ?? ""}
-  onChange={e =>
-    handleChange(
-      "originalPrice",
-      e.target.value === "" ? undefined : +e.target.value
-    )
-  }
-  placeholder="Original Price (optional)"
-/>
-
-      </div>
-      <div>
-        <label className="block text-xs font-semibold mb-1 text-gray-600">Stock (total)</label>
-        <input
-  type="number"
-  className="w-full p-2 border rounded focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-  value={form.stock !== undefined && form.stock !== null ? form.stock : ""}
-  onChange={e => handleChange("stock", e.target.value === "" ? undefined : +e.target.value)}
-  placeholder="Stock"
-/>
-
-      </div>
-    </div>
-
-    <div>
-      <label className="block text-xs font-semibold mb-1 text-gray-600">Description</label>
-      <textarea
-        className="w-full p-2 border rounded focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-        rows={3}
-        value={form.description || ""}
-        onChange={e => handleChange("description", e.target.value)}
-        placeholder="Description"
-      />
-    </div>
-
-    <div>
-      <label className="block text-xs font-semibold mb-1 text-gray-600">Images <span className="text-gray-400 text-xs">(Pakai Koma ,)</span></label>
-      <input
-        className="w-full p-2 border rounded focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-        value={(form.images || []).join(", ")}
-        onChange={e =>
-          handleChange("images", e.target.value.split(",").map(s => s.trim()))
-        }
-        placeholder="Gambar Depan, Gambar Belakang"
-      />
-      <div className="flex flex-wrap gap-2 mt-2">
-        {(form.images || []).filter(Boolean).slice(0,3).map((url, idx) => (
-          <img key={idx} src={url} alt="" className="w-32 h-32 rounded object-cover border" />
-        ))}
-      </div>
-    </div>
-
-    {/* Dynamic Sizes */}
-    <div>
-      <label className="block text-xs font-semibold mb-1 text-gray-600">Sizes & Stock</label>
-      <div className="space-y-2">
-        {(form.sizes || []).map((s: any, idx: number) => (
-          <div key={idx} className="flex items-center gap-2">
-            <input
-              className="w-1/2 p-2 border rounded focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-              placeholder="Size"
-              value={s.size}
-              onChange={e => updateSize(idx, "size", e.target.value)}
-            />
-            <input
-              type="number"
-              className="w-1/2 p-2 border rounded focus:ring focus:ring-gray-200 focus:border-gray-400 transition"
-              placeholder="Stock"
-              value={s.stock}
-              onChange={e => updateSize(idx, "stock", e.target.value)}
-            />
-          </div>
-        ))}
-        <button
-          type="button"
-          className="mt-2 px-4 py-1 bg-gray-600 text-white rounded shadow hover:bg-gray-700 transition"
-          onClick={addSizeRow}
-        >
-          + Add Size
-        </button>
-      </div>
-    </div>
-
-    {/* Actions */}
-    <div className="pt-2 flex gap-2">
-      {editing ? (
-        <>
-          <button
-            className="px-5 py-2 bg-gray-500 text-white rounded-lg shadow hover:bg-gray-700 transition"
-            onClick={saveProduct}
-          >
-            Save
-          </button>
-          <button
-            className="px-5 py-2 bg-gray-400 text-white rounded-lg shadow hover:bg-gray-500 transition"
-            onClick={cancelEdit}
-          >
-            Cancel
-          </button>
-        </>
-      ) : (
-        <button
-          className="px-5 py-2 bg-gray-600 text-white rounded-lg shadow hover:bg-gray-700 transition"
-          onClick={addProduct}
-        >
-          Add Product
-        </button>
-      )}
-    </div>
-  </div>
-
-      {/* Table */}
-      <div className="w-full overflow-x-auto rounded-2xl shadow-lg bg-white/90">
-  <table className="min-w-[650px] w-full text-[15px]">
-    <thead className="sticky top-0 z-10">
-      <tr className="bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 shadow-sm">
-        <th className="border-b px-4 py-3 font-semibold text-left rounded-tl-2xl">Name</th>
-        <th className="border-b px-4 py-3 font-semibold text-left">Category</th>
-        <th className="border-b px-4 py-3 font-semibold text-left">Brand</th>
-        <th className="border-b px-4 py-3 font-semibold text-right">Price</th>
-        <th className="border-b px-4 py-3 font-semibold text-right">Stock</th>
-        <th className="border-b px-4 py-3 font-semibold text-center rounded-tr-2xl">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {filteredProducts.length > 0 ? (
-        filteredProducts
-          .slice((page - 1) * perPage, page * perPage)
-          .map((p, idx) => (
-            <tr
-              key={p.id}
-              className={`transition ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/60'} hover:bg-gray-100/70`}
-            >
-              <td className="border-b px-4 py-3">{p.name}</td>
-              <td className="border-b px-4 py-3">{p.category}</td>
-              <td className="border-b px-4 py-3">{p.brand}</td>
-              <td className="border-b px-4 py-3 text-right">
-                <span className="tabular-nums font-mono text-gray-800">
-                  Rp {p.price?.toLocaleString()}
+        {/* TOPBAR */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-4 mb-8 bg-gray-800 rounded-xl shadow-lg">
+            {/* Kiri: Logo + Teks */}
+            <div className="flex items-center gap-4 flex-1 w-full sm:w-auto">
+              <img
+                src="/admin.png"
+                alt="Admin Logo"
+                className="h-16 w-auto object-contain filter invert"
+                draggable={false}
+              />
+              <div className="flex flex-col">
+                <span className="block text-lg sm:text-xl font-bold text-gray-200 tracking-tight leading-tight">
+                  Admin Dashboard
                 </span>
-              </td>
-              <td className="border-b px-4 py-3 text-right">
-                <span className="font-semibold">{p.stock}</span>
-              </td>
-              <td className="border-b px-4 py-3 text-center space-x-1">
-              <button
-                  title="Edit"
-                  className="inline-flex items-center justify-center w-8 h-8 rounded hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition"
-                  onClick={() => startEdit(p)}
-                >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/2822/2822504.png"
-                    alt="Edit"
-                    className="w-5 h-5 object-contain"
-                  />
-                </button>
+                <p className="text-xs sm:text-sm text-gray-100 mt-1 max-w-xs sm:max-w-sm md:max-w-md">
+                  Welcome Back Admin, Keep Read the Note!
+                </p>
+              </div>
+            </div>
+            {/* Kanan: Logout Button */}
+            <button
+  onClick={async () => {
+    const confirm = window.confirm("Apakah Anda yakin ingin logout?");
+    if (confirm) {
+      await signOut(auth);
+      navigate('/in');
+    }
+  }}
+  className="flex items-center gap-2 py-2 px-5 bg-white/90 text-gray-900 rounded-lg font-semibold shadow hover:bg-gray-500 transition w-full max-w-xs sm:w-auto sm:max-w-none"
+>
+  <LogOut size={18} className="inline-block" />
+  Logout
+</button>
+          </div>
 
-                <button
-                  title="Delete"
-                  className="inline-flex items-center justify-center w-8 h-8 rounded hover:bg-red-50 text-red-600 hover:text-red-800 transition"
-                  onClick={() => removeProduct(p.id)}
-                >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/6861/6861362.png" 
-                    alt="Edit"
-                    className="w-5 h-5 object-contain"
-                  />
-                </button>
-              </td>
-            </tr>
-          ))
-      ) : (
-        <tr>
-          <td
-            colSpan={6}
-            className="text-center py-8 text-gray-400 font-medium bg-white"
+        {/* Tab Menu */}
+        <div className="flex gap-[0.3rem] mb-6 flex-wrap">
+           <button
+            onClick={() => setTab('all')}
+            className={`
+              flex items-center gap-2
+              px-4 py-2 rounded-xl font-bold
+              ${tab === 'all' ? 'bg-gray-800 text-white' : 'bg-white text-gray-700 border'}
+            `}
           >
-            No products found.
-          </td>
-        </tr>
-      )}
-    </tbody>
-  </table>
-
-  {/* PAGINATION */}
-  {filteredProducts.length > perPage && (
-    <div className="flex justify-center items-center gap-1 py-4 flex-wrap bg-white rounded-b-2xl">
-      <button
-        className={`px-3 py-1 rounded-lg border text-[15px] ${
-          page === 1
-            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            : 'bg-white hover:bg-gray-50 text-gray-700'
-        }`}
-        onClick={() => setPage((p) => Math.max(1, p - 1))}
-        disabled={page === 1}
-      >
-        &lt;
-      </button>
-      {Array.from(
-        { length: Math.ceil(filteredProducts.length / perPage) },
-        (_, i) => (
-          <button
-            key={i}
-            className={`px-3 py-1 rounded-lg border font-semibold text-[15px] ${
-              page === i + 1
-                ? 'bg-gray-600 text-white'
-                : 'bg-white hover:bg-gray-50 text-gray-700'
-            }`}
-            onClick={() => setPage(i + 1)}
-          >
-            {i + 1}
+            <Boxes size={18} className="inline-block" />
+            Products
           </button>
-        )
-      )}
-      <button
-        className={`px-3 py-1 rounded-lg border text-[15px] ${
-          page === Math.ceil(filteredProducts.length / perPage)
-            ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            : 'bg-white hover:bg-gray-50 text-gray-700'
-        }`}
-        onClick={() =>
-          setPage((p) =>
-            Math.min(
-              Math.ceil(filteredProducts.length / perPage),
-              p + 1
-            )
-          )
-        }
-        disabled={page === Math.ceil(filteredProducts.length / perPage)}
-      >
-        &gt;
-      </button>
-    </div>
-  )}
-</div>
+          <button
+            onClick={() => setTab('add')}
+            className={`
+              flex items-center gap-2
+              px-4 py-2 rounded-xl font-bold
+              ${tab === 'add' ? 'bg-gray-800 text-white' : 'bg-white text-gray-700 border'}
+            `}
+          >
+            <FilePlus size={18} className="inline-block" />
+            Product
+          </button>
+          <button
+            onClick={() => setTab('users')}
+            className={`
+              flex items-center gap-2
+              px-4 py-2 rounded-xl font-bold
+              ${tab === 'users' ? 'bg-gray-800 text-white' : 'bg-white text-gray-700 border'}
+            `}
+          >
+            <Users size={18} className="inline-block" />
+            Users
+          </button>
+        </div>
 
-
-    </div>
+        {/* Content Tab */}
+        {tab === 'add' && (
+            <AddProduct
+              form={form}
+              handleChange={handleChange}
+              addProduct={addProduct}
+              editing={editing}
+              saveProduct={saveProduct}
+              cancelEdit={cancelEdit}
+              updateSize={updateSize}
+              addSizeRow={addSizeRow}
+              categories={categories}
+            />
+          )}
+          {tab === 'all' && (
+            <AllProducts
+              products={products}
+              search={search}
+              setSearch={setSearch}
+              filteredProducts={filteredProducts}
+              page={page}
+              setPage={setPage}
+              perPage={perPage}
+              startEdit={startEdit}
+              removeProduct={removeProduct}
+            />
+          )}
+          {tab === 'users' && (
+            <UserAdmin />
+          )}
+      </div>
+          
   );
 };
 
