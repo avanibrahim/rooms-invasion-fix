@@ -67,13 +67,16 @@ const AddProduct: React.FC<AddProductProps> = ({
   };
 
   return (
+    <div className="max-w-full px-2 sm:px-6 md:px-0 py-0">
+        {/* HEADER */}
+        <header className="w-full px-4 py-3 z-20 flex items-center">
+          <div className="flex items-center gap-3">
+            <FilePlus className="w-7 h-7 text-gray-100" />
+            <span className="text-2xl font-bold text-gray-900 tracking-tight">Product Management</span>
+          </div>
+        </header>
     <div className="mb-8 border border-gray-200 p-4 rounded-xl bg-white max-w-full w-full shadow-sm">
       <div className="flex items-center gap-2 mb-3">
-        {editing ? (
-          <Edit2 className="w-4 h-4 text-cyan-700" />
-        ) : (
-          <FilePlus className="w-6 h-6 text-green-700" />
-        )}
         <h2 className="font-semibold text-base text-gray-800 tracking-tight">
           {editing ? "Edit Product" : "Add Product"}
         </h2>
@@ -320,6 +323,7 @@ const AddProduct: React.FC<AddProductProps> = ({
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };

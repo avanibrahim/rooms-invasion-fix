@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Trash2, Edit, Search, X, ChevronsRight, ChevronsLeft} from "lucide-react";
+import { Trash2, Edit, Search, X, ChevronsRight, ChevronsLeft, MenuSquareIcon, Boxes} from "lucide-react";
 
 
 const AllProducts = ({
@@ -28,6 +28,14 @@ const AllProducts = ({
 
   return (
     <>
+    <div className="max-w-full px-2 sm:px-6 md:px-0 py-0">
+        {/* HEADER */}
+        <header className="w-full px-4 py-3 z-20 flex items-center">
+          <div className="flex items-center gap-3">
+            <Boxes className="w-7 h-7 text-gray-100" />
+            <span className="text-2xl font-bold text-gray-900 tracking-tight">All Products Here</span>
+          </div>
+        </header>
 
       {/* Modal Preview */}
       {previewImg && (
@@ -307,6 +315,7 @@ const AllProducts = ({
             </button>
           </div>
         )}
+      </div>
       </div>
     </>
   );

@@ -12,12 +12,12 @@ import {
   serverTimestamp
 } from 'firebase/firestore';
 import { Product, products as staticProducts } from '@/data/products';
-import { Boxes, FilePlus, Users, LogOut } from 'lucide-react';
+import { Boxes, FilePlus, Users, LogOut, DollarSign, Wallet2, ChevronDown } from 'lucide-react';
 
 import UserAdmin from './UserAdmin';
 import AddProduct from './AddProduct';
 import AllProducts from './AllProduct';
-import Footer from '@/components/Footer';
+import FinanceAndProduct from './FinanceAndProduct';
 
 const initialForm: Partial<Product> = {
   name: '',
@@ -44,7 +44,9 @@ const ProductsDashboard: React.FC = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const perPage = 8;
-  const [tab, setTab] = useState<'add' | 'all' | 'users'>('all');
+  const [tab, setTab] = useState<'add' | 'all' | 'users' | 'finance'>('all');
+  const [open, setOpen] = useState(false);
+  
 
 
   // Cek login
@@ -176,6 +178,13 @@ const ProductsDashboard: React.FC = () => {
     (p.brand?.toLowerCase() || '').includes(search.toLowerCase())
   );
 
+  const menuTabs = [
+    { key: "all", icon: <Boxes size={18} />, label: "Products" },
+    { key: "add", icon: <FilePlus size={18} />, label: "Product" },
+    { key: "users", icon: <Users size={18} />, label: "Users" },
+    { key: "finance", icon: <Wallet2 size={18} />, label: "Finance" },
+  ];
+
   useEffect(() => {
     setPage(1);
   }, [search, filteredProducts.length]);
@@ -204,56 +213,73 @@ const ProductsDashboard: React.FC = () => {
             </div>
             {/* Kanan: Logout Button */}
             <button
-  onClick={async () => {
-    const confirm = window.confirm("Apakah Anda yakin ingin logout?");
-    if (confirm) {
-      await signOut(auth);
-      navigate('/in');
-    }
-  }}
-  className="flex items-center gap-2 py-2 px-5 bg-white/90 text-gray-900 rounded-lg font-semibold shadow hover:bg-gray-500 transition w-full max-w-xs sm:w-auto sm:max-w-none"
->
-  <LogOut size={18} className="inline-block" />
-  Logout
-</button>
+            onClick={async () => {
+              const confirm = window.confirm("Apakah Anda yakin ingin logout?");
+              if (confirm) {
+                await signOut(auth);
+                navigate('/in');
+              }
+            }}
+            className="flex items-center gap-2 py-2 px-5 bg-white/90 text-gray-900 rounded-lg font-semibold shadow hover:bg-gray-500 transition w-full max-w-xs sm:w-auto sm:max-w-none"
+          >
+            <LogOut size={18} className="inline-block" />
+            Logout
+          </button>
           </div>
 
-        {/* Tab Menu */}
-        <div className="flex gap-[0.3rem] mb-6 flex-wrap">
-           <button
-            onClick={() => setTab('all')}
-            className={`
-              flex items-center gap-2
-              px-4 py-2 rounded-xl font-bold
-              ${tab === 'all' ? 'bg-gray-800 text-white' : 'bg-white text-gray-700 border'}
-            `}
-          >
-            <Boxes size={18} className="inline-block" />
-            Products
-          </button>
+          <div className="mb-6 w-full">
+  {/* MOBILE: Dropdown dengan icon */}
+  <div className="relative w-full mb-4 sm:hidden">
+    <button
+      className="w-full flex items-center justify-between px-4 py-2 rounded-xl border bg-white font-bold text-gray-700 shadow"
+      onClick={() => setOpen((x) => !x)}
+    >
+      <span className="flex items-center gap-2">
+        {menuTabs.find((x) => x.key === tab).icon}
+        {menuTabs.find((x) => x.key === tab).label}
+      </span>
+      <ChevronDown className={`ml-2 transition-transform ${open ? "rotate-180" : ""}`} />
+    </button>
+    {open && (
+      <div className="absolute left-0 w-full mt-2 bg-white rounded-xl border shadow z-50 animate-fade-in">
+        {menuTabs.map((item) => (
           <button
-            onClick={() => setTab('add')}
-            className={`
-              flex items-center gap-2
-              px-4 py-2 rounded-xl font-bold
-              ${tab === 'add' ? 'bg-gray-800 text-white' : 'bg-white text-gray-700 border'}
-            `}
+            key={item.key}
+            onClick={() => {
+              setTab(item.key);
+              setOpen(false);
+            }}
+            className={`w-full flex items-center gap-2 px-4 py-2 rounded-xl text-left font-bold ${
+              tab === item.key ? "bg-gray-200 text-gray-900" : "hover:bg-gray-50 text-gray-700"
+            }`}
           >
-            <FilePlus size={18} className="inline-block" />
-            Product
+            {item.icon}
+            {item.label}
           </button>
-          <button
-            onClick={() => setTab('users')}
-            className={`
-              flex items-center gap-2
-              px-4 py-2 rounded-xl font-bold
-              ${tab === 'users' ? 'bg-gray-800 text-white' : 'bg-white text-gray-700 border'}
-            `}
-          >
-            <Users size={18} className="inline-block" />
-            Users
-          </button>
-        </div>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {/* DESKTOP: Tab bar horizontal biasa */}
+  <div className="gap-[0.3rem] hidden sm:flex flex-wrap">
+    {menuTabs.map((item) => (
+      <button
+        key={item.key}
+        onClick={() => setTab(item.key)}
+        className={`
+          flex items-center gap-2
+          px-4 py-2 rounded-xl font-bold
+          ${tab === item.key ? "bg-gray-800 text-white" : "bg-white text-gray-700 border"}
+        `}
+      >
+        {item.icon}
+        {item.label}
+      </button>
+    ))}
+  </div>
+</div>
+
 
         {/* Content Tab */}
         {tab === 'add' && (
@@ -285,6 +311,9 @@ const ProductsDashboard: React.FC = () => {
           {tab === 'users' && (
             <UserAdmin />
           )}
+          {tab === 'finance' && (
+  <FinanceAndProduct />
+)}
       </div>
           
   );

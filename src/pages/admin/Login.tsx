@@ -1,17 +1,37 @@
 // src/components/Login.tsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '@/lib/firebase';
+import { auth, db } from '@/lib/firebase';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { Loader2 } from "lucide-react";
 
+// Fungsi untuk log login ke Firestore
+async function logLoginHistory(user) {
+  try {
+    // Ambil IP publik user
+    const res = await fetch("https://api.ipify.org?format=json");
+    const { ip } = await res.json();
+    await addDoc(collection(db, "login_history"), {
+      userId: user.uid,
+      userName: user.displayName || "",
+      userEmail: user.email,
+      loginAt: serverTimestamp(),
+      ip,
+      device: window.navigator.userAgent,
+    });
+  } catch (err) {
+    // optional: error log
+  }
+}
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State untuk show/hide password
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // ========== ANTI-INSPECT/CONSOLE ==========
   useEffect(() => {
@@ -21,16 +41,9 @@ const Login: React.FC = () => {
 
     // Disable devtools keyboard shortcuts
     const blockDevTools = (e: KeyboardEvent) => {
-      // F12
-      if (e.keyCode === 123) e.preventDefault();
-      // Ctrl+Shift+I / Ctrl+Shift+J
-      if (e.ctrlKey && e.shiftKey && (e.key.toLowerCase() === 'i' || e.key.toLowerCase() === 'j')) {
-        e.preventDefault();
-      }
-      // Ctrl+U, Ctrl+S
-      if (e.ctrlKey && (e.key.toLowerCase() === 'u' || e.key.toLowerCase() === 's')) {
-        e.preventDefault();
-      }
+      if (e.keyCode === 123) e.preventDefault(); // F12
+      if (e.ctrlKey && e.shiftKey && (e.key.toLowerCase() === 'i' || e.key.toLowerCase() === 'j')) e.preventDefault();
+      if (e.ctrlKey && (e.key.toLowerCase() === 'u' || e.key.toLowerCase() === 's')) e.preventDefault();
     };
     document.addEventListener('keydown', blockDevTools);
 
@@ -64,28 +77,17 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      await logLoginHistory(cred.user); // log ke Firestore setelah login sukses!
       navigate('/takezon');
     } catch {
       setError('Upsss you wrong!.');
-    }
-  };
-
-  const [loading, setLoading] = React.useState(false);
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      // await login logic here
-    } catch (err) {
-      // error handling
     } finally {
       setLoading(false);
     }
   };
-  
 
   return (
     <div
