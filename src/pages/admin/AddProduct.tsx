@@ -107,12 +107,12 @@ const AddProduct: React.FC<AddProductProps> = ({
               </option>
             ))}
           </select>
-          <label className="text-xs text-gray-700 mt-2">Brand</label>
+          <label className="text-xs text-gray-700 mt-2">Issue</label>
           <input
             className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm"
             value={form.brand || ""}
             onChange={(e) => handleChange("brand", e.target.value)}
-            placeholder="Brand"
+            placeholder="Issue"
           />
           <label className="text-xs text-gray-700 mt-2">Description</label>
           <textarea
