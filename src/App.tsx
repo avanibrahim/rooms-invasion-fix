@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Index';
 import Shop from './pages/Shop';
@@ -15,21 +15,46 @@ import AdminDashboard from '@/pages/admin/Dashboard';
 import Login from '@/pages/admin/Login';
 import NotFound from './pages/NotFound';
 
-import { useEffect } from 'react';
 import { auth, db } from '@/lib/firebase';
 import { doc, updateDoc, serverTimestamp, setDoc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-
-
-// DIHAPUS: import { seedProducts } ... dan useEffect ...
 
 function App() {
   const { isOpen, toggleCart } = useCartStore();
 
   useEffect(() => {
     let currentUid = null;
-  
-    // AUTO CREATE USER DATA IF NOT EXISTS
+
+    // === BLOKIR KLIK KANAN DAN SHORTCUT INSPECT ===
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
+
+    // Shortcut yang diblokir: F12, Ctrl+Shift+I/J/C/U, Cmd+Opt+I (Mac)
+    const handleKeyDown = (e) => {
+      // Windows
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I", "J", "C", "U"].includes(e.key.toUpperCase()))
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+      // Mac (Cmd+Opt+I)
+      if (
+        (e.metaKey && e.altKey && e.key.toLowerCase() === "i")
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
+
+    // === OTOMATIS USER ONLINE/OFFLINE FIREBASE ===
     const createUserIfNotExists = async (user) => {
       const ref = doc(db, "users", user.uid);
       const snap = await getDoc(ref);
@@ -43,23 +68,20 @@ function App() {
         });
       }
     };
-  
+
     const unsub = onAuthStateChanged(auth, async (user) => {
       if (user) {
         currentUid = user.uid;
-        await createUserIfNotExists(user); // <-- ini WAJIB
+        await createUserIfNotExists(user); 
         try {
           await updateDoc(doc(db, 'users', user.uid), {
             isOnline: true,
             lastLoginAt: serverTimestamp(),
           });
-        } catch (e) {
-          // error log kalau perlu
-        }
+        } catch (e) {}
       }
     });
-  
-    // Set offline ketika tab/browser ditutup
+
     const setOffline = async () => {
       if (currentUid) {
         try {
@@ -68,16 +90,15 @@ function App() {
       }
     };
     window.addEventListener('beforeunload', setOffline);
-  
+
+    // === CLEANUP ===
     return () => {
       unsub();
       window.removeEventListener('beforeunload', setOffline);
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
-  
-
-  // ...sisanya tetap!
-
 
   return (
     <Router>
