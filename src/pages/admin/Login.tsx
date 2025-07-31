@@ -2,14 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '@/lib/firebase';
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from 'firebase/auth';
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { Loader2 } from "lucide-react";
 
-// Fungsi untuk log login ke Firestore
+// Fungsi log login ke Firestore
 async function logLoginHistory(user) {
   try {
-    // Ambil IP publik user
     const res = await fetch("https://api.ipify.org?format=json");
     const { ip } = await res.json();
     await addDoc(collection(db, "login_history"), {
@@ -20,9 +19,7 @@ async function logLoginHistory(user) {
       ip,
       device: window.navigator.userAgent,
     });
-  } catch (err) {
-    // optional: error log
-  }
+  } catch {}
 }
 
 const Login: React.FC = () => {
@@ -33,21 +30,25 @@ const Login: React.FC = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // FORGOT PASSWORD
+  const [forgotOpen, setForgotOpen] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState('');
+  const [forgotLoading, setForgotLoading] = useState(false);
+  const [forgotMsg, setForgotMsg] = useState('');
+  const [forgotErr, setForgotErr] = useState('');
+
   // ========== ANTI-INSPECT/CONSOLE ==========
   useEffect(() => {
-    // Disable right-click/context menu
     const handleContextMenu = (e: MouseEvent) => e.preventDefault();
     document.addEventListener('contextmenu', handleContextMenu);
 
-    // Disable devtools keyboard shortcuts
     const blockDevTools = (e: KeyboardEvent) => {
-      if (e.keyCode === 123) e.preventDefault(); // F12
+      if (e.keyCode === 123) e.preventDefault();
       if (e.ctrlKey && e.shiftKey && (e.key.toLowerCase() === 'i' || e.key.toLowerCase() === 'j')) e.preventDefault();
       if (e.ctrlKey && (e.key.toLowerCase() === 'u' || e.key.toLowerCase() === 's')) e.preventDefault();
     };
     document.addEventListener('keydown', blockDevTools);
 
-    // Hide content if devtools detected (via resize trick)
     const threshold = 160;
     const checkDevTools = () => {
       if (
@@ -65,7 +66,7 @@ const Login: React.FC = () => {
       window.removeEventListener('resize', checkDevTools);
     };
   }, []);
-  // ========== END ANTI-INSPECT/CONSOLE ==========
+  // ========== END ANTI-INSPECT ==========
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, user => {
@@ -74,13 +75,14 @@ const Login: React.FC = () => {
     return unsub;
   }, [navigate]);
 
+  // LOGIN
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
     try {
       const cred = await signInWithEmailAndPassword(auth, email, password);
-      await logLoginHistory(cred.user); // log ke Firestore setelah login sukses!
+      await logLoginHistory(cred.user);
       navigate('/takezon');
     } catch {
       setError('Upsss you wrong!.');
@@ -88,6 +90,64 @@ const Login: React.FC = () => {
       setLoading(false);
     }
   };
+
+  // HANDLE FORGOT PASSWORD
+  const handleForgot = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setForgotMsg('');
+    setForgotErr('');
+    setForgotLoading(true);
+    if (!forgotEmail) {
+      setForgotErr("Masukkan email anda.");
+      setForgotLoading(false);
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, forgotEmail);
+      setForgotMsg("Link reset password berhasil dikirim.");
+    } catch (err: any) {
+      setForgotErr(err.message || "Gagal mengirim reset password.");
+    } finally {
+      setForgotLoading(false);
+    }
+  };
+
+  // Modal basic (tanpa shadcn)
+  const ForgotModal = () => (
+    <div
+      className="fixed z-50 inset-0 flex items-center justify-center bg-black/40"
+      style={{ display: forgotOpen ? 'flex' : 'none' }}
+    >
+      <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-xs relative">
+        <button
+          onClick={() => setForgotOpen(false)}
+          className="absolute top-3 right-3 text-gray-500 font-bold text-xl hover:text-red-500"
+        >×</button>
+        <h2 className="text-lg font-bold text-gray-900 mb-2">Reset Password</h2>
+        <form onSubmit={handleForgot} className="flex flex-col gap-2 mt-2">
+          <input
+            type="email"
+            className="border border-gray-900 rounded px-3 py-2 text-gray-900"
+            placeholder="Username"
+            value={forgotEmail}
+            onChange={e => setForgotEmail(e.target.value)}
+            required
+            autoFocus
+          />
+          <button
+            type="submit"
+            disabled={forgotLoading}
+            className="bg-gray-700 hover:bg-gray-900 text-white font-bold rounded py-2 transition"
+          >
+            {forgotLoading ? <Loader2 className="animate-spin w-4 h-4 inline mr-2" /> : null}
+            Kirim Link
+          </button>
+        </form>
+        {forgotMsg && <div className="text-xs text-green-600 mt-2 text-center">{forgotMsg}</div>}
+        {forgotErr && <div className="text-xs text-red-600 mt-2 text-center">{forgotErr}</div>}
+      </div>
+    </div>
+  );
 
   return (
     <div
@@ -104,6 +164,8 @@ const Login: React.FC = () => {
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0"></div>
+      {/* Forgot Modal */}
+      <ForgotModal />
 
       {/* Glass Card */}
       <div className="relative z-10 w-full max-w-xs sm:max-w-sm md:max-w-md mx-2 bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 p-4 sm:p-6 md:p-10">
@@ -120,7 +182,6 @@ const Login: React.FC = () => {
             Please login to access the admin panel
           </span>
         </div>
-
         {error && (
           <div className="mb-4 text-center text-sm bg-red-500/80 text-white rounded-lg px-4 py-2 shadow">{error}</div>
         )}
@@ -199,20 +260,30 @@ const Login: React.FC = () => {
               )}
             </span>
           </div>
+          {/* FORGOT PASSWORD LINK */}
+          <div className="flex justify-end">
+            <button
+              type="button"
+              className="text-xs text-gray-100 hover:text-gray-400 transition font-semibold"
+              onClick={() => setForgotOpen(true)}
+            >
+              Forgot password?
+            </button>
+          </div>
           <button
             type="submit"
             className="w-full py-3 bg-gradient-to-r from-black-500 via-gray-600 to-gray-700 text-white font-bold rounded-xl shadow-lg hover:from-black hover:to-gray-400 hover:scale-[1.01] transition-all duration-150 text-base tracking-wide flex items-center justify-center gap-2"
             disabled={loading}
-            >
+          >
             {loading ? (
-                <>
+              <>
                 <Loader2 className="animate-spin w-5 h-5" />
                 Loading...
-                </>
+              </>
             ) : (
-                "LOGIN"
+              "LOGIN"
             )}
-            </button>
+          </button>
         </form>
         <div className="mt-8 text-center text-xs text-gray-100">
           &copy; {new Date().getFullYear()} <span className="font-semibold text-black-300">ROOMS INVASION</span> — All Rights Reserved
