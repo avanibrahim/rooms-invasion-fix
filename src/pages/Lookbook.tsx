@@ -13,17 +13,17 @@ const Lookbook = () => {
   const lookbookItems = [
     {
       title: 'NEVER ENOUGH',
+      image: '/lookbook/modelnew1.JPG',
+      description: 'Spring/Summer 2025 Never Enough Lookbook, Gorontalo, Indonesia 2025.',
+    },
+    {
+      title: 'NEVER ENOUGH',
       image: '/lookbook/never1.jpg',
       description: 'Spring/Summer 2025 Never Enough Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
       title: 'NEVER ENOUGH',
-      image: '/lookbook/never2.jpg',
-      description: 'Spring/Summer 2025 Never Enough Lookbook, Gorontalo, Indonesia 2025.',
-    },
-    {
-      title: 'NEVER ENOUGH',
-      image: '/lookbook/never3.jpg',
+      image: '/lookbook/modelnew2.JPG',
       description: 'Spring/Summer 2025 Never Enough Lookbook, Gorontalo, Indonesia 2025.',
     },
     {
@@ -44,32 +44,32 @@ const Lookbook = () => {
     {
       title: 'REMARKS 0.2',
       image: '/lookbook/model1.jpg',
-      description: 'Spring/Summer 2025 REMARKS 0.2 Lookbook, Gorontalo, Indonesia 2025.',
+      description: 'REMARKS 0.2 Lookbook, Gorontalo, Indonesia 2024.',
     },
     {
       title: 'REMARKS 0.2',
       image: '/lookbook/model2.jpg',
-      description: 'Spring/Summer 2025 REMARKS 0.2 Lookbook, Gorontalo, Indonesia 2025.',
+      description: 'REMARKS 0.2 Lookbook, Gorontalo, Indonesia 2024.',
     },
     {
       title: 'REMARKS 0.2',
       image: '/lookbook/model3.jpg',
-      description: 'Spring/Summer 2025 REMARKS 0.2 Lookbook, Gorontalo, Indonesia 2025.',
+      description: 'REMARKS 0.2 Lookbook, Gorontalo, Indonesia 2024.',
     },
     {
       title: 'INVASION FROM THE EAST',
       image: '/lookbook/model4.jpg',
-      description: 'Spring/Summer 2025 Invasion From The East Lookbook, Gorontalo, Indonesia 2025.',
+      description: 'Invasion From The East Lookbook, Gorontalo, Indonesia 2024.',
     },
     {
       title: 'INVASION FROM THE EAST',
       image: '/lookbook/model5.jpg',
-      description: 'Spring/Summer 2025 Invasion From The East Lookbook, Gorontalo, Indonesia 2025.',
+      description: 'Invasion From The East Lookbook, Gorontalo, Indonesia 2024.',
     },
     {
       title: 'INVASION FROM THE EAST',
       image: '/lookbook/model6.jpg',
-      description: 'Spring/Summer 2025 Invasion From The East Lookbook, Gorontalo, Indonesia 2025.',
+      description: 'Invasion From The East Lookbook, Gorontalo, Indonesia 2024.',
     },
     {
       title: 'FIRST OF ALL',
