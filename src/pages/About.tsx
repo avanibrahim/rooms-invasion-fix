@@ -39,6 +39,7 @@ const About = () => {
                   src="/image/room.jpeg"
                   alt="StyleShop Store"
                   onLoad={handleImageLoad}
+                  draggable="false"
                   className="max-w-2xl mx-auto mb-8 w-full h-25 object-cover md:h-96 rounded-lg shadow-lg md:shadow-xl"
                 />
                 <div className="max-w-2xl mx-auto text-left">

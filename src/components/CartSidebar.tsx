@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Plus, Minus, ShoppingCart } from 'lucide-react';
+import { X, Plus, Minus, ShoppingCart, ShoppingCartIcon } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 import { useOrderStore } from '../store/orderStore';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,6 @@ interface CartSidebarProps {
 
 const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
   const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCartStore();
-  const { orderData, openOrderForm } = useOrderStore();
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -20,24 +19,36 @@ const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
     onClose();
   };
 
-  if (!isOpen) return null;
-
+  // -- Overlay dan Sidebar tetap di-DOM, sidebar hanya animasi slide --
   return (
     <>
       {/* Overlay */}
-      <div 
-        className="fixed inset-0 bg-black bg-opacity-50 z-50"
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
         onClick={onClose}
+        aria-hidden="true"
       />
-      
+
       {/* Sidebar */}
-      <div className="fixed right-0 top-0 h-full w-full max-w-md bg-white z-50 shadow-xl transform transition-transform duration-300">
+      <div
+        className={`
+          fixed right-0 top-0 h-full w-full max-w-md bg-white z-50 shadow-xl
+          transform transition-transform duration-300
+          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+        `}
+        style={{ willChange: 'transform' }}
+        tabIndex={-1}
+        aria-modal="true"
+        role="dialog"
+      >
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b">
             <h2 className="text-xl font-semibold flex items-center">
-              <ShoppingCart className="mr-2" size={24} />
-              Shopping Cart ({items.length})
+              <ShoppingCartIcon className="mr-2" size={24} />
+              Your Cart ({items.length})
             </h2>
             <button
               onClick={onClose}

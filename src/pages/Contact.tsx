@@ -7,6 +7,8 @@ import LoadingScreen from '../components/LoadingScreen';
 const Contact = () => {
    const [loading, setLoading] = useState(true);
     const [loadedImages, setLoadedImages] = useState(0);
+    const [showMap, setShowMap] = useState(false);
+
 
     const handleImageLoad = () => {
         setLoadedImages((prev) => prev + 1);
@@ -94,24 +96,37 @@ const Contact = () => {
           
               {/* Map & Additional Info */}
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Visit Our Retail Partner
-                </h2>
-                
-                {/* Google Maps Embed */}
-                <div className="rounded-lg overflow-hidden h-64 mb-6 shadow-lg">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4259.766247675774!2d123.0626784!3d0.5496525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32792b35e28ef41f%3A0xa533905c22c1b117!2seksclothing!5e1!3m2!1sid!2sid!4v1750512931756!5m2!1sid!2sid"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Rooms Invasion Store Location"
-                  />
-                </div>
-            </div>
+      <h2 className="text-3xl font-bold text-gray-900 mb-6">
+        Visit Our Retail Partner
+      </h2>
+      <div className="rounded-lg overflow-hidden h-64 mb-6 shadow-lg">
+        {!showMap ? (
+          <button
+            className="w-full h-full relative group"
+            onClick={() => setShowMap(true)}
+            aria-label="Show Map"
+          >
+            <img
+              src="/maps.png"
+              alt="Rooms Invasion Store Location"
+              className="w-full h-full object-cover"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 text-white font-bold text-xl opacity-80 group-hover:opacity-100 transition">Click! Open interactive map</span>
+          </button>
+        ) : (
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4259.766247675774!2d123.0626784!3d0.5496525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32792b35e28ef41f%3A0xa533905c22c1b117!2seksclothing!5e1!3m2!1sid!2sid!4v1750512931756!5m2!1sid!2sid"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Rooms Invasion Store Location"
+          />
+        )}
+      </div>
+    </div>
           </div>
         </section>
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { toast } from "@/components/ui/use-toast";
 import { Image as ImageIcon, X, PlusSquare, Edit2, FilePlus } from "lucide-react";
+import UploadProducts from "@/components/Uploadproducts";
 
 type SizeType = { size: string; stock: number };
 
@@ -192,50 +193,60 @@ const AddProduct: React.FC<AddProductProps> = ({
           </div>
           {/* Images */}
           <label className="text-xs text-gray-700 mt-2 flex items-center gap-1">
-            <ImageIcon className="w-4 h-4 text-gray-400" />
-            Images
-            <span className="text-gray-400 text-xs">(comma separated)</span>
-          </label>
-          <input
-            className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm"
-            value={(form.images || []).join(", ")}
-            onChange={(e) =>
-              handleChange(
-                "images",
-                e.target.value.split(",").map((s: string) => s.trim())
-              )
-            }
-            placeholder="URL 1, URL 2, ..."
-          />
-          <div className="flex gap-2 mt-1">
-            {(form.images || [])
-              .filter(Boolean)
-              .slice(0, 3)
-              .map((url: string, idx: number) => (
-                <div key={idx} className="relative group">
-                  <img
-                    src={url}
-                    alt=""
-                    className="w-12 h-12 rounded object-cover border"
-                  />
-                  <button
-                    type="button"
-                    className="absolute -top-2 -right-2 bg-white text-gray-700 p-0.5 rounded-full border hover:bg-red-100"
-                    title="Remove"
-                    onClick={() =>
-                      handleChange(
-                        "images",
-                        (form.images || []).filter(
-                          (_: any, i: number) => i !== idx
+              <ImageIcon className="w-4 h-4 text-gray-400" />
+              Images
+              <span className="text-gray-400 text-xs">(comma separated)</span>
+            </label>
+
+            {/* Komponen upload gambar */}
+            <UploadProducts
+              images={form.images}
+              setImages={(imgs) => handleChange("images", imgs)}
+            />
+
+            <input
+              className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm mt-2"
+              value={(form.images || []).join(", ")}
+              onChange={(e) =>
+                handleChange(
+                  "images",
+                  e.target.value
+                    .split(",")
+                    .map((s) => s.trim())
+                    .filter(Boolean)
+                )
+              }
+              placeholder="URL 1, URL 2, ..."
+            />
+
+            <div className="flex gap-2 mt-1">
+              {(form.images || [])
+                .filter(Boolean)
+                .slice(0, 3)
+                .map((url: string, idx: number) => (
+                  <div key={idx} className="relative group">
+                    <img
+                      src={url}
+                      alt=""
+                      className="w-12 h-12 rounded object-cover border"
+                    />
+                    <button
+                      type="button"
+                      className="absolute -top-2 -right-2 bg-white text-gray-700 p-0.5 rounded-full border hover:bg-red-100"
+                      title="Remove"
+                      onClick={() =>
+                        handleChange(
+                          "images",
+                          (form.images || []).filter((_: any, i: number) => i !== idx)
                         )
-                      )
-                    }
-                  >
-                    <X size={13} />
-                  </button>
-                </div>
-              ))}
-          </div>
+                      }
+                    >
+                      <X size={13} />
+                    </button>
+                  </div>
+                ))}
+            </div>
+
           {/* Sizes */}
           {showSizes && (
             <div>
@@ -301,6 +312,8 @@ const AddProduct: React.FC<AddProductProps> = ({
                   NOTE!<br />
                   Isi 0 (Nol) Stock dari size yang Sold, Sesuaikan Total Stock dengan jumlah size yang ada.<br />
                   Contoh: Total Stock 10, Size S 5, Size M 5, Size L 0, Size XL 0, maka Total Stock = 5 + 5 = 10.<br />
+                  MAKSIMAL PER FOTO 2MB! <br />
+                  Hubungi Developer Jika ada error pada saat upload gambar atau menambah produk.<br />
                 </p>
               </div>
             </div>

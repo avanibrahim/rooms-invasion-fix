@@ -7,6 +7,7 @@ const LazyImage = ({ src, alt, className = '', onLoad }: any) => {
     <img
       src={src}
       alt={alt}
+      draggable="false"
       onLoad={(e) => {
         setLoaded(true);
         onLoad?.(e);

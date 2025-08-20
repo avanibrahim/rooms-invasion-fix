@@ -158,15 +158,16 @@ const ProductDetail: React.FC = () => {
                 <img
                   src={uniqueImages[selectedImageIndex]}
                   alt={product.name}
-                  className={`w-full h-100 object-cover ${isOutOfStock ? 'grayscale' : ''}`}
+                  className="w-full h-100 object-cover"
                   onLoad={handleImageLoad}
+                  draggable="false"
                 />
                 {isOutOfStock && (
-                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-red-700 px-6 py-3 rounded-lg">
-                      <span className="text-white font-semibold">OUT OF STOCK</span>
-                    </div>
+                  <div className="absolute inset-0 bg-black bg-opacity-0 flex items-start justify-start">
+                  <div className="bg-red-800 px-4 py-2 rounded-lg md:px-6 md:py-3">
+                    <span className="text-white font-semibold text-sm md:text-base">OUT OF STOCK</span>
                   </div>
+                </div>                
                 )}
               </div>
               {uniqueImages.length > 1 && (
@@ -182,7 +183,8 @@ const ProductDetail: React.FC = () => {
                       <img
                         src={img}
                         alt={`${product.name} ${idx + 1}`}
-                        className={`w-full h-full object-cover ${isOutOfStock ? 'grayscale' : ''}`}
+                        className="w-full h-100 object-cover"
+                        draggable="false"
                       />
                     </button>
                   ))}
