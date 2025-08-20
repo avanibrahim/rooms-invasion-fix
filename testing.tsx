@@ -6,25 +6,21 @@ import { toast } from "../hooks/use-toast";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SuccessModal from "../components/SuccessModal";
-import { useOrderStore } from "@/store/orderStore"; // KEEP
-import { db } from "@/lib/firebase";
-import { addDoc, collection, serverTimestamp, updateDoc } from "firebase/firestore";
-
+import { useOrderStore } from "@/store/orderStore";
 
 const Checkout = () => {
   const navigate = useNavigate();
   const { items, updateQuantity, removeItem, getTotalPrice } = useCartStore();
-
   // state baru
-  const [successNextUrl, setSuccessNextUrl] = useState("");
-  const createOrder = useOrderStore((s) => s.createOrder); // ADD: ambil action dari orderStore
-  const [redirectHandled, setRedirectHandled] = useState(false); // ADD: guard untuk blok redirect lama
+const [successNextUrl, setSuccessNextUrl] = useState("");
+const createOrder = useOrderStore((s ) => s.createOrder);
 
-  // handler OK
-  const handleSuccessOK = () => {
-    setShowSuccess(false);
-    navigate(successNextUrl || "/order/confirmation");
-  };
+// handler OK
+const handleSuccessOK = () => {
+  setShowSuccess(false);
+  navigate(successNextUrl || "/order/confirmation");
+};
+
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -209,83 +205,19 @@ Mohon konfirmasi pesanan ini. Terima kasih!`;
       // simpan untuk halaman konfirmasi
       sessionStorage.setItem("lastOrder", JSON.stringify(orderPayload));
 
-      // === ADD: Simpan order ke orderStore & set tujuan admin ===
-      const newOrderId = await createOrder({
-        customerEmail: formData.email,
-        customerName: `${formData.firstName} ${formData.lastName}`.trim(),
-        customerPhone: formData.phone,
-        shippingAddress: {
-          street: formData.address,
-          city: formData.city,
-          state: formData.province,
-          zipCode: formData.postalCode,
-          country: formData.country,
-        },
-        items, // sesuai CartItem[]
-        subtotal: getTotalPrice(),
-        shipping: shippingCost,
-        tax,
-        total: totalAmount,
-        status: "pending",
-        paymentStatus: "pending",
-        paymentMethod: formData.paymentMethod,
-        notes: `ORDER#${orderNumber}`,
-        // trackingNumber: undefined
-      });
-
-      try {
-        const ref = await addDoc(collection(db, "orders"), {
-          id: "", // diisi setelah dapat ref.id
-          orderNumber,
-          customerEmail: formData.email,
-          customerName: `${formData.firstName} ${formData.lastName}`.trim(),
-          customerPhone: formData.phone,
-          shippingAddress: {
-            street: formData.address,
-            city: formData.city,
-            state: formData.province,
-            zipCode: formData.postalCode,
-            country: formData.country,
-          },
-          items,                 // [{ id, name, size, color, quantity, price, ... }]
-          subtotal: getTotalPrice(),
-          shipping: shippingCost,
-          tax,
-          total: totalAmount,
-          status: "pending",
-          paymentStatus: "pending",
-          paymentMethod: formData.paymentMethod,
-          notes: `ORDER#${orderNumber}`,
-          createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp(),
-        });
-        await updateDoc(ref, { id: ref.id });
-      } catch (e) {
-        console.error("Failed to write order to Firestore:", e);
-      }
-      
-
-     setSuccessNextUrl(`/admin/orders/${newOrderId}`); // arahkan ke Admin Detail
-      setSuccessNextUrl(`/order/confirmation?order=${orderNumber}`); // user tetap ke halaman confirmation
-      setShowSuccess(true);
-      setRedirectHandled(true);
-      return; // hentikan eksekusi supaya blok redirect lama di bawah tidak jalan
-
       // ... di akhir try{} saat order sukses, setelah sessionStorage.setItem(...)
       setSuccessNextUrl(`/order/confirmation?order=${orderNumber}`);
       setShowSuccess(true);
 
-      // (hapus blok setTimeout navigate lama / auto-redirect)
+// (hapus blok setTimeout navigate lama / auto-redirect)
+
 
       // toast + redirect ke halaman konfirmasi
       setShowSuccess(true);
 
-      if (!redirectHandled) {
-        // hanya jalan kalau belum diarahkan ke admin
-        setTimeout(() => {
-          navigate(`/order/confirmation?order=${orderNumber}`);
-        }, 5000);
-      }
+      setTimeout(() => {
+        navigate(`/order/confirmation?order=${orderNumber}`);
+      }, 5000);
     } catch (error) {
       console.error(error);
       toast({
@@ -687,9 +619,10 @@ Mohon konfirmasi pesanan ini. Terima kasih!`;
 
                 {showSuccess && (
                   <SuccessModal
-                    open={showSuccess}
-                    onOK={handleSuccessOK}
-                  />
+                  open={showSuccess}
+                  onOK={handleSuccessOK}
+                />
+                
                 )}
               </div>
             </div>
@@ -851,7 +784,6 @@ Mohon konfirmasi pesanan ini. Terima kasih!`;
                     alt="WhatsApp"
                     className="h-4 w-4 sm:h-4 sm:w-4 object-contain"
                   />
-                  <span>+62</span>
                 </div>
                 <p className="text-xs text-gray-700 mt-1">Need help? Contact us via WhatsApp for instant support</p>
               </div>

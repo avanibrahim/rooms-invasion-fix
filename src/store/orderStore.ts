@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import { CartItem } from './cartStore';
 
 export interface Order {
@@ -40,6 +41,9 @@ interface OrderStore {
   addTrackingNumber: (orderId: string, trackingNumber: string) => Promise<void>;
   getOrderById: (orderId: string) => Order | undefined;
   getOrdersByCustomer: (customerEmail: string) => Order[];
+
+  // ✅ Tambahan opsional (tidak mengganti yang ada)
+  rehydrateFromStorage?: () => void;
 }
 
 // Mock data for demonstration
@@ -115,140 +119,167 @@ const mockOrders: Order[] = [
   }
 ];
 
-export const useOrderStore = create<OrderStore>((set, get) => ({
-  orders: [],
-  loading: false,
-  error: null,
+// ✅ Persist only orders to localStorage; loading/error tetap ephemeral
+export const useOrderStore = create<OrderStore>()(
+  persist(
+    (set, get) => ({
+      orders: [],
+      loading: false,
+      error: null,
 
-  fetchOrders: () => {
-    set({ loading: true, error: null });
-    
-    // Simulate API call
-    setTimeout(() => {
-      set({ 
-        orders: mockOrders,
-        loading: false 
-      });
-    }, 1000);
+      // opsional: paksa rehydrate dari storage (berguna dipanggil sekali di _app)
+      rehydrateFromStorage: () => {
+        try {
+          const raw = localStorage.getItem('orders-store');
+          if (raw) {
+            const parsed = JSON.parse(raw) as { state?: Partial<OrderStore> };
+            const saved = parsed?.state?.orders ?? [];
+            if (Array.isArray(saved) && saved.length) {
+              set({ orders: saved as Order[] });
+            }
+          }
+        } catch {
+          /* noop */
+        }
+      },
 
-    // Return cleanup function (in real implementation, this would unsubscribe from real-time updates)
-    return () => {
-      console.log('Unsubscribed from orders');
-    };
-  },
+      fetchOrders: () => {
+        set({ loading: true, error: null });
 
-  createOrder: async (orderData) => {
-    set({ loading: true, error: null });
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      const newOrder: Order = {
-        ...orderData,
-        id: `order-${Date.now()}`,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
+        // kalau orders sudah ada (dari persist), jangan timpa; tetap simulasi API untuk UX
+        setTimeout(() => {
+          const current = get().orders;
+          set({
+            orders: current.length ? current : mockOrders,
+            loading: false
+          });
+        }, 1000);
 
-      set(state => ({
-        orders: [newOrder, ...state.orders],
-        loading: false
-      }));
+        // Return cleanup function (in real implementation, this would unsubscribe from real-time updates)
+        return () => {
+          console.log('Unsubscribed from orders');
+        };
+      },
 
-      return newOrder.id;
-    } catch (error) {
-      set({ 
-        error: 'Failed to create order',
-        loading: false 
-      });
-      throw error;
+      createOrder: async (orderData) => {
+        set({ loading: true, error: null });
+
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1500));
+
+          const newOrder: Order = {
+            ...orderData,
+            id: `order-${Date.now()}`,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          };
+
+          set(state => ({
+            orders: [newOrder, ...state.orders],
+            loading: false
+          }));
+
+          return newOrder.id;
+        } catch (error) {
+          set({
+            error: 'Failed to create order',
+            loading: false
+          });
+          throw error;
+        }
+      },
+
+      updateOrderStatus: async (orderId, status) => {
+        set({ loading: true, error: null });
+
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          set(state => ({
+            orders: state.orders.map(order =>
+              order.id === orderId
+                ? { ...order, status, updatedAt: new Date().toISOString() }
+                : order
+            ),
+            loading: false
+          }));
+        } catch (error) {
+          set({
+            error: 'Failed to update order status',
+            loading: false
+          });
+          throw error;
+        }
+      },
+
+      updatePaymentStatus: async (orderId, paymentStatus) => {
+        set({ loading: true, error: null });
+
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          set(state => ({
+            orders: state.orders.map(order =>
+              order.id === orderId
+                ? { ...order, paymentStatus, updatedAt: new Date().toISOString() }
+                : order
+            ),
+            loading: false
+          }));
+        } catch (error) {
+          set({
+            error: 'Failed to update payment status',
+            loading: false
+          });
+          throw error;
+        }
+      },
+
+      addTrackingNumber: async (orderId, trackingNumber) => {
+        set({ loading: true, error: null });
+
+        try {
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          set(state => ({
+            orders: state.orders.map(order =>
+              order.id === orderId
+                ? {
+                    ...order,
+                    trackingNumber,
+                    status: 'shipped',
+                    updatedAt: new Date().toISOString()
+                  }
+                : order
+            ),
+            loading: false
+          }));
+        } catch (error) {
+          set({
+            error: 'Failed to add tracking number',
+            loading: false
+          });
+          throw error;
+        }
+      },
+
+      getOrderById: (orderId) => {
+        return get().orders.find(order => order.id === orderId);
+      },
+
+      getOrdersByCustomer: (customerEmail) => {
+        return get().orders.filter(order => order.customerEmail === customerEmail);
+      }
+    }),
+    {
+      name: 'orders-store',
+      storage: createJSONStorage(() => localStorage),
+      // Simpan hanya daftar orders; loading/error biar tidak dipersist
+      partialize: (state) => ({ orders: state.orders })
     }
-  },
-
-  updateOrderStatus: async (orderId, status) => {
-    set({ loading: true, error: null });
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      set(state => ({
-        orders: state.orders.map(order =>
-          order.id === orderId
-            ? { ...order, status, updatedAt: new Date().toISOString() }
-            : order
-        ),
-        loading: false
-      }));
-    } catch (error) {
-      set({ 
-        error: 'Failed to update order status',
-        loading: false 
-      });
-      throw error;
-    }
-  },
-
-  updatePaymentStatus: async (orderId, paymentStatus) => {
-    set({ loading: true, error: null });
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      set(state => ({
-        orders: state.orders.map(order =>
-          order.id === orderId
-            ? { ...order, paymentStatus, updatedAt: new Date().toISOString() }
-            : order
-        ),
-        loading: false
-      }));
-    } catch (error) {
-      set({ 
-        error: 'Failed to update payment status',
-        loading: false 
-      });
-      throw error;
-    }
-  },
-
-  addTrackingNumber: async (orderId, trackingNumber) => {
-    set({ loading: true, error: null });
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      set(state => ({
-        orders: state.orders.map(order =>
-          order.id === orderId
-            ? { 
-                ...order, 
-                trackingNumber, 
-                status: 'shipped',
-                updatedAt: new Date().toISOString() 
-              }
-            : order
-        ),
-        loading: false
-      }));
-    } catch (error) {
-      set({ 
-        error: 'Failed to add tracking number',
-        loading: false 
-      });
-      throw error;
-    }
-  },
-
-  getOrderById: (orderId) => {
-    return get().orders.find(order => order.id === orderId);
-  },
-
-  getOrdersByCustomer: (customerEmail) => {
-    return get().orders.filter(order => order.customerEmail === customerEmail);
-  }
-}));
-
+  )
+);

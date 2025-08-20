@@ -15,6 +15,7 @@ import AdminDashboard from '@/pages/admin/Dashboard';
 import Login from '@/pages/admin/Login';
 import NotFound from './pages/NotFound';
 import OrderConfirmation from './pages/OrderConfirmation';
+import AdminOrderDetail from './pages/admin/orders/AdminOrderDetail';
 
 import { auth, db } from '@/lib/firebase';
 import { doc, updateDoc, serverTimestamp, setDoc, getDoc } from 'firebase/firestore';
@@ -108,7 +109,7 @@ function App() {
       <div className="App">
         <ScrollToTop /> 
         <Routes>
-      {/*   <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/takezon" element={<AdminDashboard />} />
           <Route path="/in" element={<Login />} />
           <Route path="/shop" element={<Shop />} />
@@ -117,7 +118,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/order/confirmation" element={<OrderConfirmation />} /> */}
+          <Route path="/order/confirmation" element={<OrderConfirmation />} />
+          <Route path="/admin/orders/:id" element={<AdminOrderDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

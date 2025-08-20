@@ -19,7 +19,7 @@ import AddProduct from './AddProduct';
 import AllProducts from './AllProduct';
 import FinanceAndProduct from './FinanceAndProduct';
 import Kasir from './Kasir';
-import UploadLook from './UploadLook';
+import MainPage from './MainPage'
 
 const initialForm: Partial<Product> = {
   name: '',
@@ -46,7 +46,7 @@ const ProductsDashboard: React.FC = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const perPage = 8;
-  const [tab, setTab] = useState<'add' | 'all' | 'users' | 'kasir' | 'upload' | 'finance'>('all');
+  const [tab, setTab] = useState<'add' | 'all' | 'mainpage' | 'users' | 'kasir' | 'upload' | 'finance'>('all');
   const [open, setOpen] = useState(false);
 
   // Cek login (jika tidak login, redirect ke /in)
@@ -175,6 +175,7 @@ const ProductsDashboard: React.FC = () => {
 
   const menuTabs = [
     { key: "all", icon: <Boxes size={18} />, label: "Products" },
+    { key: "mainpage", icon: <Boxes size={18} />, label: "Confirm Order" },
     { key: "add", icon: <FilePlus size={18} />, label: "Product" },
     { key: "users", icon: <Users size={18} />, label: "Users" },
     { key: "finance", icon: <ChartNoAxesCombined size={18} />, label: "Finance" },
@@ -309,6 +310,7 @@ const ProductsDashboard: React.FC = () => {
         />
       )}
       {tab === 'users' && <UserAdmin />}
+      {tab === 'mainpage' && <MainPage />}
       {tab === 'finance' && <FinanceAndProduct />}
       {tab === 'kasir' && <Kasir />}
     </div>
