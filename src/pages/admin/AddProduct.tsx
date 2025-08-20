@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "@/components/ui/use-toast";
 import { Image as ImageIcon, X, PlusSquare, Edit2, FilePlus } from "lucide-react";
-import UploadProducts from "@/components/Uploadproducts";
+import UploadProducts from "@/components/UploadProducts";
 
 type SizeType = { size: string; stock: number };
 
