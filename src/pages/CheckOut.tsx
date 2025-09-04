@@ -851,7 +851,7 @@ Mohon konfirmasi pesanan ini. Terima kasih!`;
                     alt="WhatsApp"
                     className="h-4 w-4 sm:h-4 sm:w-4 object-contain"
                   />
-                  <span>+62</span>
+                  <span>+6285166369467</span>
                 </div>
                 <p className="text-xs text-gray-700 mt-1">Need help? Contact us via WhatsApp for instant support</p>
               </div>
