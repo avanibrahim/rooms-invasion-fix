@@ -109,7 +109,7 @@ function App() {
       <div className="App">
         <ScrollToTop /> 
         <Routes>
-          <Route path="/" element={<Home />} />
+         {/* <Route path="/" element={<Home />} />
           <Route path="/takezon" element={<AdminDashboard />} />
           <Route path="/in" element={<Login />} />
           <Route path="/shop" element={<Shop />} />
@@ -119,7 +119,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/order/confirmation" element={<OrderConfirmation />} />
-          <Route path="/admin/orders/:id" element={<AdminOrderDetail />} />
+          <Route path="/admin/orders/:id" element={<AdminOrderDetail />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
 

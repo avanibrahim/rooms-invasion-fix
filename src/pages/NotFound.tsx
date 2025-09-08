@@ -101,24 +101,6 @@ export default function MaintenanceResponsive() {
           Our website is currently undergoing scheduled maintenance.<br />
           <b>We'll be back soon!</b>
         </div>
-        <div className="countdown-row">
-          <div className="cd-unit">
-            <span>{days}</span>
-            <div className="cd-label">Days</div>
-          </div>
-          <div className="cd-unit">
-            <span>{hours}</span>
-            <div className="cd-label">Hours</div>
-          </div>
-          <div className="cd-unit">
-            <span>{minutes}</span>
-            <div className="cd-label">Minutes</div>
-          </div>
-          <div className="cd-unit">
-            <span>{seconds}</span>
-            <div className="cd-label">Seconds</div>
-          </div>
-        </div>
         <div className="maint-footer">
           &copy; {new Date().getFullYear()} ROOMS INVASION. All rights reserved.
         </div>
