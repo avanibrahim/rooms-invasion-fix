@@ -1,42 +1,59 @@
-import React, { createContext, useEffect, useState, useContext } from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
-import { auth, db } from "@/lib/firebase";
+import React, { createContext, useEffect, useState, useContext } from 'react';
+import type { ReactNode } from 'react';
+import { onAuthStateChanged, signOut, getIdToken, type User } from 'firebase/auth';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { auth, db } from '@/lib/firebase';
 
-// Context agar bisa diakses dari mana saja
-const AuthContext = createContext<any>(null);
+// ---- Types ----
+type AuthContextValue = {
+  user: User | null;
+  handleLogout: () => Promise<void>;
+};
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState<any>(null);
+// ---- Context ----
+const AuthContext = createContext<AuthContextValue | undefined>(undefined);
+
+// ---- Provider ----
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (u) => {
+    const unsubscribe = onAuthStateChanged(auth, async (u) => {
       setUser(u);
       if (u) {
-        // Set online saat login
+        // Pastikan dokumen users/{uid} ada (tanpa mengubah role dari klien)
         try {
-          await updateDoc(doc(db, "users", u.uid), { isOnline: true });
-        } catch (err) {}
-        // Set offline kalau browser/tab close
-        const setOffline = async () => {
-          try {
-            await updateDoc(doc(db, "users", u.uid), { isOnline: false });
-          } catch (err) {}
-        };
-        window.addEventListener("beforeunload", setOffline);
-        // Cleanup
-        return () => window.removeEventListener("beforeunload", setOffline);
+          await setDoc(
+            doc(db, 'users', u.uid),
+            {
+              email: u.email ?? '',
+              isOnline: true,
+              lastLoginAt: serverTimestamp(),
+            },
+            { merge: true }
+          );
+        } catch {}
+
+        // Refresh token (ambil custom claims terbaru kalau ada)
+        try {
+          await getIdToken(u, true);
+        } catch {}
       }
     });
-    return () => unsub();
+
+    return unsubscribe; // cleanup listener saat unmount
   }, []);
 
-  // Fungsi logout: panggil ini jika mau logout
   const handleLogout = async () => {
-    if (user) {
+    const u = auth.currentUser;
+    if (u) {
       try {
-        await updateDoc(doc(db, "users", user.uid), { isOnline: false });
-      } catch (err) {}
+        await setDoc(
+          doc(db, 'users', u.uid),
+          { isOnline: false, lastLogoutAt: serverTimestamp() },
+          { merge: true }
+        );
+      } catch {}
       await signOut(auth);
     }
   };
@@ -48,4 +65,9 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+// ---- Hook ----
+export const useAuth = () => {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error('useAuth must be used within <AuthProvider>');
+  return ctx;
+};

@@ -26,5 +26,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "optimize-images.cjs"]
+  "include": ["src", "optimize-images.cjs", "scripts/optimize-knuckle.js"]
 }

@@ -26,9 +26,9 @@ const Hero = () => {
   const [current, setCurrent] = useState(0);
 
   const heroImages = [
+    'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/model/b4.png)',
     'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/model/b1.png)',
     'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/model/b2.png)',
-    'linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/model/b3.png)',
   ];
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % heroImages.length);
@@ -69,7 +69,7 @@ const Hero = () => {
           <h1 className="text-2xl text-shadow-20 sm:text-4xl md:text-5xl font-bold mb-2 leading-tight">
             ROOMS INVASION
             <span className="block text-base sm:text-2xl text-gray-300 mt-1">
-              SS25 - Never Enough
+            Autumn/Winter 2025 - Knuckle
             </span>
           </h1>
 
