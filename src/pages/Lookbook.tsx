@@ -13,6 +13,21 @@ const Lookbook = () => {
   const lookbookItems = [
     {
       title: 'NEVER ENOUGH',
+      image: '/lookbook/knuckle1.jpg',
+      description: 'Autumn/Winter 2025 Knuckle LookBook, Bandung, Indonesia 2025',
+    },
+    {
+      title: 'NEVER ENOUGH',
+      image: '/lookbook/knuckle2.jpg',
+      description: 'Autumn/Winter 2025 Knuckle LookBook, Gorontalo, Indonesia 2025',
+    },
+    {
+      title: 'NEVER ENOUGH',
+      image: '/lookbook/knuckle3.jpg',
+      description: 'Autumn/Winter 2025 Knuckle LookBook, Bandung, Indonesia 2025',
+    },
+    {
+      title: 'NEVER ENOUGH',
       image: '/lookbook/modelnew1.JPG',
       description: 'Spring/Summer 2025 Never Enough Lookbook, Gorontalo, Indonesia 2025.',
     },
