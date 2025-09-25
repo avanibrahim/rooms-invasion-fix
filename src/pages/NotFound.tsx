@@ -96,7 +96,7 @@ export default function MaintenanceResponsive() {
       </style>
       <div className="maintenance-root">
         <IconWorldCog size={68} style={{ color: "#bfc1c6", marginBottom: 16 }} />
-        <div className="maint-title">MAINTENANCE</div>
+        <div className="maint-title">404</div>
         <div className="maint-desc">
           Our website is currently undergoing scheduled maintenance.<br />
           <b>We'll be back soon!</b>

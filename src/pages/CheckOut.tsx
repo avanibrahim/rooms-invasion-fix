@@ -554,7 +554,7 @@ Mohon konfirmasi pesanan ini. Terima kasih!`;
                         {/* BNI */}
                         <div className="flex items-center bg-white rounded-xl shadow p-3">
                           <div className="flex-shrink-0 bg-white rounded-full p-2">
-                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/2560px-BNI_logo.svg.png" alt="BNI" className="h-10 w-10 object-contain" />
+                            <img src="https://wwf.id/sites/default/files/inline-images/BNI_logo.svg__1.png" alt="BNI" className="h-10 w-10 object-contain" />
                           </div>
                           <div className="ml-4">
                             <div className="font-bold text-base text-gray-900">BNI</div>
@@ -851,7 +851,7 @@ Mohon konfirmasi pesanan ini. Terima kasih!`;
                     alt="WhatsApp"
                     className="h-4 w-4 sm:h-4 sm:w-4 object-contain"
                   />
-                  <span>+6285166369467</span>
+                  <p>+6285166369467</p>
                 </div>
                 <p className="text-xs text-gray-700 mt-1">Need help? Contact us via WhatsApp for instant support</p>
               </div>
